@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+
+	<!-- Portal Home Template -->
+	
+	<definition name="home" template="/WEB-INF/jsp/portal/portalHome.jsp"></definition>
+	<definition name="getCustomerDetails" template="/WEB-INF/jsp/portal/customerReg.jsp"></definition>
+	<definition name="checkOut" template="/WEB-INF/jsp/portal/checkOut.jsp"></definition>
+	
+	<definition name="paymentCancel" template="/WEB-INF/jsp/portal/PaymentCancel.jsp"></definition>
+	<definition name="paymentSuccess" template="/WEB-INF/jsp/portal/PaymentSuccess.jsp"></definition>
+	
+	<definition name="portalRedirect" template="/WEB-INF/jsp/portal/potalRedirect.jsp"></definition>
+    
+    	
+</tiles-definitions>               

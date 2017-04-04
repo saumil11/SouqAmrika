@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+
+    <!-- Login Template -->
+	<definition name=".adminLoginTemplate" template="/WEB-INF/template/adminLoginLayout.jsp">
+		<put-attribute name="title" value="IMOBDEV ERP" type="string" />
+		<put-attribute name="content" value="" />
+	</definition>
+	
+	<!-- After Login Template -->
+	<definition name=".adminHomeTemplate" template="/WEB-INF/template/adminHomeLayout.jsp">
+		<put-attribute name="title" value="VAPORHITZ" type="string" />
+		<put-attribute name="header" value="/WEB-INF/jsp/admin/header.jsp" />
+		<put-attribute name="leftmenu" value="/WEB-INF/jsp/admin/leftMenu.jsp" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/admin/footer.jsp" />
+		<put-attribute name="parentcurrent" value=""/> 
+		<put-attribute name="current" value="" />
+	</definition>
+	
+	<!-- Redirect Template -->
+	<definition name="adminRedirect" extends=".adminHomeTemplate">
+		<put-attribute name="content" value="/WEB-INF/jsp/admin/adminRedirect.jsp" />
+		<put-attribute name="parentcurrent" expression="${parentcurrent}" cascade="true"/> 
+		<put-attribute name="current" expression="${current}" cascade="true"/>
+		<put-attribute name="mainTitle" expression="${mainTitle}" cascade="true"/>
+		<put-attribute name="childTitle" expression="${childTitle}" cascade="true"/>
+	</definition>
+	
+	<!-- Error Redirect Template -->
+	<definition name="errorRedirect" template="/WEB-INF/jsp/errorRedirect.jsp"></definition>
+	
+	<definition name="error" template="/WEB-INF/error_pages/error.jsp"></definition>
+	
+	<definition name="accessDenied" template="/WEB-INF/error_pages/403.jsp"></definition>
+	
+	
+	
+	<definition name="dashboard" extends=".adminHomeTemplate">
+		<put-attribute name="content" value="/WEB-INF/jsp/admin/dashboard.jsp" />
+		<put-attribute name="parentcurrent" value="" cascade="true"/> 
+		<put-attribute name="current" value="dashboard" cascade="true"/>
+	</definition>
+	
+	<definition name="logIn" extends=".adminLoginTemplate">
+		<put-attribute name="content" value="/WEB-INF/jsp/admin/loginPage.jsp" />
+	</definition>
+	
+	<definition name="changePassword" extends=".adminHomeTemplate">
+	    <put-attribute name="parentcurrent" value="" cascade="true"/>
+		<put-attribute name="content" value="/WEB-INF/jsp/changePassword.jsp" />
+		<put-attribute name="current" value="" cascade="true"/>
+	</definition>
+	
+	<!-- START Permission definitions -->
+	
+	<definition name="addNewPermission" extends=".adminHomeTemplate">
+	    <put-attribute name="parentcurrent" value="USERS" cascade="true"/>
+		<put-attribute name="content" value="/WEB-INF/jsp/addNewPermission.jsp" />
+		<put-attribute name="current" value="permissions" cascade="true"/>
+	</definition>
+	
+	<definition name="permissions" extends=".adminHomeTemplate">
+	    <put-attribute name="parentcurrent" value="USERS" cascade="true"/>
+		<put-attribute name="content" value="/WEB-INF/jsp/permissions.jsp" />
+		<put-attribute name="current" value="permissions" cascade="true"/>
+	</definition>
+	
+	<definition name="editPermission" extends=".adminHomeTemplate">
+	    <put-attribute name="parentcurrent" value="USERS" cascade="true"/>
+		<put-attribute name="content" value="/WEB-INF/jsp/editPermission.jsp" />
+		<put-attribute name="current" value="permissions" cascade="true"/>
+	</definition>
+	
+	<!-- END Permission definitions -->
+	
+	<!-- START Module definitions -->
+	
+	<definition name="modules" extends=".adminHomeTemplate">
+	    <put-attribute name="parentcurrent" value="USERS" cascade="true"/>
+		<put-attribute name="content" value="/WEB-INF/jsp/modules.jsp" />
+		<put-attribute name="current" value="modules" cascade="true"/>
+	</definition>
+	
+	<definition name="addNewModule" extends=".adminHomeTemplate">
+	    <put-attribute name="parentcurrent" value="USERS" cascade="true"/>
+		<put-attribute name="content" value="/WEB-INF/jsp/addNewModule.jsp" />
+		<put-attribute name="current" value="modules" cascade="true"/>
+	</definition>
+	
+	<definition name="editModule" extends=".adminHomeTemplate">
+	    <put-attribute name="parentcurrent" value="USERS" cascade="true"/>
+		<put-attribute name="content" value="/WEB-INF/jsp/editModule.jsp" />
+		<put-attribute name="current" value="modules" cascade="true"/>
+	</definition>
+	
+	<!-- END Module definitions -->
+	
+	<!-- START Roles definitions -->
+	
+	<definition name="roles" extends=".adminHomeTemplate">
+	    <put-attribute name="parentcurrent" value="USERS" cascade="true"/>
+		<put-attribute name="content" value="/WEB-INF/jsp/roles.jsp" />
+		<put-attribute name="current" value="roles" cascade="true"/>
+	</definition>
+	
+	<definition name="addNewRole" extends=".adminHomeTemplate">
+	    <put-attribute name="parentcurrent" value="USERS" cascade="true"/>
+		<put-attribute name="content" value="/WEB-INF/jsp/addNewRole.jsp" />
+		<put-attribute name="current" value="roles" cascade="true"/>
+	</definition>
+	
+	<definition name="editRole" extends=".adminHomeTemplate">
+	    <put-attribute name="parentcurrent" value="USERS" cascade="true"/>
+		<put-attribute name="content" value="/WEB-INF/jsp/editRole.jsp" />
+		<put-attribute name="current" value="roles" cascade="true"/>
+	</definition>
+	
+	<!-- END Roles definitions -->
+
+	<!-- START Customer definitions -->
+
+	<definition name="allCustomers" extends=".adminHomeTemplate">
+		<put-attribute name="parentcurrent" value="" cascade="true"/>
+		<put-attribute name="content" value="/WEB-INF/jsp/admin/allCustomers.jsp" />
+		<put-attribute name="current" value="customers" cascade="true"/>
+	</definition>
+
+	<!-- END Customer definitions -->
+	
+	<!-- START Category definitions -->
+
+	<definition name="allCategories" extends=".adminHomeTemplate">
+		<put-attribute name="parentcurrent" value="INVENTORY" cascade="true"/>
+		<put-attribute name="content" value="/WEB-INF/jsp/admin/allCategories.jsp" />
+		<put-attribute name="current" value="categories" cascade="true"/>
+	</definition>
+	
+	<definition name="addNewCategory" extends=".adminHomeTemplate">
+	    <put-attribute name="parentcurrent" value="INVENTORY" cascade="true"/>
+		<put-attribute name="content" value="/WEB-INF/jsp/admin/addCategory.jsp" />
+		<put-attribute name="current" value="categories" cascade="true"/>
+	</definition>
+	
+	<definition name="editCategory" extends=".adminHomeTemplate">
+	    <put-attribute name="parentcurrent" value="INVENTORY" cascade="true"/>
+		<put-attribute name="content" value="/WEB-INF/jsp/admin/editCategory.jsp" />
+		<put-attribute name="current" value="categories" cascade="true"/>
+	</definition>
+	
+	<!-- END Category definitions -->
+	
+	<!-- START SubCategory definitions -->
+
+	<definition name="allSubCategories" extends=".adminHomeTemplate">
+		<put-attribute name="parentcurrent" value="INVENTORY" cascade="true"/>
+		<put-attribute name="content" value="/WEB-INF/jsp/admin/allSubCategories.jsp" />
+		<put-attribute name="current" value="subcategories" cascade="true"/>
+	</definition>
+	
+	<definition name="addNewSubCategory" extends=".adminHomeTemplate">
+	    <put-attribute name="parentcurrent" value="INVENTORY" cascade="true"/>
+		<put-attribute name="content" value="/WEB-INF/jsp/admin/addSubCategory.jsp" />
+		<put-attribute name="current" value="subcategories" cascade="true"/>
+	</definition>
+	
+	<definition name="editSubCategory" extends=".adminHomeTemplate">
+	    <put-attribute name="parentcurrent" value="INVENTORY" cascade="true"/>
+		<put-attribute name="content" value="/WEB-INF/jsp/admin/editSubCategory.jsp" />
+		<put-attribute name="current" value="subcategories" cascade="true"/>
+	</definition>
+	
+	<!-- END SubCategory definitions -->
+	
+	
+	
+
+	
+</tiles-definitions>               

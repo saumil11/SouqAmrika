@@ -2,6 +2,7 @@ package com.codelab.souqamrika.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,13 +12,16 @@ import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.codelab.souqamrika.constants.SouqAmrikaConstants;
+import com.codelab.souqamrika.dto.AdminCustomDTO;
 import com.codelab.souqamrika.dto.PaginationBO;
 import com.codelab.souqamrika.entity.CustomerMst;
+import com.codelab.souqamrika.entity.OrderMst;
 import com.codelab.souqamrika.service.AdminService;
 import com.codelab.souqamrika.service.CommonService;
 
@@ -69,6 +73,25 @@ public class AdminController {
 		return pagebo;
 	}
 	
+	public PaginationBO setOrderPagination(HttpServletRequest request,String listClass,
+			String defaulColumn, String statusColumn) throws Exception{
+		int page = Integer.parseInt(request.getParameter("page"));
+		int limit = Integer.parseInt(request.getParameter("rows"));
+		String sidx = request.getParameter("sidx");
+		String sord = request.getParameter("sord");
+		
+		PaginationBO paginationBo = new PaginationBO();
+		paginationBo.setPage(page);
+		paginationBo.setLimit(limit);
+		paginationBo.setSidx(sidx);
+		paginationBo.setSord(sord);
+		paginationBo.setPageClass(listClass);
+		paginationBo.setDefault_column(defaulColumn);
+		paginationBo.setStatus_column(statusColumn);
+		PaginationBO pagebo = this.getCommonService().setOrderPagination(paginationBo);
+		return pagebo;
+	}
+	
 	
 	@RequestMapping(value="/logIn")
 	public ModelAndView loadLoginPage() throws Exception{
@@ -97,21 +120,16 @@ public class AdminController {
 	
 	/*----Start : Customer Management----*/
 	
-	@RequestMapping(value="/allCustomers")
-	public ModelAndView loadAllCustomers() throws Exception{
-		return new ModelAndView("allCustomers");
-	}
-	
-	@RequestMapping(value="/getAllCustomers")
-	public @ResponseBody String getAllCustomers(HttpServletRequest request) throws Exception{
-		PaginationBO pagebo = this.setPagination(request, "CustomerMst", "customer_fname", "status");
+	@RequestMapping(value="/getAllOrders")
+	public @ResponseBody String getAllOrders(HttpServletRequest request) throws Exception{
+		PaginationBO pagebo = this.setOrderPagination(request, "", "customer_fname", "status");
 		
-		List<CustomerMst> lst =this.getCommonService().getListWithPagination(pagebo);
-		String grid = this.getAllCustomerGrid(pagebo, lst);
+		List<OrderMst> lst =this.getCommonService().getOrderListWithPagination(pagebo);
+		String grid = this.getAllOrderGrid(pagebo, lst);
 		return grid;
 	}
 	
-	public String getAllCustomerGrid(PaginationBO pagebo, List<CustomerMst> lst) throws Exception{
+	public String getAllOrderGrid(PaginationBO pagebo, List<OrderMst> lst) throws Exception{
 		JSONObject jsondata = new JSONObject();
 		JSONArray rows = new JSONArray();
 		if(null!=pagebo){
@@ -120,23 +138,21 @@ public class AdminController {
 			jsondata.put("records", pagebo.getRecords());
 		}
 		if (!lst.isEmpty()) {
-			for (CustomerMst customer : lst) {
-				StringBuilder actionStr = new StringBuilder("<a title='Edit row' style='font-size: 15px; padding-right: 10px;' id='jEditButton_"+customer.getCustomer_id()+"' onclick='editForm("+customer.getCustomer_id()+");'><span class='fa fa-pencil'></span></a>");
-				actionStr.append("<a title='Delete row' style='font-size: 15px;' id='jDeleteButton_"+customer.getCustomer_id()+"' onclick='deleteRow("+customer.getCustomer_id()+");'><span class='fa fa-trash'></span></a>");
+			for (OrderMst order : lst) {
 				JSONArray listdata = new JSONArray();
 				JSONObject row = new JSONObject();
 				
-				listdata.put("<a onclick='userDetails("+customer.getCustomer_id()+");'>"+customer.getCustomer_fname()+" "+customer.getCustomer_lname()+"</a>");
-				listdata.put(customer.getCustomer_email());
-				if(customer.getStatus() == SouqAmrikaConstants.ACTIVE_STATUS){
+				listdata.put("<a onclick='orderDetails("+order.getCustomer_id()+");'>"+order.getCustomer_fname()+" "+order.getCustomer_lname()+"</a>");
+				listdata.put("<a href='"+order.getProduct_url()+"'>"+order.getProduct_url()+"</a>");
+				/*if(customer.getStatus() == SouqAmrikaConstants.ACTIVE_STATUS){
 					listdata.put(SouqAmrikaConstants.ACTIVE_STATUS_STR);
 				}
 				else{
 					listdata.put(SouqAmrikaConstants.INACTIVE_STATUS_STR);
-				}
-				listdata.put(actionStr.toString());
+				}*/
+				//listdata.put(actionStr.toString());
 				
-				row.put("id",customer.getCustomer_id());
+				row.put("id",order.getCustomer_id());
 				row.put("cell", listdata);
 				rows.put(row);
 				jsondata.put("rows", rows);
@@ -145,22 +161,16 @@ public class AdminController {
 		return jsondata.toString();
 	}
 	
-	@RequestMapping(value = "/deleteCustomer")
-	public void deleteCustomer(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		
-		long custID =0;
-		if (null != request.getParameter("customer_id")) {
-			custID = Long.parseLong(request.getParameter("customer_id").toString());
-			String buffer;
-			boolean flag = this.getAdminService().deleteCustomer(custID);
-			if (flag) {
-				buffer = "Correct";
-			} else {
-				buffer = "Incorrect";
-			}
-			response.getWriter().println(buffer);
+	@RequestMapping(value = "/viewOrder")
+	public ModelAndView loadViewOrder(@ModelAttribute("admin") AdminCustomDTO admin, Map<String, Object> model,HttpServletRequest request) throws Exception{
+		Long customerId =0L;
+		if (null!=request.getParameter ("customerId")) {
+			customerId= Long.parseLong(request.getParameter("customerId").toString());
+			admin = this.getAdminService().getOrderDtls(customerId);
+			model.put("admin", admin);
 		}
+		return new ModelAndView("viewOrder");
+		
 	}
 	
 	/*----End : Customer Management----*/

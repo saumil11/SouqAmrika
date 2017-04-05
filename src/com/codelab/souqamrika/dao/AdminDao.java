@@ -1,5 +1,6 @@
 package com.codelab.souqamrika.dao;
 
+import com.codelab.souqamrika.dto.AdminCustomDTO;
 import com.codelab.souqamrika.entity.UserMst;
 
 public interface AdminDao {
@@ -9,5 +10,7 @@ public interface AdminDao {
 	boolean deleteCustomer(long custID) throws Exception;
 
 	<T> T get(Class<T> c, long id) throws Exception;
+
+	AdminCustomDTO getOrderDtls(Long customerId) throws Exception;
 
 }

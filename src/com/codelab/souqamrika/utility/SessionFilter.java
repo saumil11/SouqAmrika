@@ -38,7 +38,7 @@ public class SessionFilter implements Filter{
 		if(allowedRequest){
 			HttpSession session=request.getSession(false);
 			if(null==session){
-				response.sendRedirect("login.htm");
+				response.sendRedirect("logIn.htm");
 			}else{
 				arg2.doFilter(arg0, arg1);
 			}

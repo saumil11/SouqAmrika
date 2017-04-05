@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "order_mst")
@@ -27,6 +28,16 @@ public class OrderMst implements Serializable{
 	private Long updated_by;
 	private String updated_date;
 	private int status;
+	
+	@Transient
+	private String product_url;
+	@Transient
+	private String customer_fname;
+	@Transient
+	private String customer_lname;
+	@Transient
+	private String product_req_price;
+	
 	
 	public Long getOrder_id() {
 		return order_id;
@@ -76,6 +87,31 @@ public class OrderMst implements Serializable{
 	public void setStatus(int status) {
 		this.status = status;
 	}
+	public String getProduct_url() {
+		return product_url;
+	}
+	public void setProduct_url(String product_url) {
+		this.product_url = product_url;
+	}
+	public String getCustomer_fname() {
+		return customer_fname;
+	}
+	public void setCustomer_fname(String customer_fname) {
+		this.customer_fname = customer_fname;
+	}
+	public String getCustomer_lname() {
+		return customer_lname;
+	}
+	public void setCustomer_lname(String customer_lname) {
+		this.customer_lname = customer_lname;
+	}
+	public String getProduct_req_price() {
+		return product_req_price;
+	}
+	public void setProduct_req_price(String product_req_price) {
+		this.product_req_price = product_req_price;
+	}
+	
 	
 	
 

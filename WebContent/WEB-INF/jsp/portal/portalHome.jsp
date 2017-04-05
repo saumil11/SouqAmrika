@@ -1,8 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
@@ -36,13 +36,16 @@
     <div id="h" style="padding-top:90px;">
       <div class="logo">
       	<a href="Home.htm" style="color:white;font-size: 200%;">
-      		SOUQAMRIKA
+      		<span lang="en">SOUQAMRIKA</span>
+      		<span lang="ar">اسوكامريكا</span>
       	</a>
-      	<p dir="rtl" lang="ar" style="color:#e0e0e0;font-size:20px;">رَبٍّ زِدْنٍي عِلمًا
-      	</p>
       </div>
       <div class="social hidden-xs">
-      	<a href="#">About Us</a>
+      	<a href="#" class="switch-lang" lang="ar">Language: English</a>
+      	<a href="#" class="switch-lang" lang="en">لغة: عربى</a>
+      	&nbsp;&nbsp;
+      	<a href="#" lang="en">About Us</a>
+      	<a href="#" lang="ar">معلومات عنا</a>
         <a href="#"><i class="ion-social-twitter"></i></a>
         <a href="#"><i class="ion-social-instagram"></i></a>
         <a href="#"><i class="ion-social-facebook"></i></a>
@@ -50,14 +53,17 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8 col-md-offset-2 centered">
-            <h3 class="englishLang">Welcome to SouqAmrika.<br/>Enter product URL & prepare to enjoy our service.</h3>
+            <h3 lang="en">Welcome to SouqAmrika.<br/>Enter product URL & prepare to enjoy our service.</h3>
+            <h3 lang="ar">مرحبا بكم في سوكامريكا<br />أدخل عنوان ورل المنتج والاستعداد للاستمتاع خدمتنا</h3>
             <div class="mtb">
             <form:form method="post" action="RequestProduct.htm" class="form-horizontal" name="saveNewUserForm" id="saveNewUserForm" role="form" modelAttribute="portal">
                 
                 <input type="text" name="url" class="subscribe-input" placeholder="Enter Product URL" required style="float: none;color: gray;">
+                <!--<input type="text" lang="ar" name="url" class="subscribe-input" placeholder="أدخل عنوان ورل للمنتج" required style="float: none;color: gray;">-->
                 
                 <div class="form-group row col-sm-12" align="center">
-					 	<h3 for="sel1">Select Price Range</h3>
+					 	<h3 for="sel1" lang="en">Select Price Range</h3>
+					 	<h3 for="sel1" lang="ar">حدد النطاق السعري</h3>
 				</div>
                 <div class="form-group row col-sm-12" align="center">
 				  <div class="col-md-offset-3 col-sm-6">
@@ -72,7 +78,10 @@
 				</div>
 			    
 			    <div class="row col-sm-12 form-group">
-					<button class='btn btn-conf btn-green' type="submit">Request Now</button>			    	
+					<button class='btn btn-conf btn-green' type="submit">
+						<span lang="en">Request Now</span>
+						<span lang="ar">اطلب الآن</span>
+					</button>			    	
 			    </div>
 			    </form:form>
 				</div>			    
@@ -98,7 +107,7 @@
             <a href="#"><i class="ion-social-pinterest"></i></a>
             <a href="#"><i class="ion-social-tumblr"></i></a>
           </p>
-          <h6 class="mt">COPYRIGHT 2014 - LANDING SUMO</h6>
+          <h6 class="mt">COPYRIGHT 2017 - LANDING SUMO</h6>
         </div><!--/row-->
       </div><!--/container-->
     </div><!--/F-->
@@ -109,6 +118,7 @@
     <script src="<c:url value="/portal/assets/js/jquery.min.js"/>"></script>
     <script src="<c:url value="/portal/assets/js/bootstrap.min.js"/>"></script>
     <script src="<c:url value="/portal/assets/js/retina-1.1.0.js"/>"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script src="<c:url value="/portal/assets/js/custom.js"/>"></script>
   </body>
 </html>

@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.codelab.souqamrika.constants.SouqAmrikaConstants;
+import com.codelab.souqamrika.dto.AdminCustomDTO;
 import com.codelab.souqamrika.entity.CustomerMst;
+import com.codelab.souqamrika.entity.ProductUrlMst;
 import com.codelab.souqamrika.entity.UserMst;
 
 @Repository("AdminDao")
@@ -57,7 +59,7 @@ public class AdminDaoImpl implements AdminDao{
 		try {
 			session = this.getSessionFactory().openSession();
 			tx = session.beginTransaction();
-			Query query = session.createQuery("from UserMst where user_status!=:userStatus and user_name = :userName");
+			Query query = session.createQuery("from UserMst where status!=:userStatus and user_name = :userName");
 			query.setParameter("userStatus", SouqAmrikaConstants.DELETE_STATUS);
 			query.setParameter("userName", userName);
 			userMst = (UserMst) query.uniqueResult();
@@ -98,6 +100,43 @@ public class AdminDaoImpl implements AdminDao{
 			session.close();
 		}
 		return flag;
+	}
+
+	@Override
+	public AdminCustomDTO getOrderDtls(Long customerId) throws Exception {
+		Session session = null;
+		Transaction tx = null;
+		AdminCustomDTO adminCustomDTO = new AdminCustomDTO();
+		CustomerMst customerMst = null;
+		ProductUrlMst productUrlMst = null;
+		
+		try {
+			session = this.getSessionFactory().openSession();
+			tx = session.beginTransaction();
+			Query query = session.createQuery("from CustomerMst where status!=:userStatus and customer_id = :customerId");
+			query.setParameter("userStatus", SouqAmrikaConstants.DELETE_STATUS);
+			query.setParameter("customerId", customerId);
+			customerMst = (CustomerMst) query.uniqueResult();
+			
+			Query query1 = session.createQuery("from ProductUrlMst where status!=:userStatus and customer_id = :customerId");
+			query1.setParameter("userStatus", SouqAmrikaConstants.DELETE_STATUS);
+			query1.setParameter("customerId", customerId);
+			productUrlMst = (ProductUrlMst) query1.uniqueResult();
+			
+			if(customerMst!=null && productUrlMst!=null){
+				adminCustomDTO.setCustomerMstBO(customerMst);
+				adminCustomDTO.setProductUrlMstBO(productUrlMst);
+			}
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+			
+			e.printStackTrace();
+		} finally {
+			
+			session.close();
+		}
+		return adminCustomDTO;
 	}
 
 }

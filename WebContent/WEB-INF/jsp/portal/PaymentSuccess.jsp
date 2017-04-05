@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html">
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -71,8 +71,10 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/retina-1.1.0.js"></script>
+    <script src="<c:url value="/portal/assets/js/jquery.min.js"/>"></script>
+    <script src="<c:url value="/portal/assets/js/bootstrap.min.js"/>"></script>
+    <script src="<c:url value="/portal/assets/js/retina-1.1.0.js"/>"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="<c:url value="/portal/assets/js/custom.js"/>"></script>
   </body>
 </html>

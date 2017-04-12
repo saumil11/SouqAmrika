@@ -6,7 +6,19 @@
 
 <tiles-definitions>
 
-	<!-- Portal Home Template -->
+	<!-- START : Portal Home Template -->
+		<definition name=".portalHomeTemplate" template="/WEB-INF/template/portal/portalHomeLayout.jsp">
+			<put-attribute name="title" value="asd" type="string" />
+			<put-attribute name="header" value="/WEB-INF/jsp/portal/header.jsp" />
+			<put-attribute name="mobileMenu" value="/WEB-INF/jsp/portal/mobileMenu.jsp" />
+			<put-attribute name="content" value="" />
+			<put-attribute name="footer" value="/WEB-INF/jsp/portal/footer.jsp" />
+		</definition>
+	<!-- END : Portal Home Template -->
+	
+	<definition name="productSearch" extends=".portalHomeTemplate"> 
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/productSearch.jsp" />
+	</definition>
 	
 	<definition name="home" template="/WEB-INF/jsp/portal/portalHome.jsp"></definition>
 	<definition name="getCustomerDetails" template="/WEB-INF/jsp/portal/customerReg.jsp"></definition>

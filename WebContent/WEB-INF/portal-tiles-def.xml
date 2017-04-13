@@ -20,6 +20,10 @@
 		<put-attribute name="content" value="/WEB-INF/jsp/portal/productSearch.jsp" />
 	</definition>
 	
+	<definition name="singleProduct" extends=".portalHomeTemplate"> 
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/SingleProduct.jsp" />
+	</definition>
+	
 	<definition name="home" template="/WEB-INF/jsp/portal/portalHome.jsp"></definition>
 	<definition name="getCustomerDetails" template="/WEB-INF/jsp/portal/customerReg.jsp"></definition>
 	<definition name="checkOut" template="/WEB-INF/jsp/portal/checkOut.jsp"></definition>

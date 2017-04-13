@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import amazon.ImageSet;
+import amazon.Item;
+import amazon.Item.ImageSets;
 import amazon.Items;
 
 import com.codelab.souqamrika.constants.SouqAmrikaConstants;
@@ -141,6 +144,31 @@ public class MainController {
 			}
 		}
 		return new ModelAndView("productSearch");
+	}
+	
+	@RequestMapping(value="/SingleProduct")
+	public ModelAndView loadSingleProduct(@ModelAttribute("portal") PortalCustomDTO portal,Map<String, Object> model,HttpServletRequest request) throws Exception{
+		List<Items> resultList = new ArrayList<Items>();
+		
+		if(null!=request.getParameter("itemId") && !("").equals(request.getParameter("itemId"))){
+			String itemId = (String) request.getParameter("itemId");
+			
+			resultList = this.getAmazonService().getSingleProduct(itemId);
+			if(null==resultList || null==resultList.get(0).getItem()){
+				model.put("isEmpty", "Y");
+			}else{
+				Item item = resultList.get(0).getItem().get(0);
+				List<String> thumbnailImages = new ArrayList<String>();
+				for(ImageSets sets : item.getImageSets()){
+					for(ImageSet set : sets.getImageSet()){
+						thumbnailImages.add(set.getThumbnailImage().getURL());
+					}
+				}
+				model.put("item", item);
+				model.put("thumbnailImages", thumbnailImages);
+			}
+		}
+		return new ModelAndView("singleProduct");
 	}
 	
 	

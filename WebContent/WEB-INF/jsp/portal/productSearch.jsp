@@ -8,7 +8,8 @@
 				<div class="col-xs-12">
 					<div class="breadcrumbs-inner">
 						<div class="new-customers breadcrumbs-title">
-							<form:form method="post" name="productSearchForm" id="productSearchForm" role="form" modelAttribute="portal">
+							<form:form method="post" name="productSearchForm"
+								id="productSearchForm" role="form" modelAttribute="portal">
 								<div class="p-30">
 									<div class="col-sm-offset-2 col-sm-8">
 										<input type="text" name="keyWord" id="keyWord" />
@@ -28,6 +29,9 @@
 
 <!-- Start page content -->
 <div id="page-content" class="page-wrapper">
+<form:form method="post" name="productLookUpForm" id="productLookUpForm">
+	<input type="hidden" name="itemId" id="itemId">
+</form:form>
 
 	<!-- SHOP SECTION START -->
 	<div class="shop-section mb-80">
@@ -57,43 +61,43 @@
 							<div role="tabpanel" class="tab-pane" id="grid-view">
 								<div class="row">
 									<!-- product-item start -->
-									
+
 									<c:forEach var="item" items="${resultList}">
-									
-									<div class="col-md-4 col-sm-4 col-xs-12">
-										<div class="product-item">
-											<div class="product-img">
-												<a href="single-product.html">
-													<img src="<c:url value="${item.largeImage.URL}"/>" alt="" />
-												</a>
-											</div>
-											<div class="product-info">
-												<h6 class="product-title">
-													<a href="single-product.html">${item.itemAttributes.title}</a>
-												</h6>
-												<!-- <div class="pro-rating">
+
+										<div class="col-md-4 col-sm-4 col-xs-12">
+											<div class="product-item">
+												<div class="product-img">
+													<a href=""> <img
+														src="<c:url value="${item.largeImage.URL}"/>" alt="" />
+													</a>
+												</div>
+												<div class="product-info">
+													<h6 class="product-title">
+														<a href="javascript:loadSinglePage('${item.ASIN}');">${item.itemAttributes.title}</a>
+													</h6>
+													<!-- <div class="pro-rating">
 													<a href="#"><i class="zmdi zmdi-star"></i></a> <a href="#"><i
 														class="zmdi zmdi-star"></i></a> <a href="#"><i
 														class="zmdi zmdi-star"></i></a> <a href="#"><i
 														class="zmdi zmdi-star-half"></i></a> <a href="#"><i
 														class="zmdi zmdi-star-outline"></i></a>
 												</div> -->
-												<h3 class="pro-price">${item.itemAttributes.listPrice.formattedPrice}</h3>
-												<ul class="action-button">
-													<li><a href="#" title="Wishlist"><i
-															class="zmdi zmdi-favorite"></i></a></li>
-													<li><a href="#" data-toggle="modal"
-														data-target="#productModal" title="Quickview"><i
-															class="zmdi zmdi-zoom-in"></i></a></li>
-													<li><a href="#" title="Compare"><i
-															class="zmdi zmdi-refresh"></i></a></li>
-													<li><a href="#" title="Add to cart"><i
-															class="zmdi zmdi-shopping-cart-plus"></i></a></li>
-												</ul>
+													<h3 class="pro-price">${item.itemAttributes.listPrice.formattedPrice}</h3>
+													<ul class="action-button">
+														<li><a href="#" title="Wishlist"><i
+																class="zmdi zmdi-favorite"></i></a></li>
+														<li><a href="#" data-toggle="modal"
+															data-target="#productModal" title="Quickview"><i
+																class="zmdi zmdi-zoom-in"></i></a></li>
+														<li><a href="#" title="Compare"><i
+																class="zmdi zmdi-refresh"></i></a></li>
+														<li><a href="#" title="Add to cart"><i
+																class="zmdi zmdi-shopping-cart-plus"></i></a></li>
+													</ul>
+												</div>
 											</div>
 										</div>
-									</div>
-									
+
 									</c:forEach>
 									<!-- product-item end -->
 
@@ -102,47 +106,46 @@
 							<!-- list-view -->
 							<div role="tabpanel" class="tab-pane active" id="list-view">
 								<div class="row">
-								
-								<!-- product-item start -->
-								<c:forEach var="item" items="${resultList}">
-								   <div class="col-md-12">
-										<div class="shop-list product-item">
-											<div class="product-img">
-												<a href="single-product.html"> <img
-													src="<c:url value="${item.largeImage.URL}"/>"
-													alt="" />
-												</a>
-											</div>
-											<div class="product-info">
-												<div class="clearfix">
-													<h6 class="product-title f-left">
-														<a href="single-product.html">${item.itemAttributes.title}</a>
-													</h6>
-												</div>
-												<h6 class="brand-name mb-30">${item.itemAttributes.manufacturer}</h6>
-												<h3 class="pro-price">${item.itemAttributes.listPrice.formattedPrice}</h3>
 
-												<p>There are many variations of passages of Lorem Ipsum
-													available, but the majority have suffered alteration in
-													some form, by injected humour, or randomised words which
-													don't look even slightly believable.</p>
-												<ul class="action-button">
-													<li><a href="#" title="Wishlist"><i
-															class="zmdi zmdi-favorite"></i></a></li>
-													<li><a href="#" data-toggle="modal"
-														data-target="#productModal" title="Quickview"><i
-															class="zmdi zmdi-zoom-in"></i></a></li>
-													<li><a href="#" title="Compare"><i
-															class="zmdi zmdi-refresh"></i></a></li>
-													<li><a href="#" title="Add to cart"><i
-															class="zmdi zmdi-shopping-cart-plus"></i></a></li>
-												</ul>
+									<!-- product-item start -->
+									<c:forEach var="item" items="${resultList}">
+										<div class="col-md-12">
+											<div class="shop-list product-item">
+												<div class="product-img">
+													<a href="single-product.html"> <img
+														src="<c:url value="${item.largeImage.URL}"/>" alt="" />
+													</a>
+												</div>
+												<div class="product-info">
+													<div class="clearfix">
+														<h6 class="product-title f-left">
+															<a href="single-product.html">${item.itemAttributes.title}</a>
+														</h6>
+													</div>
+													<h6 class="brand-name mb-30">${item.itemAttributes.manufacturer}</h6>
+													<h3 class="pro-price">${item.itemAttributes.listPrice.formattedPrice}</h3>
+
+													<p>There are many variations of passages of Lorem Ipsum
+														available, but the majority have suffered alteration in
+														some form, by injected humour, or randomised words which
+														don't look even slightly believable.</p>
+													<ul class="action-button">
+														<li><a href="#" title="Wishlist"><i
+																class="zmdi zmdi-favorite"></i></a></li>
+														<li><a href="#" data-toggle="modal"
+															data-target="#productModal" title="Quickview"><i
+																class="zmdi zmdi-zoom-in"></i></a></li>
+														<li><a href="#" title="Compare"><i
+																class="zmdi zmdi-refresh"></i></a></li>
+														<li><a href="#" title="Add to cart"><i
+																class="zmdi zmdi-shopping-cart-plus"></i></a></li>
+													</ul>
+												</div>
 											</div>
 										</div>
-									</div>
-								</c:forEach>
-								
-								<!-- product-item end -->
+									</c:forEach>
+
+									<!-- product-item end -->
 
 
 								</div>
@@ -172,14 +175,26 @@
 </div>
 <!-- End page content -->
 <script type="text/javascript">
-        	function searchProduct(){
-        		var searchKeyWord = $('#keyWord').val();
-        		if(null!=searchKeyWord && ""!=searchKeyWord){
-        			document.productSearchForm.action = "SearchKeyWord.htm";
-        			document.productSearchForm.submit();
-        		}else{
-        			alert("Please input keyword.");
-        		}
-        	}
-        </script>
+	function searchProduct() {
+		var searchKeyWord = $('#keyWord').val();
+		if (null != searchKeyWord && "" != searchKeyWord) {
+			document.productSearchForm.action = "SearchKeyWord.htm";
+			document.productSearchForm.submit();
+		} else {
+			alert("Please input keyword.");
+		}
+	}
+	
+	function loadSinglePage(asin){
+		alert(asin);
+		if (null != asin && "" != asin) {
+			$("#itemId").val(asin);
+			document.productLookUpForm.action = "SingleProduct.htm";
+			document.productLookUpForm.submit();
+		} else {
+			alert("Please input keyword.");
+			$("#asinNo").val('');
+		}
+	}
+</script>
 

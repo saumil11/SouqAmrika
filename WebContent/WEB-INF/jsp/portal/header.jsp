@@ -21,7 +21,7 @@
                                         	<a href="index.html">Home</a>
                                         </li>
                                         <li>
-                                            <a href="contact.html">Search Products</a>
+                                            <a href="SingleProduct.htm">Search Products</a>
                                         </li>
                                         <li>
                                             <a href="about.html">About us</a>
@@ -31,6 +31,28 @@
                                         </li>
                                     </ul>
                                 </nav>
+                            </div>
+                            <!-- header-search & total-cart -->
+                            <div class="col-md-2 col-sm-6 col-xs-12">
+                                <div class="search-top-cart  f-right">
+                                    <!-- header-search -->
+                                    <div class="header-search header-search-2 f-left">
+                                        <div class="header-search-inner">
+                                           <button class="search-toggle">
+                                            <i class="zmdi zmdi-search"></i>
+                                           </button>
+                                            <form action="#">
+                                                <div class="top-search-box">
+                                                    <input type="text" placeholder="Search here your product...">
+                                                    <button type="submit">
+                                                        <i class="zmdi zmdi-search"></i>
+                                                    </button>
+                                                </div>
+                                            </form> 
+                                        </div>
+                                    </div>
+                                
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!-- START HEADER AREA -->
         <header class="header-area header-wrapper">
             <!-- header-middle-area -->
@@ -8,8 +10,8 @@
                             <!-- logo -->
                             <div class="col-md-2 col-sm-6 col-xs-12">
                                 <div class="logo">
-                                    <a href="index.html">
-                                        <img src="img/logo/logo.png" alt="main logo">
+                                    <a href="Home.htm">
+                                        <img src="<c:url value="/portal/assets/img/logo/logo.png"/>" alt="main logo">
                                     </a>
                                 </div>
                             </div>
@@ -18,16 +20,13 @@
                                 <nav id="primary-menu">
                                     <ul class="main-menu text-center">
                                         <li>
-                                        	<a href="index.html">Home</a>
+                                        	<a href="Home.htm">Home</a>
                                         </li>
                                         <li>
-                                            <a href="SingleProduct.htm">Search Products</a>
+                                            <a href="#">About us</a>
                                         </li>
                                         <li>
-                                            <a href="about.html">About us</a>
-                                        </li>
-                                        <li>
-                                            <a href="contact.html">Contact</a>
+                                            <a href="#">Contact</a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -41,14 +40,14 @@
                                            <button class="search-toggle">
                                             <i class="zmdi zmdi-search"></i>
                                            </button>
-                                            <form action="#">
+                                            <form:form method="post" name="productSearchForm" id="productSearchForm" role="form" modelAttribute="portal">
                                                 <div class="top-search-box">
-                                                    <input type="text" placeholder="Search here your product...">
-                                                    <button type="submit">
+                                                    <input type="text" name="keyWord" id="keyWord" placeholder="Search here your product...">
+                                                    <button type="button" onclick="searchProduct();">
                                                         <i class="zmdi zmdi-search"></i>
                                                     </button>
                                                 </div>
-                                            </form> 
+                                            </form:form>
                                         </div>
                                     </div>
                                 
@@ -60,3 +59,22 @@
             </div>
         </header>
         <!-- END HEADER AREA -->
+        
+        <script type="text/javascript">
+        function searchProduct() {
+    		var searchKeyWord = $('#keyWord').val();
+    		if (null != searchKeyWord && "" != searchKeyWord) {
+    			document.productSearchForm.action = "SearchKeyWord.htm";
+    			document.productSearchForm.submit();
+    		} else {
+    			alert("Please input keyword.");
+    		}
+    	}
+        
+        $("#keyWord").keypress(function(event) {
+            if (event.which == 13) {
+                event.preventDefault();
+                searchProduct();
+            }
+        });
+        </script>

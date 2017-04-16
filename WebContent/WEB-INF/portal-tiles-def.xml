@@ -8,7 +8,7 @@
 
 	<!-- START : Portal Home Template -->
 		<definition name=".portalHomeTemplate" template="/WEB-INF/template/portal/portalHomeLayout.jsp">
-			<put-attribute name="title" value="asd" type="string" />
+			<put-attribute name="title" value="" type="string" />
 			<put-attribute name="header" value="/WEB-INF/jsp/portal/header.jsp" />
 			<put-attribute name="mobileMenu" value="/WEB-INF/jsp/portal/mobileMenu.jsp" />
 			<put-attribute name="content" value="" />
@@ -16,17 +16,34 @@
 		</definition>
 	<!-- END : Portal Home Template -->
 	
+	<definition name="home" extends=".portalHomeTemplate"> 
+		<put-attribute name="title" value="Home" type="string" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/PortalHome.jsp" />
+	</definition>
+	
 	<definition name="productSearch" extends=".portalHomeTemplate"> 
+		<put-attribute name="title" value="Product Search" type="string" />
 		<put-attribute name="content" value="/WEB-INF/jsp/portal/productSearch.jsp" />
 	</definition>
 	
 	<definition name="singleProduct" extends=".portalHomeTemplate"> 
+		<put-attribute name="title" value="Product Details" type="string" />
 		<put-attribute name="content" value="/WEB-INF/jsp/portal/SingleProduct.jsp" />
 	</definition>
 	
-	<definition name="home" template="/WEB-INF/jsp/portal/portalHome.jsp"></definition>
-	<definition name="getCustomerDetails" template="/WEB-INF/jsp/portal/customerReg.jsp"></definition>
-	<definition name="checkOut" template="/WEB-INF/jsp/portal/checkOut.jsp"></definition>
+	<definition name="getCustomerDetails" extends=".portalHomeTemplate"> 
+		<put-attribute name="title" value="Checkout" type="string" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/CustomerReg.jsp" />
+	</definition>
+	
+	<definition name="checkOut" extends=".portalHomeTemplate"> 
+		<put-attribute name="title" value="Checkout" type="string" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/CheckOut.jsp" />
+	</definition>
+	
+	<!-- <definition name="home" template="/WEB-INF/jsp/portal/portalHome.jsp"></definition> -->
+	<!-- <definition name="getCustomerDetails" template="/WEB-INF/jsp/portal/CustomerReg.jsp"></definition> -->
+	<!-- <definition name="checkOut" template="/WEB-INF/jsp/portal/checkOut.jsp"></definition> -->
 	
 	<definition name="paymentCancel" template="/WEB-INF/jsp/portal/PaymentCancel.jsp"></definition>
 	<definition name="paymentSuccess" template="/WEB-INF/jsp/portal/PaymentSuccess.jsp"></definition>

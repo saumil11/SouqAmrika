@@ -1,3 +1,14 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<style>
+		.footer-social > li > a > i{
+			line-height: 28px;
+		}
+	</style>
+</head>
+<body>
 <footer id="footer" class="footer-area">
             <div class="footer-top">
                 <div class="container-fluid">
@@ -7,7 +18,7 @@
                                 <div class="col-lg-4 col-md-5 col-sm-4">
                                     <div class="single-footer footer-about">
                                         <div class="footer-logo">
-                                            <img src="img/logo/logo.png" alt="">
+                                            <img src="<c:url value="/portal/assets/img/logo/logo.png"/>" alt="main logo">
                                         </div>
                                         <div class="footer-brief">
                                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the subas industry's standard dummy text ever since the 1500s,</p>
@@ -116,16 +127,16 @@
                                 <div class="col-sm-6 col-xs-12">
                                     <ul class="footer-payment text-right">
                                         <li>
-                                            <a href="#"><img src="img/payment/1.jpg" alt=""></a>
+                                            <a href="#"><img src="<c:url value="/portal/assets/img/payment/1.jpg"/>" alt=""></a>
                                         </li>
                                         <li>
-                                            <a href="#"><img src="img/payment/2.jpg" alt=""></a>
+                                            <a href="#"><img src="<c:url value="/portal/assets/img/payment/2.jpg"/>" alt=""></a>
                                         </li>
                                         <li>
-                                            <a href="#"><img src="img/payment/3.jpg" alt=""></a>
+                                            <a href="#"><img src="<c:url value="/portal/assets/img/payment/3.jpg"/>" alt=""></a>
                                         </li>
                                         <li>
-                                            <a href="#"><img src="img/payment/4.jpg" alt=""></a>
+                                            <a href="#"><img src="<c:url value="/portal/assets/img/payment/4.jpg"/>" alt=""></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -135,3 +146,5 @@
                 </div>
             </div>
         </footer>
+</body>
+</html>

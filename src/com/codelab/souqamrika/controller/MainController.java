@@ -1,5 +1,7 @@
 package com.codelab.souqamrika.controller;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,6 +22,7 @@ import amazon.Item.ImageSets;
 import amazon.Items;
 
 import com.codelab.souqamrika.constants.SouqAmrikaConstants;
+import com.codelab.souqamrika.dto.ImageShowCase;
 import com.codelab.souqamrika.dto.PortalCustomDTO;
 import com.codelab.souqamrika.dto.PortalForm;
 import com.codelab.souqamrika.entity.CustomerMst;
@@ -66,13 +69,31 @@ public class MainController {
 	@RequestMapping(value="/RequestProduct")
 	public ModelAndView requestProduct(@ModelAttribute("portal") PortalForm portal,Map<String, Object> model,HttpServletRequest request) throws Exception{
 		
-		if(null!=request.getParameter("url") && null!=request.getParameter("priceRange")){
+		if(null!=request.getParameter("url") && ( null!=request.getParameter("priceRange") 
+				|| null!=request.getParameter("isFromAmazon"))){
 			String url = request.getParameter("url");
-			int requestPrice = Integer.parseInt(request.getParameter("priceRange"));
+			int requestPrice = 0;
+			if(null!=request.getParameter("price")){
+				BigInteger price = new BigInteger(request.getParameter("price").toString());
+				BigDecimal formattedPrice = new BigDecimal(price, 2);
+				Double productPrice = Double.parseDouble(formattedPrice.toString());
+				if(productPrice<=25){
+					requestPrice = 3;
+				}else if(productPrice<=50){
+					requestPrice = 5;
+				}else if(productPrice<=75){
+					requestPrice = 7;
+				}else if(productPrice<=100){
+					requestPrice = 9;
+				}else{
+					requestPrice = 10;
+				}
+			}else{
+				requestPrice = Integer.parseInt(request.getParameter("priceRange"));
+			}
+			
 			System.out.println(request.getParameter("url"));
 			System.out.println(request.getParameter("priceRange"));
-			//boolean flag = this.getPortalService().saveCustomerReg(customerMstDTO);
-			//request.setAttribute("success", "home.htm");
 			model.put("url", url);
 			model.put("requestPrice", requestPrice);
 		}
@@ -135,8 +156,10 @@ public class MainController {
 		
 		if(null!=request.getParameter("keyWord") && !("").equals(request.getParameter("keyWord"))){
 			String keyWord = (String) request.getParameter("keyWord");
-			
-			resultList = this.getAmazonService().getProductSearchLst(keyWord);
+			Integer page = 1;
+			resultList = this.getAmazonService().getProductSearchLst(keyWord, page);
+			model.put("keyWord", keyWord);
+			model.put("page", page);
 			if(null==resultList){
 				model.put("isEmpty", "Y");
 			}else{
@@ -158,20 +181,48 @@ public class MainController {
 				model.put("isEmpty", "Y");
 			}else{
 				Item item = resultList.get(0).getItem().get(0);
-				List<String> thumbnailImages = new ArrayList<String>();
+				List<ImageShowCase> imageShowCaseLst = new ArrayList<ImageShowCase>();
 				for(ImageSets sets : item.getImageSets()){
 					for(ImageSet set : sets.getImageSet()){
-						thumbnailImages.add(set.getThumbnailImage().getURL());
+						ImageShowCase imageShowCaseDto = new ImageShowCase();
+						imageShowCaseDto.setSmallImage(set.getSmallImage().getURL());
+						imageShowCaseDto.setLargeImage(set.getLargeImage().getURL());
+						imageShowCaseDto.setThumbnailImage(set.getThumbnailImage().getURL());
+						imageShowCaseLst.add(imageShowCaseDto);
 					}
 				}
 				model.put("item", item);
-				model.put("thumbnailImages", thumbnailImages);
+				model.put("thumbnailImages", imageShowCaseLst);
 			}
 		}
 		return new ModelAndView("singleProduct");
 	}
 	
+	@RequestMapping(value="/NextProductList")
+	public ModelAndView loadNextProductList(@ModelAttribute("portal") PortalCustomDTO portal,Map<String, Object> model,HttpServletRequest request) throws Exception{
+		
+		List<Items> resultList = new ArrayList<Items>();
+		
+		if(null!=request.getParameter("keyWord") && !("").equals(request.getParameter("keyWord")) &&
+				null!=request.getParameter("loadPage") && !("").equals(request.getParameter("loadPage"))){
+			
+			String keyWord = (String) request.getParameter("keyWord");
+			Integer page = Integer.parseInt(request.getParameter("loadPage"));
+			resultList = this.getAmazonService().getProductSearchLst(keyWord, page);
+			model.put("keyWord", keyWord);
+			model.put("page", page);
+			if(null==resultList){
+				model.put("isEmpty", "Y");
+			}else{
+				model.put("resultList", resultList.get(0).getItem());
+			}
+		}
+		return new ModelAndView("productSearch");
+	}
 	
-	
+	@RequestMapping(value="/checkOut")
+	public ModelAndView loadCustomerDetails() throws Exception{
+		return new ModelAndView("checkOut");
+	}
 	
 }

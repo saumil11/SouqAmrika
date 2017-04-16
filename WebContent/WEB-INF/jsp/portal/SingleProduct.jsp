@@ -1,6 +1,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<style>
+		.action-button > li > a > i{
+			line-height: 28px;
+		}
+	</style>
+	<script src="<c:url value="/portal/assets//js/jquery.elevateZoom-3.0.8.min.js"/>"></script>
+	
+</head>
+<body>
 <!-- Start page content -->
 <section id="page-content" class="page-wrapper">
 
@@ -16,14 +27,14 @@
 							<!-- imgs-zoom-area start -->
 							<div class="col-md-5 col-sm-5 col-xs-12">
 								<div class="imgs-zoom-area">
-									<img id="zoom_03" src="${item.largeImage.URL}" data-zoom-image="img/product/6.jpg" alt="">
+									<img id="zoom_03" src="${item.largeImage.URL}" data-zoom-image="${item.largeImage.URL}" alt="">
 									<div class="row">
 										<div class="col-xs-12">
 											<div id="gallery_01" class="carousel-btn slick-arrow-3 mt-30">
 											<c:forEach var="image" items="${thumbnailImages}">
 												<div class="p-c">
-													<a href="#" data-image="<c:url value="/portal/assets/img/product/2.jpg"/>" data-zoom-image="img/product/2.jpg">
-														<img class="zoom_03" src="${image}" alt="">
+													<a href="#" data-image="${image.largeImage}" data-zoom-image="${image.largeImage}">
+														<img class="zoom_03" src="${image.thumbnailImage}" alt="">
 													</a>
 												</div>
 											</c:forEach>	
@@ -70,7 +81,7 @@
 										<div class="sin-plus-minus f-left clearfix">
 											<p class="color-title f-left">Qty</p>
 											<div class="cart-plus-minus f-left">
-												<input type="text" value="02" name="qtybutton"
+												<input type="text" value="01" name="qtybutton"
 													class="cart-plus-minus-box">
 											</div>
 										</div>
@@ -95,11 +106,16 @@
 									<h3 class="pro-price">Price: ${item.itemAttributes.listPrice.formattedPrice}</h3>
 									<!--  hr -->
 									<hr>
-									<div>
-										<a href="#" class="button extra-small button-black" tabindex="-1">
-											<span class="text-uppercase">Order now</span>
-										</a>
-									</div>
+									<form:form method="post" name="orderAProduct" id="orderAProduct" modelAttribute="portal">
+										<input type="hidden" name="url" value="${item.detailPageURL}"/>
+										<input type="hidden" name="isFromAmazon" value="true"/>
+										<input type="hidden" name="price" value="${item.itemAttributes.listPrice.amount}"/>
+										<div>
+											<a href="javascript:orderProduct();" class="button extra-small button-black" tabindex="-1">
+												<span class="text-uppercase">Order now</span>
+											</a>
+										</div>
+									</form:form>
 								</div>
 							</div>
 							<!-- single-product-info end -->
@@ -202,9 +218,17 @@
 						</div>
 					</div>
 					<!-- single-product-area end -->
-				
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
+
+<script type="text/javascript">
+	function orderProduct(){
+		document.orderAProduct.action = "RequestProduct.htm";
+		document.orderAProduct.submit();	
+	}
+</script>
+</body>
+</html>

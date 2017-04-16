@@ -3,18 +3,18 @@
 	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 	<display-name>SouqAmrika</display-name>
-	<filter>
+	<!-- <filter>
 		<filter-name>session-check</filter-name>
 		<filter-class>com.codelab.souqamrika.utility.SessionFilter</filter-class>
 		<init-param>
 			<param-name>avoid-urls</param-name>
-			<param-value>admin/logIn.htm,/verify.htm</param-value>
+			<param-value>portal/*.htm,admin/logIn.htm,/verify.htm</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>
 		<filter-name>session-check</filter-name>
 		<url-pattern>*.htm</url-pattern>
-	</filter-mapping>
+	</filter-mapping> -->
 
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>

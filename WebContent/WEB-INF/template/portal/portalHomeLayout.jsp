@@ -30,7 +30,8 @@
     <link href="<c:url value="/portal/assets/css/color/color-core.css"/>" data-style="styles" rel="stylesheet">
     <!-- User style -->
     <link rel="stylesheet" href="<c:url value="/portal/assets/css/custom.css"/>">
-
+ 	<!-- jquery latest version -->
+    <script src="<c:url value="/portal/assets/js/vendor/jquery-3.1.1.min.js"/>"></script>
     <!-- Modernizr JS -->
     <script src="<c:url value="/portal/assets/js/vendor/modernizr-2.8.3.min.js"/>"></script>
 </head>
@@ -64,8 +65,7 @@
 	
 	 <!-- Placed JS at the end of the document so the pages load faster -->
 
-    <!-- jquery latest version -->
-    <script src="<c:url value="/portal/assets/js/vendor/jquery-3.1.1.min.js"/>"></script>
+   
     <!-- Bootstrap framework js -->
     <script src="<c:url value="/portal/assets/js/bootstrap.min.js"/>"></script>
     <!-- jquery.nivo.slider js -->

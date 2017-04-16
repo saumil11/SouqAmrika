@@ -1,5 +1,6 @@
 package com.codelab.souqamrika.service;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,11 +30,11 @@ public class AmazonServiceImpl implements AmazonService{
     final String associateTag = "souqamrika25-20";
 	
     @Override
-	public List<Items> getProductSearchLst(String keyWord) throws Exception {
+	public List<Items> getProductSearchLst(String keyWord, Integer page) throws Exception {
 
 		List<Items> itemList = new ArrayList<Items>();
 	    
-	    if(null==keyWord || "".equals(keyWord)){
+	    if(null==keyWord || "".equals(keyWord) || null==page || 0==page){
 	    	log.error("KeyWord not found.");
 	    	throw new IllegalArgumentException();
 	    }
@@ -44,22 +45,22 @@ public class AmazonServiceImpl implements AmazonService{
 	    ItemSearchRequest request = new ItemSearchRequest();                      
 	    request.setSearchIndex("All");
 	    request.setKeywords(keyWord);
-	        //request.setItemPage(BigInteger.valueOf(11));
-	        request.getResponseGroup().add("ItemAttributes");
-	        request.getResponseGroup().add("Images");
-	        ItemSearch itemSearch= new ItemSearch();                                  
-	        itemSearch.setAWSAccessKeyId(accessId);
-	        itemSearch.setAssociateTag(associateTag);
-	        itemSearch.getRequest().add(request); 
-	        ItemSearchResponse response = port.itemSearch(itemSearch);                
-	        itemList = response.getItems();                              
-	        if(null!=itemList && 0<itemList.size()){
-	        	return itemList;
-	        }else{
-	        	return null;
-	        }
-	            
-	    }
+	    request.setItemPage(BigInteger.valueOf(page));
+	    request.getResponseGroup().add("ItemAttributes");
+        request.getResponseGroup().add("Images");
+        ItemSearch itemSearch= new ItemSearch();                                  
+        itemSearch.setAWSAccessKeyId(accessId);
+        itemSearch.setAssociateTag(associateTag);
+        itemSearch.getRequest().add(request); 
+        ItemSearchResponse response = port.itemSearch(itemSearch);                
+        itemList = response.getItems();                              
+        if(null!=itemList && 0<itemList.size()){
+        	return itemList;
+        }else{
+        	return null;
+        }
+
+    }
 	
     @Override
 	public List<Items> getSingleProduct(String itemId) throws Exception {

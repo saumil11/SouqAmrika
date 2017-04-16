@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%response.sendRedirect("portal/SearchPrpduct.htm"); %>
+	<%response.sendRedirect("portal/Home.htm"); %>
 
 </body>
 </html>

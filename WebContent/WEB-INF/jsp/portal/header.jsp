@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <!-- START HEADER AREA -->
         <header class="header-area header-wrapper">
             <!-- header-middle-area -->
@@ -63,8 +64,8 @@
                                                     <li><a href="Home.htm"><spring:message code="label.home"/></a></li>
                                                     <li><a href="About.htm"><spring:message code="label.aboutUs"/></a></li>
                                                     <li><a href="#"><spring:message code="label.contact"/></a></li>
-                                                    <li><a href="Home.htm?locale=en">Language : English</a></li>
-                                                    <li><a href="Home.htm?locale=ar">ً بكم في سوق أ</a></li>
+                                                    <li><a id="langChangeEn" href=currentPath+"?locale=en">Language : English</a></li>
+                                                    <li><a id="langChangeAr" href=currentPath+"?locale=ar">ً بكم في سوق أ</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -80,6 +81,18 @@
         <!-- END HEADER AREA -->
         
         <script type="text/javascript">
+        
+        var pathname = window.location.pathname;
+        var res = pathname.split("portal/");
+        var currentPath = res[1];
+        $( document ).ready(function() {
+        	var linkEn = document.getElementById("langChangeEn");
+        	var linkAr = document.getElementById("langChangeAr");
+     	   	linkEn.setAttribute("href", currentPath+"?locale=en");
+     	   	linkAr.setAttribute("href", currentPath+"?locale=ar");
+     	   	return false;
+        });
+        
         function searchProduct() {
     		var searchKeyWord = $('#keyWord').val();
     		if (null != searchKeyWord && "" != searchKeyWord) {

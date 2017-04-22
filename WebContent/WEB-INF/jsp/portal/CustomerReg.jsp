@@ -77,8 +77,8 @@
 												<input type="text" name="customerMstBO.customer_city" id="city" placeholder="<spring:message code="label.block"/>">
 												<input type="text" name="customerMstBO.customer_state" id="state" placeholder="<spring:message code="label.street"/>">
 												<input type="text" name="customerMstBO.customer_postalcode" id="postalCode" placeholder="<spring:message code="label.house"/>">
-												<input type="checkbox" id="otherAdd"  /> <span><spring:message code="label.other"/></span>
-												<textarea class="height-80" name="customerMstBO.customer_otherAddress" id="otherAddress" style="display: none"></textarea>
+												<%-- <input type="checkbox" id="otherAdd"  /> <span><spring:message code="label.other"/></span> --%>
+												<textarea class="height-80" name="customerMstBO.customer_otherAddress" id="otherAddress" placeholder="<spring:message code="label.other"/>"></textarea>
 												<input type="hidden" class="form-control" name="productUrlMstBO.product_url" id="productUrl" value="${url}">
   												<input type="hidden" class="form-control" name="productUrlMstBO.product_req_price" id="requestPrice" value="${requestPrice}">
   												<hr>

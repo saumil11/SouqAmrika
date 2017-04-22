@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -50,10 +51,10 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="breadcrumbs-inner">
-                                <h1 class="breadcrumbs-title">product search result List</h1>
+                                <h1 class="breadcrumbs-title"><spring:message code="label.productSearchLst"/></h1>
                                 <ul class="breadcrumb-list">
-                                    <li><a href="Home.htm">Home</a></li>
-                                    <li>product List</li>
+                                    <li><a href="Home.htm"><spring:message code="label.home"/></a></li>
+                                    <li><spring:message code="label.productLst"/></li>
                                 </ul>
                             </div>
                         </div>

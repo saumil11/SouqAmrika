@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Souqamrica || <tiles:insertAttribute name="title" ignore="true" /></title>
+    <title>Souqamrika || <tiles:insertAttribute name="title" ignore="true" /></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -34,6 +34,16 @@
     <script src="<c:url value="/portal/assets/js/vendor/jquery-3.1.1.min.js"/>"></script>
     <!-- Modernizr JS -->
     <script src="<c:url value="/portal/assets/js/vendor/modernizr-2.8.3.min.js"/>"></script>
+    
+    <style type="text/css">
+    	.sticky .user-meta > li > a {
+		    padding: 25px 20px;
+		}
+    	.user-meta > li > a {
+		    padding: 20px 20px;
+		}
+    </style>
+    
 </head>
 <body>
 	<!--[if lt IE 8]>

@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -60,9 +61,16 @@ public class MainController {
 	}
 
 	@RequestMapping(value="/Home")
-	public ModelAndView loadHome() throws Exception{
-		
+	public ModelAndView loadHome(Locale locale) throws Exception{
+		//System.out.println(locale);
 		return new ModelAndView("home");
+		
+	}
+	
+	@RequestMapping(value="/About")
+	public ModelAndView loadAboutUs() throws Exception{
+		
+		return new ModelAndView("about");
 		
 	}
 	

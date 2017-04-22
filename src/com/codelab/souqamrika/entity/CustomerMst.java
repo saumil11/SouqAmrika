@@ -32,6 +32,7 @@ public class CustomerMst implements Serializable {
 	private String customer_city;
 	private String customer_state;
 	private String customer_postalcode;
+	private String customer_otherAddress;
 	private Long created_by;
 	private String created_date;
 	private Long updated_by;
@@ -153,6 +154,12 @@ public class CustomerMst implements Serializable {
 	}
 	public void setCustomer_postalcode(String customer_postalcode) {
 		this.customer_postalcode = customer_postalcode;
+	}
+	public String getCustomer_otherAddress() {
+		return customer_otherAddress;
+	}
+	public void setCustomer_otherAddress(String customer_otherAddress) {
+		this.customer_otherAddress = customer_otherAddress;
 	}
 	
 	

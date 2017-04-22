@@ -1,5 +1,5 @@
-<div class="mobile-menu-area hidden-lg hidden-md">
-            <div class="container">
+<div class="mobile-menu-area">
+            <div class="container mean-container">
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="mobile-menu">

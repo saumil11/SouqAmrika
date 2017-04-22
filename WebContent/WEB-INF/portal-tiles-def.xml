@@ -10,7 +10,8 @@
 		<definition name=".portalHomeTemplate" template="/WEB-INF/template/portal/portalHomeLayout.jsp">
 			<put-attribute name="title" value="" type="string" />
 			<put-attribute name="header" value="/WEB-INF/jsp/portal/header.jsp" />
-			<put-attribute name="mobileMenu" value="/WEB-INF/jsp/portal/mobileMenu.jsp" />
+			<!-- <put-attribute name="mobileMenu" value="/WEB-INF/jsp/portal/mobileMenu.jsp" /> -->
+			<put-attribute name="mobileMenu" value="" />
 			<put-attribute name="content" value="" />
 			<put-attribute name="footer" value="/WEB-INF/jsp/portal/footer.jsp" />
 		</definition>
@@ -19,6 +20,11 @@
 	<definition name="home" extends=".portalHomeTemplate"> 
 		<put-attribute name="title" value="Home" type="string" />
 		<put-attribute name="content" value="/WEB-INF/jsp/portal/PortalHome.jsp" />
+	</definition>
+	
+	<definition name="about" extends=".portalHomeTemplate"> 
+		<put-attribute name="title" value="About" type="string" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/AboutUs.jsp" />
 	</definition>
 	
 	<definition name="productSearch" extends=".portalHomeTemplate"> 

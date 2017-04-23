@@ -1,5 +1,6 @@
 package com.codelab.souqamrika.controller;
 
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.SimpleDateFormat;
@@ -10,6 +11,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -65,6 +67,12 @@ public class MainController {
 		//System.out.println(locale);
 		return new ModelAndView("home");
 		
+	}
+	
+	@RequestMapping(value="/setLanguage")
+	public void setLanguage(Locale locale, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		PrintWriter out = response.getWriter();
+		out.print("SUCCESS");
 	}
 	
 	@RequestMapping(value="/About")

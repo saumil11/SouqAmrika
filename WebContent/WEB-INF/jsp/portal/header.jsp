@@ -64,8 +64,8 @@
                                                     <li><a href="Home.htm"><spring:message code="label.home"/></a></li>
                                                     <li><a href="About.htm"><spring:message code="label.aboutUs"/></a></li>
                                                     <li><a href="#"><spring:message code="label.contact"/></a></li>
-                                                    <li><a id="langChangeEn" href=currentPath+"?locale=en">Language : English</a></li>
-                                                    <li><a id="langChangeAr" href=currentPath+"?locale=ar">ً بكم في سوق أ</a></li>
+                                                    <li><a id="langChangeEn" href="" onclick="setLangeuage('en');">Language : English</a></li>
+                                                    <li><a id="langChangeAr" href="" onclick="setLangeuage('ar');">ً بكم في سوق أ</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -81,17 +81,6 @@
         <!-- END HEADER AREA -->
         
         <script type="text/javascript">
-        
-        var pathname = window.location.pathname;
-        var res = pathname.split("portal/");
-        var currentPath = res[1];
-        $( document ).ready(function() {
-        	var linkEn = document.getElementById("langChangeEn");
-        	var linkAr = document.getElementById("langChangeAr");
-     	   	linkEn.setAttribute("href", currentPath+"?locale=en");
-     	   	linkAr.setAttribute("href", currentPath+"?locale=ar");
-     	   	return false;
-        });
         
         function searchProduct() {
     		var searchKeyWord = $('#keyWord').val();
@@ -109,4 +98,18 @@
                 searchProduct();
             }
         });
+        
+        function setLangeuage(ar1){
+        	$.ajax
+    		({
+    			url : "setLanguage.htm?locale="+ar1,
+    			success : function(result)
+    			{
+    				if(result=="SUCCESS"){
+    					location.reload();
+    				}
+    			}
+    		}); 	
+        }
+        
         </script>

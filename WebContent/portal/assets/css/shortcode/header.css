@@ -285,7 +285,7 @@ NOTE: This is Header style file. All Header related style included in this file.
 .header-search-inner {
   position: relative;
 }
-.header-search-inner::before {
+/* .header-search-inner::before {
   background: #cf0000 none repeat scroll 0 0;
   content: "";
   height: 20px;
@@ -294,7 +294,7 @@ NOTE: This is Header style file. All Header related style included in this file.
   right: 0;
   top: 50%;
   width: 1px;
-}
+} */
 .header-search-inner form {}
 .header-search-inner button.search-toggle {
   color: #666;
@@ -316,8 +316,10 @@ NOTE: This is Header style file. All Header related style included in this file.
   height: 60px;
   opacity: 0;
   position: absolute;
-  right: 0;
-  top: -5px;
+  /* right: 0;
+  top: -5px; */
+  right: 10px;
+  top: 10px;
   transition: all 0.3s ease 0s;
   visibility: hidden;
   width: 0;
@@ -349,14 +351,14 @@ NOTE: This is Header style file. All Header related style included in this file.
   right: 0;
   width: 60px;
 }
-.header-search-inner:hover button.search-toggle {
+/* .header-search-inner:hover button.search-toggle {
   opacity: 0;
-}
-.header-search-inner:hover .top-search-box {
+} */
+.top-search-box {
   opacity: 1;
-  right: 20px;
+  /* right: 20px; */
   visibility: visible;
-  width: 500px;
+  width: 435px;
 }
 .sticky .header-search-inner:hover .top-search-box {
   width: 400px;

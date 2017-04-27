@@ -12,33 +12,36 @@
                         <div class="row">
                             <!-- logo -->
                             <div class="col-md-2 col-sm-6 col-xs-12">
-                                <div class="logo">
+                                <div class="logo" style="padding-top: 15px;padding-bottom: 10px;">
                                     <a href="Home.htm">
                                         <%-- <img src="<c:url value="/portal/assets/img/logo/logo.png"/>" alt="main logo"> --%>
-                                        <h3>
+                                        <h1>
                                         	<b><spring:message code="label.siteName"/></b>
-                                        </h3>
+                                        </h1>
                                     </a>
                                 </div>
-                            </div>
+						<nav id="primary-menu">
+							<ul class="main-menu text-center">
+								<li style="padding-top: 0px; padding-bottom: 10px;"><a href="Home.htm"><spring:message code="label.home"/></a></li>
+								<li style="padding-top: 0px;padding-bottom: 10px;"><a id="asd" href="#about"><spring:message code="label.aboutUs"/></a></li>
+							</ul>
+						</nav>
+
+					</div>
+                            
                             <!-- primary-menu -->
-                            <!-- <div class="col-md-8 hidden-sm hidden-xs">
+                            <div class="col-md-push-2 col-md-4 hidden-sm hidden-xs">
                                 <nav id="primary-menu">
                                     <ul class="main-menu text-center">
                                         <li>
-                                        	<a href="Home.htm">Home</a>
+                                        	<h3>Welcome to SoqAmrica</h3>
                                         </li>
-                                        <li>
-                                            <a href="#">About us</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Contact</a>
-                                        </li>
+                                        
                                     </ul>
                                 </nav>
-                            </div> -->
+                            </div>
                             <!-- header-search & total-cart -->
-                            <div class="col-md-push-8 col-md-2 col-sm-2 col-xs-4">
+                            <%-- <div class="col-md-push-8 col-md-2 col-sm-2 col-xs-4">
                                 <div class="search-top-cart  f-right">
                                     <!-- header-search -->
                                     <div class="header-search header-search-2 f-left">
@@ -71,6 +74,22 @@
                                         </ul>
                                     </div>
                                 
+                                </div>
+                            </div> --%>
+                            
+                            <div class="col-md-push-2 col-md-4 col-sm-2 col-xs-4">
+                                <div class="search-top-cart  f-right">
+                                    <!-- header-search -->
+                                    <div class="header-search header-search-2 f-left">
+                                        <div class="header-search-inner">
+                                           <a class="" href="#" id="langChangeEn" onclick="setLangeuage('en');" style="padding: 0 15px;"><span>Lang : Eng</span> </a>
+                                        </div>
+                                    </div>
+                                    <div class="header-search header-search-2 f-left">
+                                        <div class="header-search-inner">
+                                           <a class="" href="#" id="langChangeAr" onclick="setLangeuage('ar');"><span>ً بكم في سوق أ </span> </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

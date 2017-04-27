@@ -35,6 +35,8 @@
     <!-- Modernizr JS -->
     <script src="<c:url value="/portal/assets/js/vendor/modernizr-2.8.3.min.js"/>"></script>
     
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
+    
     <style type="text/css">
     	.sticky .user-meta > li > a {
 		    padding: 25px 20px;

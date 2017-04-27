@@ -20,12 +20,14 @@
                                         </h1>
                                     </a>
                                 </div>
+                                <div class="logo" style="padding-top: 15px;padding-bottom: 10px;">
 						<nav id="primary-menu">
 							<ul class="main-menu text-center">
-								<li style="padding-top: 0px; padding-bottom: 10px;"><a href="Home.htm"><spring:message code="label.home"/></a></li>
-								<li style="padding-top: 0px;padding-bottom: 10px;"><a id="asd" href="#about"><spring:message code="label.aboutUs"/></a></li>
+								<li style="padding-top: 0px; padding-bottom: 10px; margin: 0 5px;"><a href="Home.htm"><spring:message code="label.home"/></a></li>
+								<li style="padding-top: 0px;padding-bottom: 10px; margin: 0 5px;"><a id="asd" href="#about"><spring:message code="label.aboutUs"/></a></li>
 							</ul>
 						</nav>
+						</div>
 
 					</div>
                             

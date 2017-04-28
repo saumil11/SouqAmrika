@@ -81,7 +81,21 @@
 												<textarea class="height-80" name="customerMstBO.customer_otherAddress" id="otherAddress" placeholder="<spring:message code="label.other"/>"></textarea>
 												<input type="hidden" class="form-control" name="productUrlMstBO.product_url" id="productUrl" value="${url}">
   												<input type="hidden" class="form-control" name="productUrlMstBO.product_req_price" id="requestPrice" value="${requestPrice}">
-  												<hr>
+  												<br/>
+  												<h6 class="widget-title border-left mb-20 mt-20"><spring:message code="label.orderDtl"/></h6>
+
+												<div class="plus-minus-pro-action clearfix">
+													<div class="sin-plus-minus f-left clearfix">
+														<p class="color-title f-left"><spring:message code="label.qty"/></p>
+														<div class="cart-plus-minus f-left">
+															<input type="text" value="01" name="orderMstBO.order_quantity" id="orderQty"
+																class="cart-plus-minus-box">
+														</div>
+													</div>
+												</div>
+												
+												<textarea class="height-80 mt-20" name="orderMstBO.order_dtl" id="orderDtl" placeholder="<spring:message code="label.orderDtl"/>"></textarea>
+												<hr>
 											</div>
 											<a class="button extra-small mb-20" href="javascript:saveCustomerDtls();"><span><spring:message code="label.placeOrder"/> </span> </a>
 											<a class="button extra-small button-white mb-20" href="Home.htm"><span><spring:message code="label.cancel"/> </span> </a>

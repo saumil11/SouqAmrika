@@ -65,7 +65,7 @@
 			<form:form method="post" name="orderUrlProductForm" id="orderUrlProductForm" odelAttribute="portal">
 				<div  class="col-md-1" style="top: -75px; left: 125px;">
 					<div id="arrow">
-	    			<h5 class="" style="color: white;">Click here to do stuff</h5>
+	    			<h5 class="" style="color: white;"><spring:message code="label.clickHere"/></h5>
 	    			<img class="hidden-xs hidden-sm hidden-md leftArrowMask" src="<c:url value="/portal/assets/images/arrow1.png"/>">
 	    			</div>
 	    		</div>
@@ -195,6 +195,23 @@
 		    
 		blink('.leftArrowMask');
 		$('#arrow').delay(10000).fadeOut('slow');
+		
+		function searchProduct() {
+    		var searchKeyWord = $('#keyWord').val();
+    		if (null != searchKeyWord && "" != searchKeyWord) {
+    			document.productSearchForm.action = "SearchKeyWord.htm";
+    			document.productSearchForm.submit();
+    		} else {
+    			alert("Please input keyword.");
+    		}
+    	}
+        
+        $("#keyWord").keypress(function(event) {
+            if (event.which == 13) {
+                event.preventDefault();
+                searchProduct();
+            }
+        });
 </script>
 </body>
 </html>

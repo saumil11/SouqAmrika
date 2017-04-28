@@ -36,7 +36,7 @@
                                 <nav id="primary-menu">
                                     <ul class="main-menu text-center">
                                         <li>
-                                        	<h3>Welcome to SoqAmrica</h3>
+                                        	<h3><spring:message code="label.welcome"/></h3>
                                         </li>
                                         
                                     </ul>
@@ -102,23 +102,6 @@
         <!-- END HEADER AREA -->
         
         <script type="text/javascript">
-        
-        function searchProduct() {
-    		var searchKeyWord = $('#keyWord').val();
-    		if (null != searchKeyWord && "" != searchKeyWord) {
-    			document.productSearchForm.action = "SearchKeyWord.htm";
-    			document.productSearchForm.submit();
-    		} else {
-    			alert("Please input keyword.");
-    		}
-    	}
-        
-        $("#keyWord").keypress(function(event) {
-            if (event.which == 13) {
-                event.preventDefault();
-                searchProduct();
-            }
-        });
         
         function setLangeuage(ar1){
         	$.ajax

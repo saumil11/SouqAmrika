@@ -24,8 +24,16 @@
 	                                        	<span><spring:message code="label.siteName"/></span>
 	                                       	</a> 
 	                                       	<span><spring:message code="label.allRightReserved"/></span>
+	                                       	
 	                                	</h3>
-                                    </div>
+										
+								<nav id="primary-menu">
+								<ul class="main-menu">
+									<li style="padding-top: 0px; padding-bottom: 10px; margin: 0 5px;"><a href="#"><spring:message code="label.contact"/></a></li>
+								</ul>
+								</nav>
+
+							</div>
                                 </div>
                                 <div class="col-sm-6 col-xs-12">
                                     <ul class="footer-payment text-right">

@@ -121,7 +121,7 @@ public class MainController {
 		
 		CustomerMst customerMstDTO = null;
 		ProductUrlMst productUrlMstDTO = null;
-		OrderMst orderMstDTO = new OrderMst();
+		OrderMst orderMstDTO = null;
 		if(null!=portal.getCustomerMstBO() && null!=portal.getProductUrlMstBO()){
 			customerMstDTO = portal.getCustomerMstBO();
 			productUrlMstDTO = portal.getProductUrlMstBO();
@@ -131,6 +131,7 @@ public class MainController {
 			productUrlMstDTO.setCreated_date(formatWithSlashWithTime.format(new Date()));
 			productUrlMstDTO.setCreated_by(1L);
 			productUrlMstDTO.setStatus(SouqAmrikaConstants.ACTIVE_STATUS);
+			orderMstDTO = portal.getOrderMstBO();
 			orderMstDTO.setCreated_date(formatWithSlashWithTime.format(new Date()));
 			orderMstDTO.setCreated_by(1L);
 			orderMstDTO.setStatus(SouqAmrikaConstants.ACTIVE_STATUS);

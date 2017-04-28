@@ -23,6 +23,8 @@ public class OrderMst implements Serializable{
 	private Long order_id;
 	private Long product_url_id;
 	private Long customer_id;
+	private int order_quantity;
+	private String order_dtl; 
 	private Long created_by;
 	private String created_date;
 	private Long updated_by;
@@ -110,6 +112,18 @@ public class OrderMst implements Serializable{
 	}
 	public void setProduct_req_price(String product_req_price) {
 		this.product_req_price = product_req_price;
+	}
+	public int getOrder_quantity() {
+		return order_quantity;
+	}
+	public void setOrder_quantity(int order_quantity) {
+		this.order_quantity = order_quantity;
+	}
+	public String getOrder_dtl() {
+		return order_dtl;
+	}
+	public void setOrder_dtl(String order_dtl) {
+		this.order_dtl = order_dtl;
 	}
 	
 	

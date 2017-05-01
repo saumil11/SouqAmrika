@@ -23,8 +23,9 @@
                                 <div class="logo" style="padding-top: 15px;padding-bottom: 10px;">
 						<nav id="primary-menu">
 							<ul class="main-menu text-center">
-								<li style="padding-top: 0px; padding-bottom: 10px; margin: 0 5px;"><a href="Home.htm"><spring:message code="label.home"/></a></li>
-								<li style="padding-top: 0px;padding-bottom: 10px; margin: 0 5px;"><a id="asd" href="#about"><spring:message code="label.aboutUs"/></a></li>
+								<li style="padding-top: 0px; padding-bottom: 10px; margin: 0 5px;font-size:110%;"><a href="Home.htm"><spring:message code="label.home"/></a></li>
+								<li class="hidden-xs" style="padding-top: 0px;padding-bottom: 10px; margin: 0 5px;font-size:110%;"><a id="asd" href="#about"><spring:message code="label.aboutUs"/></a></li>
+								<li class="visible-xs" style="padding-top: 0px;padding-bottom: 10px; margin: 0 5px;"><a href="About.htm"><spring:message code="label.aboutUs"/></a></li>
 							</ul>
 						</nav>
 						</div>
@@ -36,7 +37,7 @@
                                 <nav id="primary-menu">
                                     <ul class="main-menu text-center">
                                         <li>
-                                        	<h3><spring:message code="label.welcome"/></h3>
+                                        	<h2><spring:message code="label.welcome"/></h2>
                                         </li>
                                         
                                     </ul>
@@ -69,8 +70,8 @@
                                                     <li><a href="Home.htm"><spring:message code="label.home"/></a></li>
                                                     <li><a href="About.htm"><spring:message code="label.aboutUs"/></a></li>
                                                     <li><a href="#"><spring:message code="label.contact"/></a></li>
-                                                    <li><a id="langChangeEn" href="" onclick="setLangeuage('en');">Language : English</a></li>
-                                                    <li><a id="langChangeAr" href="" onclick="setLangeuage('ar');">ً بكم في سوق أ</a></li>
+                                                    <li><a id="langChangeEn" href="" onclick="setLangeuage('en');">Languagasnkajsndkjansdkjne : English</a></li>
+                                                    <li><a id="langChangeAr" href="" onclick="setLangeuage('ar');">لغة: عربي</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -84,12 +85,12 @@
                                     <!-- header-search -->
                                     <div class="header-search header-search-2 f-left">
                                         <div class="header-search-inner">
-                                           <a class="" href="#" id="langChangeEn" onclick="setLangeuage('en');" style="padding: 0 15px;"><span>Lang : Eng</span> </a>
+                                           <a class="btn btn-info" href="#" id="langChangeEn" onclick="setLangeuage('en');" style="padding: 0 15px;"><span>English</span> </a>
                                         </div>
                                     </div>
                                     <div class="header-search header-search-2 f-left">
                                         <div class="header-search-inner">
-                                           <a class="" href="#" id="langChangeAr" onclick="setLangeuage('ar');"><span>ً بكم في سوق أ </span> </a>
+                                           &nbsp;&nbsp;<a class="btn btn-success" href="#" id="langChangeAr" onclick="setLangeuage('ar');"><span> عربي</span> </a>
                                         </div>
                                     </div>
                                 </div>

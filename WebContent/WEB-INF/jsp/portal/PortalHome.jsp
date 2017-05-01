@@ -6,46 +6,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<style>
-	#aboutright { 
-	  display: block;
-	  width: 350px;
-	  padding: 8px 30px;
-	  position: absolute;
-	  right: 0;
-	  background: #fff;
-	  z-index: -1;
-	}
-	
-	#mainpage {
-	  width: 100%;
-	  height: auto;
-	  display: block;
-	  overflow: hidden;
-	  position: relative;
-	}
-	
-</style>
 </head>
 <body>
 
-	<div id="aboutright">
-		<a href="#" id="closebtn" class="close"><i class="zmdi zmdi-close-circle"></i></a>
-		<h2 class="text-center">
-			<span><spring:message code="label.aboutUs" /></span>
-		</h2>
-		<hr />
-		<p style="font-size: 20px;">
-			<spring:message code="text.aboutLine1" />
-		</p>
-		<p style="font-size: 17px;">
-			<spring:message code="text.aboutLine2" />
-		</p>
-	</div>
-  
-  <div id="mainpage">
-  
-  <div id="content"> 
 	<!-- START SLIDER AREA -->
 	<div class="slider-area bg-3 bg-opacity-black-60 ptb-150 mb-80">
 		<div class="container">
@@ -62,18 +25,21 @@
 						</form:form>
 					</div>
 					<div class="row">
+					<div class="col-xs-12">
+					<h3 lang="en" class="text-center" style="color: white;">
+						<spring:message code="text.welcomeMsg1"/><br />
+						<spring:message code="text.welcomeMsg2"/>
+					</h3>
+					<br>
+					</div>
 			<form:form method="post" name="orderUrlProductForm" id="orderUrlProductForm" odelAttribute="portal">
-				<div  class="col-md-1" style="top: -75px; left: 125px;">
+				<div  class="col-md-1 hidden-xs" style="top: -75px;">
 					<div id="arrow">
-	    			<h5 class="" style="color: white;"><spring:message code="label.clickHere"/></h5>
-	    			<img class="hidden-xs hidden-sm hidden-md leftArrowMask" src="<c:url value="/portal/assets/images/arrow1.png"/>">
+	    				<h5 class="" style="color: white;"><spring:message code="label.clickHere"/></h5>
+	    				<img class="hidden-xs hidden-sm hidden-md leftArrowMask" src="<c:url value="/portal/assets/images/arrow1.png"/>">
 	    			</div>
 	    		</div>
 				<div class="col-md-10">
-					<h4 lang="en" class="text-center" style="color: white;">
-						<spring:message code="text.welcomeMsg"/>
-					</h4>
-					<br>
 					<div class="slider-desc-3 text-center">
 						<div class="wow fadeInUp col-sm-offset-2  col-sm-8">
 							<input type="text" name="url" id="url" placeholder="<spring:message code="label.inputURL"/>"/>
@@ -82,11 +48,14 @@
 							<select class="custom-select" name="priceRange" id="priceRange" 
 								style="background: rgb(255, 255, 255) url(img/icon/down-arrow.png) no-repeat scroll 97% center;" onchange="displayFee()">
 								<option value="defalt"><spring:message code="label.selectPriceRange"/></option>
-								<option value="3">$1 - $100</option>
-							    <option value="5">$101 - $200</option>
-							    <option value="7">$201 - $300</option>
-							    <option value="9">$301 - $400</option>
-							    <option value="10">$401 - $500</option>
+								<option value="3.5">$1 - $50</option>
+							    <option value="7">$51 - $75</option>
+							    <option value="10">$76 - $100</option>
+							    <option value="15">$101 - $150</option>
+							    <option value="20">$151 - $200</option>
+							    <option value="25">$201 - $300</option>
+							    <option value="30">$301 - $400</option>
+							    <option value="35">$401 - $500</option>
 							    <option value="11"><spring:message code="label.optionMore"/></option>
 							</select>
 						</div>
@@ -111,10 +80,7 @@
 			</div>
 		</div>
 	</div>
-  </div>
-</div>
-	
-	
+ 
 	<!-- END SLIDER AREA -->
 	<script type="text/javascript">
 	function orderUrlProduct(){
@@ -148,43 +114,6 @@
 		}
 	}
 	
-	$(document).ready(function(){
-
-		  $("#asd").on("click", function(e){
-		    e.preventDefault();
-		    var hrefval = $(this).attr("href");
-		    
-		    if(hrefval == "#about") {
-		      var distance = $('#mainpage').css('right');
-		      
-		      if(distance == "auto" || distance == "0px") {
-		        openSidepage();
-		      } else {
-		        closeSidepage();
-		      }
-		    }
-		  });
-		  
-		  $("#closebtn").on("click", function(e){
-		    e.preventDefault();
-		    closeSidepage();
-		  }); // end close button event handler
-
-		  function openSidepage() {
-		    $('#mainpage').animate({
-		      right: '350px'
-		    }, 400, 'easeOutBack'); 
-		    $('#aboutright').css("z-index", "1");
-		  }
-		  
-		  function closeSidepage(){
-		    $('#mainpage').animate({
-		      right: '0px'
-		    }, 400, 'easeOutQuint'); 
-		    $('#aboutright').css("z-index", "-1")
-		  }
-		}); 
-	
 	function blink(selector){
 		$(selector).fadeOut('slow', function(){
 		    $(this).fadeIn('slow', function(){
@@ -194,7 +123,7 @@
 		}
 		    
 		blink('.leftArrowMask');
-		$('#arrow').delay(10000).fadeOut('slow');
+		//$('#arrow').delay(10000).fadeOut('slow');
 		
 		function searchProduct() {
     		var searchKeyWord = $('#keyWord').val();

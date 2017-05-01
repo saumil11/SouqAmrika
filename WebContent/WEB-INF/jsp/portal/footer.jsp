@@ -49,6 +49,15 @@
                                         <li>
                                             <a href="#"><img src="<c:url value="/portal/assets/img/payment/4.jpg"/>" alt=""></a>
                                         </li>
+                                        <li>
+                                            <a href="#"><img src="<c:url value="/portal/assets/img/payment/dhl.jpg"/>" alt=""></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img src="<c:url value="/portal/assets/img/payment/fedex.png"/>" alt=""></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img src="<c:url value="/portal/assets/img/payment/tnt.png"/>" alt=""></a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>

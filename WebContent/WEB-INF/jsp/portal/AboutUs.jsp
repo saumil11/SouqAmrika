@@ -13,10 +13,10 @@
 					<span><spring:message code="label.aboutUs"/></span>
 				</h2>
 				<hr />
-				<p style="font-size: 20px;">
-					<spring:message code="text.aboutLine1"/>
+				<p style="font-size: 25px;text-align:justify;">
+					<i><spring:message code="text.aboutLine1"/></i>
 				</p>
-				<p style="font-size: 17px;">
+				<p style="font-size: 17px;text-align:justify;">
 					<spring:message code="text.aboutLine2"/>
 				</p>
 			</div>

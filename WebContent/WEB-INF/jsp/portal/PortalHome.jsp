@@ -31,7 +31,7 @@
 
 	 
 	<!-- START SLIDER AREA -->
-	<div class="slider-area bg-3 bg-opacity-black-60 ptb-150 mb-80">
+	<div class="slider-area bg-3 bg-opacity-black-60 ptb-140 mb-80">
 		<div class="container">
 					<div class="row">
 						<form:form method="post" name="productSearchForm"
@@ -54,13 +54,8 @@
 					<br>
 					</div>
 			<form:form method="post" name="orderUrlProductForm" id="orderUrlProductForm" odelAttribute="portal">
-				<div  class="col-md-1 hidden-xs" style="top: -210px;">
-					<div id="arrow">
-	    				<h5 class="" style="color: white;"><spring:message code="label.clickHere"/></h5>
-	    				<img class="hidden-xs hidden-sm hidden-md leftArrowMask" src="<c:url value="/portal/assets/images/arrow1.png"/>">
-	    			</div>
-	    		</div>
-				<div class="col-md-10">
+				
+				<div class="col-md-12">
 					<div class="slider-desc-3 text-center">
 						<div class="wow fadeInUp col-sm-offset-2  col-sm-8">
 							<input type="text" name="url" id="url" placeholder="<spring:message code="label.inputURL"/>"/>
@@ -94,11 +89,22 @@
 						<div class="slider-button wow fadeInUp col-sm-offset-2  col-sm-8">
 							<a class="button extra-small mb-20" href="javascript:orderUrlProduct();" class="text-uppercase"><span><spring:message code="label.orderNow"/></span> </a>
 						</div>
-						
+						<div  class="col-md-12 hidden-xs">
+					
+	    		</div>
+					
 					</div>
 				</div>
 			</form:form>
 			</div>
+			<div id="arrow">
+						<div class="col-md-10" style="top: 55px; left: 225px;">
+	    					<h2 class="" style="color: white;"><spring:message code="label.clickHere"/></h2>
+	    				</div>
+                    	<div class="col-md-2" style="right: 160px;bottom: 55px;">
+	    				<img class="hidden-xs hidden-sm hidden-md leftArrowMask" src="<c:url value="/portal/assets/images/arrow1.png"/>">
+	    				</div>
+	    			</div>	
 		</div>
 	</div>
 	

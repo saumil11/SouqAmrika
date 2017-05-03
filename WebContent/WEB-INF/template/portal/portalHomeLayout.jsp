@@ -64,7 +64,6 @@
 	  padding: 8px 30px;
 	  position: absolute;
 	  left: 0;
-	  height: 100%;
 	  background: #fff;
 	  z-index: -1;
 	}
@@ -97,7 +96,6 @@
         	<tiles:insertAttribute name="mobileMenu" />
         <!-- END MOBILE MENU AREA -->
 
-<div style="overflow: hidden;">
 	<div id="about">
 		<a href="#" id="closebtn" class="close"><i class="zmdi zmdi-close-circle"></i></a>
 		<h2 class="text-center">
@@ -122,7 +120,6 @@
  </div>
 </div>
 	
-</div>	
 
         <!-- START FOOTER AREA -->
         	<tiles:insertAttribute name="footer" />

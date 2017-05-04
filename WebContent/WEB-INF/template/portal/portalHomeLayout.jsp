@@ -60,7 +60,7 @@
 	
 	#about { 
 	  display: block;
-	  width: 350px;
+	  width: 700px;
 	  padding: 8px 30px;
 	  position: absolute;
 	  left: 0;
@@ -164,7 +164,7 @@
 		  
 		  function openSidepage() {
 		    $('#mainpage').animate({
-		      left: '350px'
+		      left: '700px'
 		    }, 400, 'easeOutBack'); 
 		    $('#about').css("z-index", "1");
 		  }

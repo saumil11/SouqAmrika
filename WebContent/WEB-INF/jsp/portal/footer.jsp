@@ -38,19 +38,19 @@
                                 <div class="col-sm-6 col-xs-12">
                                     <ul class="footer-payment text-right">
                                         <li>
-                                            <a href="#"><img src="<c:url value="/portal/assets/img/payment/1.jpg"/>" alt=""></a>
+                                            <a href="#"><img src="<c:url value="/portal/assets/img/payment/1.png"/>" alt=""></a>
                                         </li>
                                         <li>
-                                            <a href="#"><img src="<c:url value="/portal/assets/img/payment/2.jpg"/>" alt=""></a>
+                                            <a href="#"><img src="<c:url value="/portal/assets/img/payment/2.png"/>" alt=""></a>
                                         </li>
                                         <li>
-                                            <a href="#"><img src="<c:url value="/portal/assets/img/payment/3.jpg"/>" alt=""></a>
+                                            <a href="#"><img src="<c:url value="/portal/assets/img/payment/3.png"/>" alt=""></a>
                                         </li>
                                         <li>
-                                            <a href="#"><img src="<c:url value="/portal/assets/img/payment/4.jpg"/>" alt=""></a>
+                                            <a href="#"><img src="<c:url value="/portal/assets/img/payment/4.png"/>" alt=""></a>
                                         </li>
                                         <li>
-                                            <a href="#"><img src="<c:url value="/portal/assets/img/payment/dhl.jpg"/>" alt=""></a>
+                                            <a href="#"><img src="<c:url value="/portal/assets/img/payment/dhl.png"/>" alt=""></a>
                                         </li>
                                         <li>
                                             <a href="#"><img src="<c:url value="/portal/assets/img/payment/fedex.png"/>" alt=""></a>

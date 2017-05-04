@@ -9,7 +9,7 @@
 <style>
 	#aboutright { 
 	  display: block;
-	  width: 600px;
+	  width: 700px;
 	  padding: 8px 30px;
 	  position: absolute;
 	  left: 0;
@@ -31,7 +31,7 @@
 
 	 
 	<!-- START SLIDER AREA -->
-	<div class="slider-area bg-3 bg-opacity-black-60 ptb-140 mb-80">
+	<div class="slider-area bg-3 bg-opacity-black-60 ptb-130 mb-80">
 		<div class="container">
 					<div class="row">
 						<form:form method="post" name="productSearchForm"
@@ -98,13 +98,18 @@
 			</form:form>
 			</div>
 			<div id="arrow">
-						<div class="col-md-10" style="top: 55px; left: 225px;">
+						<div class="col-md-10" style="top: 55px; left: 225px;text-align: center;">
 	    					<h2 class="" style="color: white;"><spring:message code="label.clickHere"/></h2>
 	    				</div>
                     	<div class="col-md-2" style="right: 160px;bottom: 55px;">
 	    				<img class="hidden-xs hidden-sm hidden-md leftArrowMask" src="<c:url value="/portal/assets/images/arrow1.png"/>">
 	    				</div>
-	    			</div>	
+	    			</div>
+	    			
+	    			<br>
+	    			<br>
+	    			<br>
+	    			<br>
 		</div>
 	</div>
 	
@@ -151,7 +156,10 @@
 		}
 		    
 		blink('.leftArrowMask');
-		$('#arrow').delay(10000).fadeOut('slow');
+		//$('#arrow').delay(10000).css("display", "none");
+		setTimeout(function(){
+				$('#arrow').css('visibility', 'hidden');
+			},10000);
 		
 		function searchProduct() {
     		var searchKeyWord = $('#keyWord').val();

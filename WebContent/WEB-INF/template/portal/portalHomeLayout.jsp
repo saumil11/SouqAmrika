@@ -102,10 +102,10 @@
 			<span><spring:message code="label.aboutUs" /></span>
 		</h2>
 		<hr />
-		<p style="font-size: 25px;text-align: justify;">
+		<p style="font-size: 27px;" id="aboutUsHeader">
 			<spring:message code="text.aboutLine1" />
 		</p>
-		<p style="font-size: 17px;text-align: justify;">
+		<p style="font-size: 23px;line-height:120%;" id="aboutUsBody">
 			<spring:message code="text.aboutLine2" />
 		</p>
 	</div>
@@ -141,7 +141,7 @@
     <script src="<c:url value="/portal/assets/js/main.js"/>"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
-
+			
 		  $("#asd").on("click", function(e){
 		    e.preventDefault();
 		    var hrefval = $(this).attr("href");

@@ -23,7 +23,7 @@
                                 <div class="logo" style="padding-top: 15px;padding-bottom: 10px;">
 						<nav id="primary-menu">
 							<ul class="main-menu text-center">
-								<li style="padding-top: 0px; padding-bottom: 10px; margin: 0 5px;font-size:110%;"><a href="Home.htm"><spring:message code="label.home"/></a></li>
+								<li style="padding-top: 0px; padding-bottom: 10px; margin: 0 5px;font-size:110%;"><a href="Home.htm" id="websiteLabel"><spring:message code="label.home"/></a></li>
 								<li class="hidden-xs" style="padding-top: 0px;padding-bottom: 10px; margin: 0 5px;font-size:110%;"><a id="asd" href="#about"><spring:message code="label.aboutUs"/></a></li>
 								<li class="visible-xs" style="padding-top: 0px;padding-bottom: 10px; margin: 0 5px;"><a href="About.htm"><spring:message code="label.aboutUs"/></a></li>
 							</ul>
@@ -103,6 +103,21 @@
         <!-- END HEADER AREA -->
         
         <script type="text/javascript">
+        
+      	//detect language and justify the text accordingly
+		var text = $("#websiteLabel").text();
+		if(text.indexOf("Home") == -1){
+			$("h1").css("text-align", "right");
+			$("h2").css("text-align", "right");
+			$("h3").css("text-align", "right");
+			$("h4").css("text-align", "right");
+			$("h5").css("text-align", "right");
+			$("h6").css("text-align", "right");
+			$("span").css("text-align", "right");
+			$("div").css("text-align", "right");
+			$("a").css("text-align", "right");
+			$("p").css("text-align", "right");
+		}
         
         function setLangeuage(ar1){
         	$.ajax

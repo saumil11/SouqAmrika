@@ -104,12 +104,7 @@
                     	<div class="col-md-2" style="right: 160px;bottom: 55px;">
 	    				<img class="hidden-xs hidden-sm hidden-md leftArrowMask" src="<c:url value="/portal/assets/images/arrow1.png"/>">
 	    				</div>
-	    			</div>
-	    			
-	    			<br>
-	    			<br>
-	    			<br>
-	    			<br>
+	    			</div>	
 		</div>
 	</div>
 	
@@ -156,10 +151,7 @@
 		}
 		    
 		blink('.leftArrowMask');
-		//$('#arrow').delay(10000).css("display", "none");
-		setTimeout(function(){
-				$('#arrow').css('visibility', 'hidden');
-			},10000);
+		$('#arrow').delay(10000).fadeOut('slow');
 		
 		function searchProduct() {
     		var searchKeyWord = $('#keyWord').val();

@@ -31,7 +31,7 @@
 
 	 
 	<!-- START SLIDER AREA -->
-	<div class="slider-area bg-3 bg-opacity-black-60 ptb-130 mb-80">
+	<div class="slider-area bg-3 bg-opacity-black-60 ptb-130 mb-80 mt-50">
 		<div class="container">
 					<div class="row">
 						<form:form method="post" name="productSearchForm"
@@ -151,7 +151,10 @@
 		}
 		    
 		blink('.leftArrowMask');
-		$('#arrow').delay(10000).fadeOut('slow');
+		//$('#arrow').delay(10000).fadeOut('slow');
+		setTimeout(function(){
+				$('#arrow').css('visibility', 'hidden');
+			},10000);
 		
 		function searchProduct() {
     		var searchKeyWord = $('#keyWord').val();

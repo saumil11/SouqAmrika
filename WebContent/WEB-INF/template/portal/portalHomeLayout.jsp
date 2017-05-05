@@ -98,7 +98,7 @@
 
 	<div id="about">
 		<a href="#" id="closebtn" class="close"><i class="zmdi zmdi-close-circle"></i></a>
-		<h2 class="text-center">
+		<h2 class="text-center alignExceptionCenter">
 			<span><spring:message code="label.aboutUs" /></span>
 		</h2>
 		<hr />
@@ -167,13 +167,20 @@
 		      left: '700px'
 		    }, 400, 'easeOutBack'); 
 		    $('#about').css("z-index", "1");
+		    $("#aboutUsBody").css("text-align", "justify");
+		    var text = $("#websiteLabel").text();
+			if(text.indexOf("Home") == -1){
+		    	$("#aboutUsBody").attr("dir", "rtl");
+		    }
 		  }
 		  
 		  function closeSidepage(){
 		    $('#mainpage').animate({
 		      left: '0px'
 		    }, 400, 'easeOutQuint'); 
-		    $('#about').css("z-index", "-1")
+		    $('#about').css("z-index", "-1");
+		    $("#aboutUsBody").removeAttr("dir");
+		    $("#aboutUsBody").css("text-align", "justify");
 		  }
 		}); 
 		</script>

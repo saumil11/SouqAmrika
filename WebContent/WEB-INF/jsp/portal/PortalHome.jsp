@@ -47,7 +47,7 @@
 					</div>
 					<div class="row">
 					<div class="col-xs-12">
-					<h3 lang="en" class="text-center" style="color: white;">
+					<h3 lang="en" class="text-center alignExceptionCenter" style="color: white;text-align: center;">
 						<spring:message code="text.welcomeMsg1"/><br />
 						<spring:message code="text.welcomeMsg2"/>
 					</h3>
@@ -75,7 +75,7 @@
 							    <option value="11"><spring:message code="label.optionMore"/></option>
 							</select>
 						</div>
-						<div class="wow fadeInUp col-sm-offset-2 col-sm-8">
+						<div class="wow fadeInUp col-sm-offset-2 col-sm-8 alignExceptionCenter">
 							<h4 class="hidden" id="serviceFeeInfo" style="color: white;">
 								<span><spring:message code="label.serviceFee"/></span>
 								<b id="feeValue"></b>
@@ -86,7 +86,7 @@
 									<span><spring:message code="label.tAndC"/></span>
 								</a>
 						</div>
-						<div class="slider-button wow fadeInUp col-sm-offset-2  col-sm-8">
+						<div class="slider-button wow fadeInUp col-sm-offset-2  col-sm-8 alignExceptionCenter">
 							<a class="button extra-small mb-20" href="javascript:orderUrlProduct();" class="text-uppercase"><span><spring:message code="label.orderNow"/></span> </a>
 						</div>
 						<div  class="col-md-12 hidden-xs">
@@ -98,7 +98,7 @@
 			</form:form>
 			</div>
 			<div id="arrow">
-						<div class="col-md-10" style="top: 55px; left: 225px;text-align: center;">
+						<div class="col-md-12" style="top: 55px;text-align: center;">
 	    					<h2 class="" style="color: white;"><spring:message code="label.clickHere"/></h2>
 	    				</div>
                     	<div class="col-md-2" style="right: 160px;bottom: 55px;">
@@ -154,7 +154,7 @@
 		//$('#arrow').delay(10000).fadeOut('slow');
 		setTimeout(function(){
 				$('#arrow').css('visibility', 'hidden');
-			},10000);
+			},20000);
 		
 		function searchProduct() {
     		var searchKeyWord = $('#keyWord').val();

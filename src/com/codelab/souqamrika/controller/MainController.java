@@ -88,7 +88,7 @@ public class MainController {
 		if(null!=request.getParameter("url") && ( null!=request.getParameter("priceRange") 
 				|| null!=request.getParameter("isFromAmazon"))){
 			String url = request.getParameter("url");
-			double requestPrice = 0;
+			int requestPrice = 0;
 			if(null!=request.getParameter("price")){
 				BigInteger price = new BigInteger(request.getParameter("price").toString());
 				BigDecimal formattedPrice = new BigDecimal(price, 2);
@@ -105,7 +105,7 @@ public class MainController {
 					requestPrice = 10;
 				}
 			}else{
-				requestPrice = Double.parseDouble(request.getParameter("priceRange"));
+				requestPrice = Integer.parseInt(request.getParameter("priceRange"));
 			}
 			
 			System.out.println(request.getParameter("url"));

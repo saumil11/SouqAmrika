@@ -15,7 +15,7 @@
                                 <div class="logo" style="padding-top: 15px;padding-bottom: 10px;">
                                     <a href="Home.htm">
                                         <%-- <img src="<c:url value="/portal/assets/img/logo/logo.png"/>" alt="main logo"> --%>
-                                        <h1>
+                                        <h1 class="alignException">
                                         	<b><spring:message code="label.siteName"/></b>
                                         </h1>
                                     </a>
@@ -103,21 +103,6 @@
         <!-- END HEADER AREA -->
         
         <script type="text/javascript">
-        
-      	//detect language and justify the text accordingly
-		var text = $("#websiteLabel").text();
-		if(text.indexOf("Home") == -1){
-			$("h1").css("text-align", "right");
-			$("h2").css("text-align", "right");
-			$("h3").css("text-align", "right");
-			$("h4").css("text-align", "right");
-			$("h5").css("text-align", "right");
-			$("h6").css("text-align", "right");
-			$("span").css("text-align", "right");
-			$("div").css("text-align", "right");
-			$("a").css("text-align", "right");
-			$("p").css("text-align", "right");
-		}
         
         function setLangeuage(ar1){
         	$.ajax

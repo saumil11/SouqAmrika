@@ -6,4 +6,7 @@ public interface SouqAmrikaConstants {
 	int INACTIVE_STATUS = 2;
 	String INACTIVE_STATUS_STR = "Inactive";
 	int DELETE_STATUS = 9;
+	String PAYMENT_STATUS_Y = "Y";
+	String PAYMENT_STATUS_N = "N";
+	
 }

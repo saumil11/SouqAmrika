@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.codelab.souqamrika.dto.AdminCustomDTO;
 import com.codelab.souqamrika.dto.PaginationBO;
+import com.codelab.souqamrika.entity.ContactDtl;
 import com.codelab.souqamrika.entity.UserMst;
 
 public interface AdminService {
@@ -13,5 +14,7 @@ public interface AdminService {
 	boolean deleteCustomer(long custID) throws Exception;
 
 	AdminCustomDTO getOrderDtls(Long customerId) throws Exception;
+
+	ContactDtl getContactDtls(Long contactId) throws Exception;
 
 }

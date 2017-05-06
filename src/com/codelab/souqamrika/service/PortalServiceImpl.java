@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.codelab.souqamrika.constants.SouqAmrikaConstants;
 import com.codelab.souqamrika.dao.GenricDao;
 import com.codelab.souqamrika.dao.PortalDao;
 import com.codelab.souqamrika.dto.PortalCustomDTO;
+import com.codelab.souqamrika.entity.ContactDtl;
 import com.codelab.souqamrika.entity.CustomerMst;
 import com.codelab.souqamrika.entity.OrderMst;
 
@@ -52,9 +54,20 @@ public class PortalServiceImpl implements PortalService{
 		}
 		return flag; 
 	}
-	
-	
-	
+
+	@Override
+	public boolean saveContactDtl(ContactDtl contactDtl) throws Exception {
+		return this.getGenricDao().save(contactDtl);
+	}
+
+	@Override
+	public void updatePaymentStatus(Long orderId) throws Exception {
+		OrderMst orderMst = this.getGenricDao().get(OrderMst.class, orderId);
+		if(null!=orderMst){
+			orderMst.setPayment_status(SouqAmrikaConstants.PAYMENT_STATUS_Y);
+			this.getGenricDao().update(orderMst);
+		}
+	}
 	
 	
 }

@@ -67,6 +67,10 @@
                           <i class="fa fa-dashboard"></i>
                           <span>Dashboard</span>
                       </a>
+                      <a class="active" href="messages.htm">
+                          <i class="fa fa-envelope"></i>
+                          <span>Messages</span>
+                      </a>
                   </li>
               </ul>
               <!-- sidebar menu end-->
@@ -172,10 +176,12 @@
                 shrinkToFit: true,
                 rowNum: 10,
                 rowList: [10, 20, 30],
-                colNames:['Customer Name','URL'],
+                colNames:['Customer Name','URL','Payment Done'],
     			colModel:[
     				{name:'customer_name',index:'customer_name', width:30,editable: false},
-    				{name:'url',index:'url', width:70,editable: false}
+    				{name:'url',index:'url', width:60,editable: false},
+    				{name:'payment_status',index:'payment_status', width:10,editable: false}
+    				
     			],
                 pager: pager_selector,
                 viewrecords: true,

@@ -38,6 +38,8 @@
     
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
     
+    <script src="<c:url value="/portal/assets/plugins/validate/jquery.validate.min.js"/>"></script>
+    
     <style type="text/css">
     	.sticky .user-meta > li > a {
 		    padding: 25px 20px;
@@ -96,7 +98,7 @@
         	<tiles:insertAttribute name="mobileMenu" />
         <!-- END MOBILE MENU AREA -->
 
-	<div id="about">
+	<div id="about" class="hidden-xs">
 		<a href="#" id="closebtn" class="close"><i class="zmdi zmdi-close-circle"></i></a>
 		<h2 class="text-center alignExceptionCenter">
 			<span><spring:message code="label.aboutUs" /></span>

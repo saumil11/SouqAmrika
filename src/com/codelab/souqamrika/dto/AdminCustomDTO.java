@@ -2,6 +2,7 @@ package com.codelab.souqamrika.dto;
 
 import java.io.Serializable;
 
+import com.codelab.souqamrika.entity.ContactDtl;
 import com.codelab.souqamrika.entity.CustomerMst;
 import com.codelab.souqamrika.entity.ProductUrlMst;
 
@@ -31,6 +32,18 @@ public class AdminCustomDTO implements Serializable{
 	public void setProductUrlMstBO(ProductUrlMst productUrlMstBO) {
 		this.productUrlMstBO = productUrlMstBO;
 	}
+	
+	private ContactDtl contactDtl = new ContactDtl();
+
+	public ContactDtl getContactDtl() {
+		return contactDtl;
+	}
+
+	public void setContactDtl(ContactDtl contactDtl) {
+		this.contactDtl = contactDtl;
+	}
+	
+	
 
 	
 	

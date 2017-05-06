@@ -14,6 +14,17 @@
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="breadcrumbs-inner">
+							<form:form method="post" name="productSearchForm"
+								id="productSearchForm" role="form" modelAttribute="portal" style="padding-bottom: 10px;"> 
+								<div class="top-search-box f-right">
+									<input type="text" name="keyWord" id="keyWord"
+										placeholder="<spring:message code="label.search"/>">
+									<button type="button" onclick="searchProduct();">
+										<i class="zmdi zmdi-search"></i>
+									</button>
+								</div>
+							</form:form>
+
 							<h1 class="breadcrumbs-title"><spring:message code="label.checkout"/></h1>
 							<ul class="breadcrumb-list">
 								<li><a href="Home.htm"><spring:message code="label.home"/></a></li>
@@ -114,13 +125,46 @@
 	</section>
 	<!-- End page content -->
 	<script type="text/javascript">
+	$(document).ready(function() {
+
+		$("#saveCustomerDetails").validate({
+			rules : {
+				"customerMstBO.customer_email" : {
+					required : true,
+					email : true
+				}
+			}
+
+		});
+	});
+	
 		function saveCustomerDtls(){
-			document.saveCustomerDetails.action = "SaveCustomerDetails.htm";
-			document.saveCustomerDetails.submit();
+			var flag = false;
+			flag = $("#saveCustomerDetails").valid();
+			if(flag){
+				document.saveCustomerDetails.action = "SaveCustomerDetails.htm";
+				document.saveCustomerDetails.submit();	
+			}
 		}
 		$('input[type="checkbox"]').click(function(){
 	        $("#otherAddress").toggle();
 	    });
+		
+		function searchProduct() {
+    		var searchKeyWord = $('#keyWord').val();
+    		if (null != searchKeyWord && "" != searchKeyWord) {
+    			document.productSearchForm.action = "SearchKeyWord.htm";
+    			document.productSearchForm.submit();
+    		} else {
+    			alert("Please input keyword.");
+    		}
+    	}
+		 $("#keyWord").keypress(function(event) {
+	            if (event.which == 13) {
+	                event.preventDefault();
+	                searchProduct();
+	            }
+	        });
 	</script>
 </body>
 </html>

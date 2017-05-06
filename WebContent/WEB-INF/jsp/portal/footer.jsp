@@ -1,13 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+	
 	<style>
+	.error{
+		color: red;
+	}
+	.message-box input {
+     margin-bottom: 15px;
+}
 		.footer-social > li > a > i{
 			line-height: 28px;
 		}
+		
+		.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+  margin-top:140px;
+}
 	</style>
 </head>
 <body>
@@ -29,7 +57,7 @@
 										
 										<nav id="primary-menu">
 										<ul class="main-menu alignExceptionJustify">
-											<li style="padding-top: 0px; padding-bottom: 10px; margin: 0 5px;"><a href="#"><spring:message code="label.contact"/></a></li>
+											<li style="padding-top: 0px; padding-bottom: 10px; margin: 0 5px;"><a href="#" data-toggle="modal" data-target="#myModal"><spring:message code="label.contact"/></a></li>
 										</ul>
 										</nav>
 		
@@ -66,9 +94,116 @@
                 </div>
             </div>
         </footer>
-	<script>
+        
+        <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+        <div class="">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="message-box box-shadow white-bg">
+                            	<form name="contact-form" id="contact-form">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h4 class="blog-section-title border-left mb-30"><spring:message code="label.getInTounch"/></h4>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" name="name" id="name" placeholder="<spring:message code="label.cName"/>">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" name="email" id="email" placeholder="<spring:message code="label.cEmail"/>">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" name="subject" id="subject" placeholder="<spring:message code="label.cSubject"/>">
+                                        </div>
+                                        
+                                        <div class="col-md-12">
+                                            <textarea class="custom-textarea" name="message" id="message" placeholder="<spring:message code="label.cMsg"/>"></textarea>
+                                        </div>
+                                        <div class="col-md-12">
+                                        	<button class="submit-btn-1 mt-30 btn-hover-1" onclick="validateContactDtls();" type="button"><spring:message code="label.cSendMsg"/></button>
+                                        </div>
+                                    </div>
+                            	</form>        
+                            </div>
+                        </div>
+                    </div>
+            </div>
+    </div>
+  </div>
+	<script type="text/javascript">
+	
+		function validateContactDtls() {
+			var valid = false;
+			valid = $("#contact-form").valid();
+			if (valid)
+				saveContactDetails();
+		}
+
+		function saveContactDetails() {
+			var c_name = $("#name").val();
+			var c_email = $("#email").val();
+			var c_subject = $("#subject").val();
+			var c_msg = $("#message").val();
+
+			var data1 = {
+				"name" : c_name,
+				"email" : c_email,
+				"subject" : c_subject,
+				"message" : c_msg
+			};
+
+			$.ajax({
+				url : "SaveContactDetails.htm",
+				data : data1,
+				type : "POST",
+				success : function(resdata, status, xhr) {
+					/* var res = resdata.trim();
+					if (res == 'Correct') {
+						alert("done");
+					} */
+				},
+				error : function(xhr, status, errorThrown) {
+					console.log("Error: " + errorThrown);
+					console.log("Status: " + status);
+					console.dir(xhr);
+					$('#myModal').modal('toggle');
+					alert("Sorry, there was a problem!");
+				},
+				complete : function(xhr, status) {
+					$("#contact-form").trigger('reset');
+					$('#myModal').modal('toggle');
+				}
+			});
+
+		}
+
+		$(document).ready(function() {
+
+			$("#contact-form").validate({
+				rules : {
+					"name" : {
+						required : true
+					},
+					"email" : {
+						required : true,
+						email : true
+
+					},
+					"subject" : {
+						required : true
+					},
+					"message" : {
+						required : true
+					}
+				}
+
+			});
+		});
 		//detect language and justify the text accordingly
-		var text = $("#websiteLabel").text();
+		/* var text = $("#websiteLabel").text();
 		if(text.indexOf("Home") == -1){
 			$("h1").css("text-align", "right");
 			$("h2").css("text-align", "right");
@@ -94,7 +229,7 @@
 		}
 		$(".alignException").css("text-align", "left");
 		$(".alignExceptionCenter").css("text-align", "center");
-		$(".alignExceptionJustify").css("text-align", "justify");
+		$(".alignExceptionJustify").css("text-align", "justify"); */
 	</script>
 </body>
 </html>

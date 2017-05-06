@@ -51,7 +51,17 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="breadcrumbs-inner">
-                                <h1 class="breadcrumbs-title"><spring:message code="label.productSearchLst"/></h1>
+							<form:form method="post" name="productSearchForm"
+								id="productSearchForm" role="form" modelAttribute="portal" style="padding-bottom: 10px;">
+								<div class="top-search-box f-right">
+									<input type="text" name="keyWord" id="keyWord"
+										placeholder="<spring:message code="label.search"/>">
+									<button type="button" onclick="searchProduct();">
+										<i class="zmdi zmdi-search"></i>
+									</button>
+								</div>
+							</form:form>
+							<h1 class="breadcrumbs-title"><spring:message code="label.productSearchLst"/></h1>
                                 <ul class="breadcrumb-list">
                                     <li><a href="Home.htm"><spring:message code="label.home"/></a></li>
                                     <li><spring:message code="label.productLst"/></li>
@@ -77,8 +87,12 @@
 <form:form method="post" name="productLookUpForm" id="productLookUpForm">
 	<input type="hidden" name="itemId" id="itemId">
 </form:form>
-
-	<!-- SHOP SECTION START -->
+		<form:form method="post" name="orderAProduct" id="orderAProduct" modelAttribute="portal">
+			<input type="hidden" name="url" id="url" value="" />
+			<input type="hidden" name="isFromAmazon" value="true" />
+			<input type="hidden" name="price" id="price" value="" />
+		</form:form>
+		<!-- SHOP SECTION START -->
 	<div class="shop-section mb-80">
 		<div class="container">
 			<div class="row">
@@ -128,17 +142,9 @@
 														class="zmdi zmdi-star-outline"></i></a>
 												</div> -->
 													<h3 class="pro-price">${item.itemAttributes.listPrice.formattedPrice}</h3>
-													<ul class="action-button">
-														<li><a href="#" title="Wishlist" style="line-height: 28px;"><i
-																class="zmdi zmdi-favorite"></i></a></li>
-														<li><a href="#" data-toggle="modal" style="line-height: 28px;"
-															data-target="#productModal" title="Quickview"><i
-																class="zmdi zmdi-zoom-in"></i></a></li>
-														<li><a href="#" title="Compare" style="line-height: 28px;"><i
-																class="zmdi zmdi-refresh"></i></a></li>
-														<li><a href="#" title="Add to cart" style="line-height: 28px;"><i
-																class="zmdi zmdi-shopping-cart-plus"></i></a></li>
-													</ul>
+													<a href="javascript:orderProduct('${item.detailPageURL}','${item.itemAttributes.listPrice.amount}');" class="button extra-small button-black" tabindex="-1">
+														<span class="text-uppercase">Order now</span>
+													</a>
 												</div>
 											</div>
 										</div>
@@ -169,24 +175,11 @@
 													</div>
 													<h6 class="brand-name mb-30">${item.itemAttributes.manufacturer}</h6>
 													<h3 class="pro-price">${item.itemAttributes.listPrice.formattedPrice}</h3>
-
-													<p>There are many variations of passages of Lorem Ipsum
-														available, but the majority have suffered alteration in
-														some form, by injected humour, or randomised words which
-														don't look even slightly believable.</p>
-													<ul class="action-button">
-														<li><a href="#" title="Wishlist"><i
-																class="zmdi zmdi-favorite"></i></a></li>
-														<li><a href="#" data-toggle="modal"
-															data-target="#productModal" title="Quickview"><i
-																class="zmdi zmdi-zoom-in"></i></a></li>
-														<li><a href="#" title="Compare"><i
-																class="zmdi zmdi-refresh"></i></a></li>
-														<li><a href="#" title="Add to cart"><i
-																class="zmdi zmdi-shopping-cart-plus"></i></a></li>
-													</ul>
+													<a href="javascript:orderProduct('${item.detailPageURL}','${item.itemAttributes.listPrice.amount}');" class="button extra-small button-black" tabindex="-1">
+														<span class="text-uppercase">Order now</span>
+													</a>
+													</div>
 												</div>
-											</div>
 										</div>
 									</c:forEach>
 
@@ -269,6 +262,15 @@
 		$(".shop-pagination li").removeClass("active");
 	    $("#page_"+id).addClass("active");
 	});
+	
+	function orderProduct(urlVal,priceVal){
+		$("#url").val(urlVal);
+		$("#price").val(priceVal);
+		console.log($('#url').val());
+		console.log($('#price').val());
+		document.orderAProduct.action = "RequestProduct.htm";
+		document.orderAProduct.submit();
+	}
 	
 </script>
 </body>

@@ -21,6 +21,11 @@
 	
 	<definition name="viewOrder" template="/WEB-INF/jsp/admin/viewOrder.jsp"></definition>
 	
+	<definition name="messages" template="/WEB-INF/jsp/admin/contacts.jsp"></definition>
+	
+	<definition name="viewMessage" template="/WEB-INF/jsp/admin/viewMessage.jsp"></definition>
+	
+	
 	<!-- <definition name="changePassword" extends=".adminHomeTemplate">
 	    <put-attribute name="parentcurrent" value="" cascade="true"/>
 		<put-attribute name="content" value="/WEB-INF/jsp/changePassword.jsp" />

@@ -85,19 +85,6 @@
 													class="cart-plus-minus-box">
 											</div>
 										</div>
-										<div class="sin-pro-action f-right">
-											<ul class="action-button">
-												<li><a href="#" title="Wishlist" tabindex="0"><i
-														class="zmdi zmdi-favorite"></i></a></li>
-												<li><a href="#" data-toggle="modal"
-													data-target="#productModal" title="Quickview" tabindex="0"><i
-														class="zmdi zmdi-zoom-in"></i></a></li>
-												<li><a href="#" title="Compare" tabindex="0"><i
-														class="zmdi zmdi-refresh"></i></a></li>
-												<li><a href="#" title="Add to cart" tabindex="0"><i
-														class="zmdi zmdi-shopping-cart-plus"></i></a></li>
-											</ul>
-										</div>
 									</div>
 									<!-- plus-minus-pro-action end -->
 									<!-- hr -->
@@ -120,104 +107,6 @@
 							</div>
 							<!-- single-product-info end -->
 						</div>
-						<!-- single-product-tab -->
-						<div class="row">
-							<div class="col-md-12">
-								<!-- hr -->
-								<hr>
-								<div class="single-product-tab">
-									<ul class="reviews-tab mb-20">
-										<li class="active"><a href="#description"
-											data-toggle="tab">description</a></li>
-										<li><a href="#information" data-toggle="tab">information</a></li>
-										<li><a href="#reviews" data-toggle="tab">reviews</a></li>
-									</ul>
-									<div class="tab-content">
-										<div role="tabpanel" class="tab-pane active" id="description">
-											<p>There are many variations of passages of Lorem Ipsum
-												available, but the majo Rity have be suffered alteration in
-												some form, by injected humou or randomis Rity have be
-												suffered alteration in some form, by injected humou or
-												randomis words which donot look even slightly believable. If
-												you are going to use a passage Lorem Ipsum.</p>
-											<p>rerum blanditiis dolore dignissimos expedita
-												consequatur deleniti consectetur non exercitationem. rerum
-												blanditiis dolore dignissimos expedita consequatur deleniti
-												consectetur non exercitationem.</p>
-										</div>
-										<div role="tabpanel" class="tab-pane" id="information">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Autem, neque fugit inventore quo dignissimos est iure
-												natus quis nam illo officiis, deleniti consectetur non
-												,aspernatur.</p>
-											<p>rerum blanditiis dolore dignissimos expedita
-												consequatur deleniti consectetur non exercitationem.</p>
-										</div>
-										<div role="tabpanel" class="tab-pane" id="reviews">
-											<!-- reviews-tab-desc -->
-											<div class="reviews-tab-desc">
-												<!-- single comments -->
-												<div class="media mt-30">
-													<div class="media-left">
-														<a href="#"><img class="media-object"
-															src="img/author/1.jpg" alt="#"></a>
-													</div>
-													<div class="media-body">
-														<div class="clearfix">
-															<div class="name-commenter pull-left">
-																<h6 class="media-heading">
-																	<a href="#">Gerald Barnes</a>
-																</h6>
-																<p class="mb-10">27 Jun, 2016 at 2:30pm</p>
-															</div>
-															<div class="pull-right">
-																<ul class="reply-delate">
-																	<li><a href="#">Reply</a></li>
-																	<li>/</li>
-																	<li><a href="#">Delate</a></li>
-																</ul>
-															</div>
-														</div>
-														<p class="mb-0">Lorem ipsum dolor sit amet,
-															consectetur adipiscing elit. Integer accumsan egestas .</p>
-													</div>
-												</div>
-												<!-- single comments -->
-												<div class="media mt-30">
-													<div class="media-left">
-														<a href="#"><img class="media-object"
-															src="img/author/2.jpg" alt="#"></a>
-													</div>
-													<div class="media-body">
-														<div class="clearfix">
-															<div class="name-commenter pull-left">
-																<h6 class="media-heading">
-																	<a href="#">Gerald Barnes</a>
-																</h6>
-																<p class="mb-10">27 Jun, 2016 at 2:30pm</p>
-															</div>
-															<div class="pull-right">
-																<ul class="reply-delate">
-																	<li><a href="#">Reply</a></li>
-																	<li>/</li>
-																	<li><a href="#">Delate</a></li>
-																</ul>
-															</div>
-														</div>
-														<p class="mb-0">Lorem ipsum dolor sit amet,
-															consectetur adipiscing elit. Integer accumsan egestas .</p>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!--  hr -->
-								<hr>
-							</div>
-						</div>
-					</div>
-					<!-- single-product-area end -->
 				</div>
 			</div>
 		</div>

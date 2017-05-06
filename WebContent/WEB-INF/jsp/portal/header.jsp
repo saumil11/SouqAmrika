@@ -20,17 +20,39 @@
                                         </h1>
                                     </a>
                                 </div>
-                                <div class="logo" style="padding-top: 15px;padding-bottom: 10px;">
-						<nav id="primary-menu">
-							<ul class="main-menu text-center">
-								<li style="padding-top: 0px; padding-bottom: 10px; margin: 0 5px;font-size:110%;"><a href="Home.htm" id="websiteLabel"><spring:message code="label.home"/></a></li>
-								<li class="hidden-xs" style="padding-top: 0px;padding-bottom: 10px; margin: 0 5px;font-size:110%;"><a id="asd" href="#about"><spring:message code="label.aboutUs"/></a></li>
-								<li class="visible-xs" style="padding-top: 0px;padding-bottom: 10px; margin: 0 5px;"><a href="About.htm"><spring:message code="label.aboutUs"/></a></li>
-							</ul>
-						</nav>
-						</div>
-
-					</div>
+                                <div class="logo hidden-xs" style="padding-top: 15px;padding-bottom: 10px;">
+									<nav id="primary-menu">
+										<ul class="main-menu text-center">
+											<li style="padding-top: 0px; padding-bottom: 10px; margin: 0 5px;font-size:110%;"><a href="Home.htm" id="websiteLabel"><spring:message code="label.home"/></a></li>
+											<li style="padding-top: 0px;padding-bottom: 10px; margin: 0 5px;font-size:110%;"><a id="asd" href="#about"><spring:message code="label.aboutUs"/></a></li>
+										</ul>
+									</nav>
+								</div>
+								<div class="logo visible-xs" style="padding-top: 15px;padding-bottom: 10px;">
+									<nav id="primary-menu">
+										<ul class="main-menu text-center">
+											<li style="padding-top: 0px; padding-bottom: 10px; margin: 0 5px;font-size:110%;"><a href="Home.htm" id="websiteLabel"><spring:message code="label.home"/></a></li>
+											<li style="padding-top: 0px;padding-bottom: 10px; margin: 0 5px;"><a href="About.htm"><spring:message code="label.aboutUs"/></a></li>
+										</ul>
+									</nav>
+								</div>
+								<div class="col-xs-12 visible-xs">
+                                <div class="search-top-cart f-right">
+                                    <!-- header-search -->
+                                    <div class="header-search header-search-2 col-xs-6" style="padding-right: 10px;">
+                                        <div class="header-search-inner">
+                                           <a class="btn btn-info" href="#" id="langChangeEn" onclick="setLangeuage('en');" style="padding: 0 15px;"><span>English</span> </a>
+                                        </div>
+                                    </div>
+                                    <div class="header-search header-search-2 col-xs-6">
+                                        <div class="header-search-inner">
+                                           &nbsp;&nbsp;<a class="btn btn-success" href="#" id="langChangeAr" onclick="setLangeuage('ar');"><span> عربي</span> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+		
+							</div>
                             
                             <!-- primary-menu -->
                             <div class="col-md-push-2 col-md-4 hidden-sm hidden-xs">
@@ -80,7 +102,7 @@
                                 </div>
                             </div> --%>
                             
-                            <div class="col-md-push-2 col-md-4 col-sm-2 col-xs-4">
+                            <div class="col-md-push-2 col-md-4 col-sm-2 col-xs-4 hidden-xs">
                                 <div class="search-top-cart  f-right">
                                     <!-- header-search -->
                                     <div class="header-search header-search-2 f-left">

@@ -28,6 +28,7 @@ import com.codelab.souqamrika.constants.SouqAmrikaConstants;
 import com.codelab.souqamrika.dto.ImageShowCase;
 import com.codelab.souqamrika.dto.PortalCustomDTO;
 import com.codelab.souqamrika.dto.PortalForm;
+import com.codelab.souqamrika.entity.ContactDtl;
 import com.codelab.souqamrika.entity.CustomerMst;
 import com.codelab.souqamrika.entity.OrderMst;
 import com.codelab.souqamrika.entity.ProductUrlMst;
@@ -88,30 +89,42 @@ public class MainController {
 		if(null!=request.getParameter("url") && ( null!=request.getParameter("priceRange") 
 				|| null!=request.getParameter("isFromAmazon"))){
 			String url = request.getParameter("url");
-			int requestPrice = 0;
+			Double requestPrice = 0.0;
 			if(null!=request.getParameter("price")){
 				BigInteger price = new BigInteger(request.getParameter("price").toString());
 				BigDecimal formattedPrice = new BigDecimal(price, 2);
 				Double productPrice = Double.parseDouble(formattedPrice.toString());
-				if(productPrice<=25){
-					requestPrice = 3;
-				}else if(productPrice<=50){
-					requestPrice = 5;
+				if(productPrice<=50){
+					requestPrice = Double.valueOf(3.5);
 				}else if(productPrice<=75){
-					requestPrice = 7;
+					requestPrice = Double.valueOf(7);
 				}else if(productPrice<=100){
-					requestPrice = 9;
-				}else{
-					requestPrice = 10;
+					requestPrice = Double.valueOf(10);
+				}else if(productPrice<=150){
+					requestPrice = Double.valueOf(15);
+				}else if(productPrice<=200){
+					requestPrice = Double.valueOf(20);
+				}else if(productPrice<300){
+					requestPrice = Double.valueOf(25);
+				}else if(productPrice<=400){
+					requestPrice = Double.valueOf(30);
+				}else if(productPrice<=500){
+					requestPrice = Double.valueOf(35);
+				}else {
+					requestPrice = Double.valueOf(40);
 				}
 			}else{
-				requestPrice = Integer.parseInt(request.getParameter("priceRange"));
+				if(11.0==Double.parseDouble(request.getParameter("priceRange"))){
+					requestPrice = Double.valueOf(40);
+				}else{
+					requestPrice = Double.parseDouble(request.getParameter("priceRange"));
+				}
 			}
 			
 			System.out.println(request.getParameter("url"));
 			System.out.println(request.getParameter("priceRange"));
 			model.put("url", url);
-			model.put("requestPrice", requestPrice);
+			model.put("requestPrice", requestPrice.toString());
 		}
 		return new ModelAndView("getCustomerDetails");
 	}
@@ -134,6 +147,7 @@ public class MainController {
 			orderMstDTO = portal.getOrderMstBO();
 			orderMstDTO.setCreated_date(formatWithSlashWithTime.format(new Date()));
 			orderMstDTO.setCreated_by(1L);
+			orderMstDTO.setPayment_status(SouqAmrikaConstants.PAYMENT_STATUS_N);
 			orderMstDTO.setStatus(SouqAmrikaConstants.ACTIVE_STATUS);
 			
 			portal.setCustomerMstBO(customerMstDTO);
@@ -240,6 +254,33 @@ public class MainController {
 	@RequestMapping(value="/checkOut")
 	public ModelAndView loadCustomerDetails() throws Exception{
 		return new ModelAndView("checkOut");
+	}
+	
+	@RequestMapping(value="/SaveContactDetails")
+	public void saveContactDetails(@ModelAttribute("portal") PortalCustomDTO portal,Map<String, Object> model,
+			HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+		if(null!=request.getParameter("name") && null!=request.getParameter("email") &&
+				null!=request.getParameter("subject") && null!=request.getParameter("message")){
+			String name = request.getParameter("name");
+			String email = request.getParameter("email");
+			String subject = request.getParameter("subject");
+			String message = request.getParameter("message");
+			
+			ContactDtl contactDtl = new ContactDtl();
+			contactDtl.setName(name);
+			contactDtl.setEmail(email);
+			contactDtl.setSubject(subject);
+			contactDtl.setMessage(message);
+			String res;
+			boolean flag = this.getPortalService().saveContactDtl(contactDtl);
+			if (flag) {
+				res = "success";
+			} else {
+				res = "error";
+			}
+			response.getWriter().println(res);
+		}
 	}
 	
 }

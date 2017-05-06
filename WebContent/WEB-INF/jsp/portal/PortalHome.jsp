@@ -64,7 +64,7 @@
 							<select class="custom-select" name="priceRange" id="priceRange" 
 								style="background: rgb(255, 255, 255) url(img/icon/down-arrow.png) no-repeat scroll 97% center;" onchange="displayFee()">
 								<option value="defalt"><spring:message code="label.selectPriceRange"/></option>
-								<option value="4">$1 - $50</option>
+								<option value="3.5">$1 - $50</option>
 							    <option value="7">$51 - $75</option>
 							    <option value="10">$76 - $100</option>
 							    <option value="15">$101 - $150</option>
@@ -98,7 +98,7 @@
 			</form:form>
 			</div>
 			<div id="arrow">
-						<div class="col-md-12" style="top: 55px;text-align: center;">
+						<div class="col-md-10" style="top: 55px;text-align: center;">
 	    					<h2 class="" style="color: white;"><spring:message code="label.clickHere"/></h2>
 	    				</div>
                     	<div class="col-md-2" style="right: 160px;bottom: 55px;">

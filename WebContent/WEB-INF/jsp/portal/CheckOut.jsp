@@ -14,7 +14,17 @@
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="breadcrumbs-inner">
-							<h1 class="breadcrumbs-title"><spring:message code="label.checkout"/></h1>
+							<form:form method="post" name="productSearchForm"
+								id="productSearchForm" role="form" modelAttribute="portal" style="padding-bottom: 10px;">
+								<div class="top-search-box f-right">
+									<input type="text" name="keyWord" id="keyWord"
+										placeholder="<spring:message code="label.search"/>">
+									<button type="button" onclick="searchProduct();">
+										<i class="zmdi zmdi-search"></i>
+									</button>
+								</div>
+							</form:form>
+							<h1 class="breadcrumbs-title"><spring:message code="label.checkout"/>${portal.productUrlMstBO.product_req_price}</h1>
 							<ul class="breadcrumb-list">
 								<li><a href="Home.htm"><spring:message code="label.home"/></a></li>
 								<li><spring:message code="label.checkout"/></li>
@@ -102,52 +112,101 @@
 										</div>
 										<div class="payment-details p-30 " align="center">
 										<c:choose>
-										    <c:when test="${portal.productUrlMstBO.product_req_price==3}">
-										       <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+										    <c:when test="${portal.productUrlMstBO.product_req_price eq '3.5'}">
+										       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 												<input type="hidden" name="cmd" value="_s-xclick">
-												<input type="hidden" name="hosted_button_id" value="6Q7Q7C5LNF7U6">
-												<input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-												<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-												</form>
-												<%-- <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-												<input type="hidden" name="cmd" value="_s-xclick">
-												<input type="hidden" name="hosted_button_id" value="6NGPAZZUA644W">
+												<input type="hidden" name="hosted_button_id" value="YMVANC5PCTTWA">
 												<input type="hidden" name="custom" value="${portal.orderMstBO.order_id}">
-												<input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-												<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-												</form> --%>
-										    </c:when>
-										    <c:when test="${portal.productUrlMstBO.product_req_price==5}">
-										        <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-												<input type="hidden" name="cmd" value="_s-xclick">
-												<input type="hidden" name="hosted_button_id" value="QSEZ9UFREV9YQ">
-												<input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-												<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+												<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+												<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 												</form>
+
 										    </c:when>
-										    <c:when test="${portal.productUrlMstBO.product_req_price==7}">
-										        <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+										    <c:when test="${portal.productUrlMstBO.product_req_price eq '7.0'}">
+										       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 												<input type="hidden" name="cmd" value="_s-xclick">
-												<input type="hidden" name="hosted_button_id" value="9GB3DL3HKNEZJ">
-												<input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-												<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+												<input type="hidden" name="hosted_button_id" value="N5ZZ2QUZM7436">
+												<input type="hidden" name="custom" value="${portal.orderMstBO.order_id}">
+												<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+												<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 												</form>
+
 										    </c:when>
-										    <c:when test="${portal.productUrlMstBO.product_req_price==9}">
-										        <form target="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+										    <c:when test="${portal.productUrlMstBO.product_req_price eq '10.0'}">
+										       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 												<input type="hidden" name="cmd" value="_s-xclick">
-												<input type="hidden" name="hosted_button_id" value="H5G2GBBYL7MH2">
-												<input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-												<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+												<input type="hidden" name="hosted_button_id" value="AEAGP3K5SQBEN">
+												<input type="hidden" name="custom" value="${portal.orderMstBO.order_id}">
+												<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+												<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 												</form>
+
 										    </c:when>
-										    <c:when test="${portal.productUrlMstBO.product_req_price==10}">
-										        <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+										    <c:when test="${portal.productUrlMstBO.product_req_price eq '15.0'}">
+										       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 												<input type="hidden" name="cmd" value="_s-xclick">
-												<input type="hidden" name="hosted_button_id" value="4AUEGEDWVDCUS">
-												<input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-												<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+												<input type="hidden" name="hosted_button_id" value="ZUY388SUKSJTU">
+												<input type="hidden" name="custom" value="${portal.orderMstBO.order_id}">
+												<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+												<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 												</form>
+
+
+										    </c:when>
+										    <c:when test="${portal.productUrlMstBO.product_req_price eq '20.0'}">
+										       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+												<input type="hidden" name="cmd" value="_s-xclick">
+												<input type="hidden" name="hosted_button_id" value="SYJ7J2LU4B8EC">
+												<input type="hidden" name="custom" value="${portal.orderMstBO.order_id}">
+												<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+												<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+												</form>
+
+
+										    </c:when>
+										    <c:when test="${portal.productUrlMstBO.product_req_price eq '25.0'}">
+										       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+												<input type="hidden" name="cmd" value="_s-xclick">
+												<input type="hidden" name="hosted_button_id" value="DX7Z3S9YQJT82">
+												<input type="hidden" name="custom" value="${portal.orderMstBO.order_id}">
+												<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+												<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+												</form>
+
+
+										    </c:when>
+										    <c:when test="${portal.productUrlMstBO.product_req_price eq '30.0'}">
+										       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+												<input type="hidden" name="cmd" value="_s-xclick">
+												<input type="hidden" name="hosted_button_id" value="PU4VTPKQVVAY2">
+												<input type="hidden" name="custom" value="${portal.orderMstBO.order_id}">
+												<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+												<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+												</form>
+
+
+										    </c:when>
+										    <c:when test="${portal.productUrlMstBO.product_req_price eq '35.0'}">
+										       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+												<input type="hidden" name="cmd" value="_s-xclick">
+												<input type="hidden" name="hosted_button_id" value="5L93N47EFL332">
+												<input type="hidden" name="custom" value="${portal.orderMstBO.order_id}">
+												<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+												<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+												</form>
+
+
+										    </c:when>
+										    <c:when test="${portal.productUrlMstBO.product_req_price eq '40.0'}">
+										       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+												<input type="hidden" name="cmd" value="_s-xclick">
+												<input type="hidden" name="hosted_button_id" value="K7J3CVZZTT3BS">
+												<input type="hidden" name="custom" value="${portal.orderMstBO.order_id}">
+												<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+												<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+												</form>
+
+
 										    </c:when>
 										    <c:otherwise>
 										        Something went wrong.
@@ -172,6 +231,22 @@
 			document.saveCustomerDetails.action = "SaveCustomerDetails.htm";
 			document.saveCustomerDetails.submit();
 		}
+		
+		function searchProduct() {
+    		var searchKeyWord = $('#keyWord').val();
+    		if (null != searchKeyWord && "" != searchKeyWord) {
+    			document.productSearchForm.action = "SearchKeyWord.htm";
+    			document.productSearchForm.submit();
+    		} else {
+    			alert("Please input keyword.");
+    		}
+    	}
+		 $("#keyWord").keypress(function(event) {
+	            if (event.which == 13) {
+	                event.preventDefault();
+	                searchProduct();
+	            }
+	        });
 	</script>
 </body>
 </html>

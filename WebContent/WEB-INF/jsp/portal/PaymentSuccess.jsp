@@ -1,80 +1,101 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html">
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="assets/img/favicon.ico">
-	
-    <title>SouqAmrika - Payment Success</title>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+</head>
+<body>
+	<!-- BREADCRUMBS SETCTION START -->
+	<div class="breadcrumbs-section plr-200 mb-80">
+		<div class="breadcrumbs overlay-bg">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="breadcrumbs-inner">
+							<form:form method="post" name="productSearchForm"
+								id="productSearchForm" role="form" modelAttribute="portal" style="padding-bottom: 10px;">
+								<div class="top-search-box f-right">
+									<input type="text" name="keyWord" id="keyWord"
+										placeholder="<spring:message code="label.search"/>">
+									<button type="button" onclick="searchProduct();">
+										<i class="zmdi zmdi-search"></i>
+									</button>
+								</div>
+							</form:form>
+							<h1 class="breadcrumbs-title"><spring:message code="label.checkout"/></h1>
+							<ul class="breadcrumb-list">
+								<li><a href="Home.htm"><spring:message code="label.home"/></a></li>
+								<li><spring:message code="label.checkout"/></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- BREADCRUMBS SETCTION END -->
 
-    <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="assets/css/ionicons.min.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
-
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-
-  <body>
-
-    <div id="h" style="padding-top:90px; color: #080808;background: none;">
-      <div class="logo">SOUQAMRIKA</div>
-      <div class="social hidden-xs">
-        <a href="#" style="color: #080808;"><i class="ion-social-twitter"></i></a>
-        <a href="#" style="color: #080808;"><i class="ion-social-instagram"></i></a>
-        <a href="#" style="color: #080808;"><i class="ion-social-facebook"></i></a>
-      </div>
-      <div class="container">
-        <div class="row col-sm-12">
-			<h2 class="mb">Payment done successfully.</h2>
-        </div><!--/row-->
-      </div><!--/container-->
-    </div><!-- /H -->
-	<br>
-	<br>
-	
-
-   <div id="f">
-      <div class="container">
-        <div class="row centered">
-          <h2>You Can Contact Us</h2>
-          <h5>HELLO@LANDINGSUMO.COM</h5>
-
-          <p class="mt">
-            <a href="#"><i class="ion-social-twitter"></i></a>
-            <a href="#"><i class="ion-social-dribbble"></i></a>
-            <a href="#"><i class="ion-social-instagram"></i></a>
-            <a href="#"><i class="ion-social-facebook"></i></a>
-            <a href="#"><i class="ion-social-pinterest"></i></a>
-            <a href="#"><i class="ion-social-tumblr"></i></a>
-          </p>
-          <h6 class="mt">COPYRIGHT 2014 - LANDING SUMO</h6>
-        </div><!--/row-->
-      </div><!--/container-->
-    </div><!--/F-->
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="<c:url value="/portal/assets/js/jquery.min.js"/>"></script>
-    <script src="<c:url value="/portal/assets/js/bootstrap.min.js"/>"></script>
-    <script src="<c:url value="/portal/assets/js/retina-1.1.0.js"/>"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-    <script src="<c:url value="/portal/assets/js/custom.js"/>"></script>
-  </body>
+	<!-- Start page content -->
+	<section id="page-content" class="page-wrapper"> <!-- SHOP SECTION START -->
+	<div class="shop-section mb-80">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-2">
+					<ul class="cart-tab">
+						<li>
+							<a href="#order-complete" class="active">
+								<span>01</span>
+								<spring:message code="label.checkout"/>
+							</a>
+						</li>
+						<li>
+							<a class="active" href="#order-complete" data-toggle="tab">
+								<span>02</span>
+								<spring:message code="label.orderComplete"/>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-10">
+					<!-- Tab panes -->
+					<div class="tab-content">
+						<!-- order-complete start -->
+						<div class="tab-pane active" id="order-complete">
+							<div class="order-complete-content box-shadow">
+								<div class="row">
+									<div class="thank-you p-30 text-center">
+                                            <h6 class="text-black-5 mb-0"><spring:message code="label.paymentSucc"/></h6>
+                                        </div>
+								</div>
+							</div>
+						</div>
+						<!-- order-complete end -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- SHOP SECTION END --> 
+	</section>
+	<!-- End page content -->
+	<script type="text/javascript">
+		function searchProduct() {
+    		var searchKeyWord = $('#keyWord').val();
+    		if (null != searchKeyWord && "" != searchKeyWord) {
+    			document.productSearchForm.action = "SearchKeyWord.htm";
+    			document.productSearchForm.submit();
+    		} else {
+    			alert("Please input keyword.");
+    		}
+    	}
+		 $("#keyWord").keypress(function(event) {
+	            if (event.which == 13) {
+	                event.preventDefault();
+	                searchProduct();
+	            }
+	        });
+	</script>
+</body>
 </html>

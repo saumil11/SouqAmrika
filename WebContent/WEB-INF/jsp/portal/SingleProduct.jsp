@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,12 +14,25 @@
 </head>
 <body>
 <!-- Start page content -->
+<div class="row">
+		<form:form method="post" name="productSearchForm"
+								id="productSearchForm" role="form" modelAttribute="portal" style="padding-bottom: 10px;">
+								<div class="top-search-box f-right">
+									<input type="text" name="keyWord" id="keyWord"
+										placeholder="<spring:message code="label.search"/>">
+									<button type="button" onclick="searchProduct();">
+										<i class="zmdi zmdi-search"></i>
+									</button>
+								</div>
+							</form:form>
+	</div>
 <section id="page-content" class="page-wrapper">
 
 	<!-- SHOP SECTION START -->
 	<div class="shop-section mb-80">
 		<div class="container">
-			<div class="row">
+		
+			<div class="row" style="margin-top:85px;">
 				<div class="col-md-push-1 col-md-10 col-xs-12">
 					<!-- single-product-area start -->
 					
@@ -111,6 +125,8 @@
 			</div>
 		</div>
 	</div>
+	</div>
+	
 </section>
 
 <script type="text/javascript">
@@ -118,6 +134,22 @@
 		document.orderAProduct.action = "RequestProduct.htm";
 		document.orderAProduct.submit();	
 	}
+	
+	function searchProduct() {
+		var searchKeyWord = $('#keyWord').val();
+		if (null != searchKeyWord && "" != searchKeyWord) {
+			document.productSearchForm.action = "SearchKeyWord.htm";
+			document.productSearchForm.submit();
+		} else {
+			alert("Please input keyword.");
+		}
+	}
+	 $("#keyWord").keypress(function(event) {
+            if (event.which == 13) {
+                event.preventDefault();
+                searchProduct();
+            }
+        });
 </script>
 </body>
 </html>

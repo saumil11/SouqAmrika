@@ -14,9 +14,9 @@ public class Configuration {
 		configMap.putAll(getConfig());
 				
 		// Account Credential
-		configMap.put("acct1.UserName", "jb-us-seller_api1.paypal.com");
-		configMap.put("acct1.Password", "WX4WTU3S8MY44S7F");
-		configMap.put("acct1.Signature", "AFcWxV21C7fd0v3bYYYRCpSSRl31A7yDhhsPUU2XhtMoZXsWHFxu-RWy");
+		configMap.put("acct1.UserName", "blxq81_api1.gmail.com");
+		configMap.put("acct1.Password", "FPVYYSK4NC6LSJ4L");
+		configMap.put("acct1.Signature", "AFcWxV21C7fd0v3bYYYRCpSSRl31AmqGLAtHAC2iJNGQIZcPGvQyHuJN");
 		// Subject is optional, only required in case of third party permission
 		//configMap.put("acct1.Subject", "");
 		
@@ -34,7 +34,7 @@ public class Configuration {
 		Map<String,String> configMap = new HashMap<String,String>();
 		
 		// Endpoints are varied depending on whether sandbox OR live is chosen for mode
-		configMap.put("mode", "sandbox");
+		configMap.put("mode", "live");
 		
 		// These values are defaulted in SDK. If you want to override default values, uncomment it and add your value.
 		// configMap.put("http.ConnectionTimeOut", "5000");

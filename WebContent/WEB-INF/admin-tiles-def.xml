@@ -6,6 +6,23 @@
 
 <tiles-definitions>
 
+<!-- Login Template -->
+	<definition name=".adminLoginTemplate" template="/WEB-INF/template/admin/adminLoginLayout.jsp">
+		<put-attribute name="title" value="Souq Amrika" type="string" />
+		<put-attribute name="content" value="" />
+	</definition>
+	
+	<!-- After Login Template -->
+	<definition name=".adminHomeTemplate" template="/WEB-INF/template/admin/adminHomeLayout.jsp">
+		<put-attribute name="title" value="Souq Amrika" type="string" />
+		<put-attribute name="header" value="/WEB-INF/jsp/admin/header.jsp" />
+		<put-attribute name="leftmenu" value="/WEB-INF/jsp/admin/leftMenu.jsp" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/admin/footer.jsp" />
+		<put-attribute name="parentcurrent" value=""/> 
+		<put-attribute name="current" value="" />
+	</definition>
+
 	<!-- Error Redirect Template -->
 	<definition name="errorRedirect" template="/WEB-INF/jsp/errorRedirect.jsp"></definition>
 	
@@ -13,18 +30,33 @@
 	
 	<definition name="accessDenied" template="/WEB-INF/error_pages/403.jsp"></definition>
 	
+	<definition name="dashboard" extends=".adminHomeTemplate">
+		<put-attribute name="content" value="/WEB-INF/jsp/admin/dashboard.jsp" />
+		<put-attribute name="parentcurrent" value="" cascade="true"/> 
+		<put-attribute name="current" value="DASHBOARD" cascade="true"/>
+	</definition>
 	
+	<definition name="logIn" extends=".adminLoginTemplate">
+		<put-attribute name="content" value="/WEB-INF/jsp/admin/loginPage.jsp" />
+	</definition>
 	
-	<definition name="dashboard" template="/WEB-INF/jsp/admin/dashboard.jsp"></definition>
+	<definition name="viewOrder" extends=".adminHomeTemplate">
+		<put-attribute name="content" value="/WEB-INF/jsp/admin/viewOrder.jsp" />
+		<put-attribute name="parentcurrent" value="" cascade="true"/> 
+		<put-attribute name="current" value="DASHBOARD" cascade="true"/>
+	</definition>
 	
-	<definition name="logIn" template="/WEB-INF/jsp/admin/adminLogin.jsp"></definition>
+	<definition name="messages" extends=".adminHomeTemplate">
+		<put-attribute name="content" value="/WEB-INF/jsp/admin/contacts.jsp" />
+		<put-attribute name="parentcurrent" value="" cascade="true"/> 
+		<put-attribute name="current" value="MSGS" cascade="true"/>
+	</definition>
 	
-	<definition name="viewOrder" template="/WEB-INF/jsp/admin/viewOrder.jsp"></definition>
-	
-	<definition name="messages" template="/WEB-INF/jsp/admin/contacts.jsp"></definition>
-	
-	<definition name="viewMessage" template="/WEB-INF/jsp/admin/viewMessage.jsp"></definition>
-	
+	<definition name="viewMessage" extends=".adminHomeTemplate">
+		<put-attribute name="content" value="/WEB-INF/jsp/admin/viewMessage.jsp" />
+		<put-attribute name="parentcurrent" value="" cascade="true"/> 
+		<put-attribute name="current" value="MSGS" cascade="true"/>
+	</definition>
 	
 	<!-- <definition name="changePassword" extends=".adminHomeTemplate">
 	    <put-attribute name="parentcurrent" value="" cascade="true"/>

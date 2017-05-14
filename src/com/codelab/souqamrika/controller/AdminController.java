@@ -144,7 +144,8 @@ public class AdminController {
 				JSONObject row = new JSONObject();
 				
 				listdata.put("<a onclick='orderDetails("+order.getCustomer_id()+");'>"+order.getCustomer_fname()+" "+order.getCustomer_lname()+"</a>");
-				listdata.put("<a href='"+order.getProduct_url()+"'>"+order.getProduct_url()+"</a>");
+//				listdata.put("<a href='"+order.getProduct_url()+"'>"+order.getProduct_url()+"</a>");
+				listdata.put("<a href='"+order.getProduct_url()+"' target='_blank' class='btn btn-white btn-sm'><i class='fa fa-external-link'></i> Product URL</a>");
 				listdata.put(order.getPayment_status());
 				/*if(customer.getStatus() == SouqAmrikaConstants.ACTIVE_STATUS){
 					listdata.put(SouqAmrikaConstants.ACTIVE_STATUS_STR);

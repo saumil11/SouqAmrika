@@ -100,7 +100,7 @@ public class CommonDaoImpl implements CommonDao {
 			session = this.getSessionFactory().openSession();
 			tx = session.beginTransaction();
 			StringBuilder hql = new StringBuilder(
-					"select count(c.customer_id) as records from CustomerMst as c, ProductUrlMst as u Where c.customer_id = u.customer_id"
+					"select count(c.customer_id) as records from CustomerMst as c, ProductUrlMst as u , OrderMst o Where c.customer_id = u.customer_id and o.product_url_id = u.product_url_id"
 							+ " and c.status != "+ SouqAmrikaConstants.DELETE_STATUS);
 			count = ((Long) session.createQuery(hql.toString()).uniqueResult())
 					.intValue();
@@ -129,14 +129,14 @@ public class CommonDaoImpl implements CommonDao {
 			tx = session.beginTransaction();
 			String c_name = paginationBo.getPageClass();
 			StringBuilder hql = new StringBuilder(
-					"select c.customer_id as customer_id , c.customer_fname as customer_fname, c.customer_lname as customer_lname, u.product_url as product_url "
-					+ "from CustomerMst as c, ProductUrlMst as u Where c.customer_id=u.customer_id"
+					"select o.payment_status as payment_status, c.customer_id as customer_id , c.customer_fname as customer_fname, c.customer_lname as customer_lname, u.product_url as product_url "
+					+ "from CustomerMst as c, ProductUrlMst as u, OrderMst o Where c.customer_id=u.customer_id and o.product_url_id = u.product_url_id"
 							+ " and c.status != "+ SouqAmrikaConstants.DELETE_STATUS
 							+ " ORDER BY "
 							+ "	"
 							+ paginationBo.getSidx()
 							+ "  "
-							+ paginationBo.getSord() + "	");
+							+ paginationBo.getSord() + " ");
 			Query query = session.createQuery(hql.toString());
 			query.setFirstResult(paginationBo.getStart());
 			query.setMaxResults(paginationBo.getLimit());

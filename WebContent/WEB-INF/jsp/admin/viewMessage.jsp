@@ -1,89 +1,52 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<!DOCTYPE html>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="assets/img/favicon.ico">
-
-    <title>SouqAmrika - Message Detail</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="<c:url value="/portal/assets/css/bootstrap.css"/>" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="<c:url value="/portal/assets/css/ionicons.min.css"/>" rel="stylesheet">
-    <link href="<c:url value="/portal/assets/css/style.css"/>" rel="stylesheet">
-
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="<c:url value="/portal/assets/js/ie10-viewport-bug-workaround.js"/>"></script>
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="<c:url value="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"/>"></script>
-      <script src="<c:url value="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"/>"></script>
-    <![endif]-->
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
 </head>
 <body>
+	<c:set var="mainTitle" value="Message Details" scope="request"/>
+	<div class="row wrapper border-bottom white-bg page-heading">
+		<div class="col-sm-4">
+			<h2>${mainTitle}</h2>
+			<ol class="breadcrumb">
+				<li><a href="dashboard.htm">Home</a></li>
+				<li><a href="messages.htm">Messages</a></li>
+				<li class="active"><strong>${mainTitle}</strong></li>
+			</ol>
+		</div>
+	</div>
 
-    <div id="h" style="padding-top:90px; color: #080808;background: none;">
-      <div class="logo">SOUQAMRIKA</div>
-      <div class="social hidden-xs">
-        <a href="#" style="color: #080808;"><i class="ion-social-twitter"></i></a>
-        <a href="#" style="color: #080808;"><i class="ion-social-instagram"></i></a>
-        <a href="#" style="color: #080808;"><i class="ion-social-facebook"></i></a>
-      </div>
-      <div class="container">
-        <div class="row col-sm-12">
-			<h2 class="mb">Customer Details</h2>
-				<div class="col-sm-4">
-					<h3 class="col-sm-12" align="left">Personal Info</h3><br>
-					<label class="col-sm-12" align="left">Name : ${admin.contactDtl.name}</label><br>
-					<label class="col-sm-12" align="left">Email : ${admin.contactDtl.email}</label><br>
-					<label class="col-sm-12" align="left">Subject : ${admin.contactDtl.subject}</label><br>
-					<label class="col-sm-12" align="left">Message : ${admin.contactDtl.message}</label>
+	<div class="row">
+		<div class="col-lg-9">
+			<div class="wrapper wrapper-content animated fadeInUp">
+				<div class="ibox">
+					<div class="ibox-content">
+						<div class="row">
+							<div class="col-lg-12">
+								<h2 align="center">Message Info</h2>
+								<dl class="dl-horizontal">
+									<dt>Name :</dt>
+									<dd>${admin.contactDtl.name}</dd>
+									<dt>Email :</dt>
+									<dd>${admin.contactDtl.email}</dd>
+									<dt>Subject : </dt>
+									<dd>${admin.contactDtl.subject}</dd>
+									<dt>Message : </dt>
+									<dd>${admin.contactDtl.message}</dd>
+								</dl>
+							</div>
+						</div>
+					</div>
 				</div>
-				
-        </div><!--/row-->
-      </div><!--/container-->
-      
-    </div><!-- /H -->
-	<br>
-	<br>
-	
-   <div id="f">
-      <div class="container">
-        <div class="row centered">
-          <h2>You Can Contact Us</h2>
-          <h5>HELLO@LANDINGSUMO.COM</h5>
+			</div>
+		</div>
+	</div>
 
-          <p class="mt">
-            <a href="#"><i class="ion-social-twitter"></i></a>
-            <a href="#"><i class="ion-social-dribbble"></i></a>
-            <a href="#"><i class="ion-social-instagram"></i></a>
-            <a href="#"><i class="ion-social-facebook"></i></a>
-            <a href="#"><i class="ion-social-pinterest"></i></a>
-            <a href="#"><i class="ion-social-tumblr"></i></a>
-          </p>
-          <h6 class="mt">COPYRIGHT 2014 - LANDING SUMO</h6>
-        </div><!--/row-->
-      </div><!--/container-->
-    </div><!--/F-->
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="<c:url value="/portal/assets/js/jquery.min.js"/>"></script>
-    <script src="<c:url value="/portal/assets/js/bootstrap.min.js"/>"></script>
-    <script src="<c:url value="/portal/assets/js/retina-1.1.0.js"/>"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-    <script src="<c:url value="/portal/assets/js/custom.js"/>"></script>
-  </body>
+</body>
 </html>

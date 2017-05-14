@@ -123,7 +123,7 @@
                                             <textarea class="custom-textarea" name="message" id="message" placeholder="<spring:message code="label.cMsg"/>"></textarea>
                                         </div>
                                         <div class="col-md-12">
-                                        	<button class="submit-btn-1 mt-30 btn-hover-1" onclick="validateContactDtls();" type="button"><spring:message code="label.cSendMsg"/></button>
+                                        	<button id="sendMsg"class="submit-btn-1 mt-30 btn-hover-1" onclick="validateContactDtls();" type="button"><spring:message code="label.cSendMsg"/></button>
                                         </div>
                                     </div>
                             	</form>        
@@ -143,6 +143,7 @@
 		}
 
 		function saveContactDetails() {
+			$("#sendMsg").attr("disabled", true);
 			var c_name = $("#name").val();
 			var c_email = $("#email").val();
 			var c_subject = $("#subject").val();
@@ -175,6 +176,7 @@
 				complete : function(xhr, status) {
 					$("#contact-form").trigger('reset');
 					$('#myModal').modal('toggle');
+					$("#sendMsg").removeAttr("disabled");
 				}
 			});
 

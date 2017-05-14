@@ -24,7 +24,7 @@
 									</button>
 								</div>
 							</form:form>
-							<h1 class="breadcrumbs-title"><spring:message code="label.checkout"/>${portal.productUrlMstBO.product_req_price}</h1>
+							<h1 class="breadcrumbs-title"><spring:message code="label.checkout"/></h1>
 							<ul class="breadcrumb-list">
 								<li><a href="Home.htm"><spring:message code="label.home"/></a></li>
 								<li><spring:message code="label.checkout"/></li>

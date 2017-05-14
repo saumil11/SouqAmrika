@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,12 +35,14 @@ import com.codelab.souqamrika.entity.OrderMst;
 import com.codelab.souqamrika.entity.ProductUrlMst;
 import com.codelab.souqamrika.service.AmazonService;
 import com.codelab.souqamrika.service.PortalService;
+import com.codelab.souqamrika.utility.MailUtil;
 
 @Controller
 @RequestMapping(value = "portal")
 public class MainController {
 	
 	SimpleDateFormat formatWithSlashWithTime = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+	static ResourceBundle mailbundle = ResourceBundle.getBundle("config/Mail");
 	
 	@Autowired
 	private PortalService portalService;
@@ -155,6 +158,12 @@ public class MainController {
 			portal.setOrderMstBO(orderMstDTO);
 			
 			boolean flag = this.getPortalService().saveCustomerReg(portal);
+			if(flag){
+				MailUtil mailUtil = new MailUtil();
+				String msg = mailbundle.getString("mail.orderBody");
+				msg = msg.replace("{0}", customerMstDTO.getCustomer_fname());
+				mailUtil.sendMail(customerMstDTO.getCustomer_email(), mailbundle.getString("subject.orderSuccess"), msg);
+			}
 			model.put("portal", portal);
 			//request.setAttribute("success", "Home.htm");
 		}
@@ -266,6 +275,14 @@ public class MainController {
 			String email = request.getParameter("email");
 			String subject = request.getParameter("subject");
 			String message = request.getParameter("message");
+			
+			MailUtil mailUtil = new MailUtil();
+			String msg = mailbundle.getString("mail.contactBody");
+			msg = msg.replace("{0}", name);
+			msg = msg.replace("{1}", email);
+			msg = msg.replace("{2}", message);
+			
+			mailUtil.sendMail(mailbundle.getString("mail.contactEmail"), subject, msg);
 			
 			ContactDtl contactDtl = new ContactDtl();
 			contactDtl.setName(name);

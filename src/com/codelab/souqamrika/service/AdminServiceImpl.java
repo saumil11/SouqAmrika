@@ -56,4 +56,9 @@ public class AdminServiceImpl implements AdminService{
 		return this.getGenricDao().get(ContactDtl.class, contactId);
 	}
 
+	@Override
+	public boolean updateOrder(long orderId, int orderStatus) throws Exception {
+		return this.getAdminDao().updateOrder(orderId, orderStatus);
+	}
+
 }

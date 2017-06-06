@@ -13,4 +13,6 @@ public interface AdminDao {
 
 	AdminCustomDTO getOrderDtls(Long customerId) throws Exception;
 
+	boolean updateOrder(long orderId, int orderStatus) throws Exception;
+
 }

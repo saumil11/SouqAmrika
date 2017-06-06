@@ -58,6 +58,12 @@
 		<put-attribute name="current" value="MSGS" cascade="true"/>
 	</definition>
 	
+	<definition name="favOrders" extends=".adminHomeTemplate">
+		<put-attribute name="content" value="/WEB-INF/jsp/admin/favOrders.jsp" />
+		<put-attribute name="parentcurrent" value="" cascade="true"/> 
+		<put-attribute name="current" value="FAVORDERS" cascade="true"/>
+	</definition>
+	
 	<!-- <definition name="changePassword" extends=".adminHomeTemplate">
 	    <put-attribute name="parentcurrent" value="" cascade="true"/>
 		<put-attribute name="content" value="/WEB-INF/jsp/changePassword.jsp" />

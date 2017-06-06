@@ -17,4 +17,6 @@ public interface AdminService {
 
 	ContactDtl getContactDtls(Long contactId) throws Exception;
 
+	boolean updateOrder(long orderId, int orderStatus) throws Exception;
+
 }

@@ -1,6 +1,8 @@
 package com.codelab.souqamrika.dao;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import com.codelab.souqamrika.constants.SouqAmrikaConstants;
 import com.codelab.souqamrika.dto.AdminCustomDTO;
 import com.codelab.souqamrika.entity.CustomerMst;
+import com.codelab.souqamrika.entity.OrderMst;
 import com.codelab.souqamrika.entity.ProductUrlMst;
 import com.codelab.souqamrika.entity.UserMst;
 
@@ -29,6 +32,8 @@ public class AdminDaoImpl implements AdminDao{
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
+	
+	SimpleDateFormat formatWithSlashWithTime = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
 	
 	@Override
 	public <T> T get(Class<T> c, long id) throws Exception{
@@ -137,6 +142,33 @@ public class AdminDaoImpl implements AdminDao{
 			session.close();
 		}
 		return adminCustomDTO;
+	}
+	
+	@Override
+	public boolean updateOrder(long orderId, int orderStatus) throws Exception {
+		Session session=null;
+		Transaction tx=null;
+		Boolean flag = false;
+		try{
+			session=this.getSessionFactory().openSession();
+			tx=session.beginTransaction();
+			OrderMst orderMst = this.get(OrderMst.class, orderId);
+			orderMst.setStatus(orderStatus);
+			orderMst.setUpdated_date(formatWithSlashWithTime.format(new Date()));
+			session.update(orderMst);
+			tx.commit();
+			flag = true;
+		}
+		catch(Exception e){
+			tx.rollback();
+			
+			e.printStackTrace();
+				}
+		finally{
+			
+			session.close();
+		}
+		return flag;
 	}
 
 }

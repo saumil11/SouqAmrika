@@ -8,12 +8,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
 <body>
-	<c:set var="mainTitle" value="Dashboard" scope="request"/>
+	<c:set var="mainTitle" value="Saved Orders" scope="request"/>
 	<div class="row wrapper border-bottom white-bg page-heading">
 		<div class="col-sm-4">
 			<h2>${mainTitle}</h2>
 			<ol class="breadcrumb">
-				<li class="active"><strong><a href="dashboard.htm">Home</a></strong></li>
+				<li><a href="dashboard.htm">Home</a></li>
+				<li class="active"><strong>${mainTitle}</strong></li>
 			</ol>
 		</div>
 	</div>
@@ -23,7 +24,7 @@
 			<div class="col-lg-12">
 				<div class="ibox ">
 					<div class="ibox-title">
-						<h5>Manage Orders</h5>
+						<h5>Saved Orders</h5>
 					</div>
 					<div class="ibox-content">
 
@@ -83,7 +84,7 @@
     		//$('.chosen-select').chosen();
             // Configuration for jqGrid Example 2
             $(grid_selector).jqGrid({
-                url: "getAllOrders.htm",
+                url: "getAllFavOrders.htm",
                 datatype: "json",
                 mtype: 'GET',
                 height: 340,
@@ -94,12 +95,11 @@
                 sortorder: 'desc',
                 rowNum: 10,
                 rowList: [10, 20, 30],
-                colNames:['Customer Name','URL','Payment Done', 'Action'],
+                colNames:['Customer Name','URL','Payment Done'],
     			colModel:[
     				{name:'c.customer_fname',index:'c.customer_fname', width:30,editable: false, classes: 'align_center'},
     				{name:'u.product_url',index:'u.product_url', width:30,editable: false, classes: 'align_center'},
     				{name:'payment_status',index:'payment_status', width:20,editable: false, classes: 'align_center' },
-    				{name:'action',index:'action', editable: false, width:20, classes: 'align_center', sortable:false}
     			],
                 pager: pager_selector,
                 viewrecords: true,
@@ -115,7 +115,7 @@
             			search: false,
             			refresh: true,
             			beforeRefresh: function(){
-            		        var oldURL = "getAllOrders.htm";
+            		        var oldURL = "getAllFavOrders.htm";
             		        $(grid_selector).setGridParam({url:oldURL,page:1});
             		    }
             		},

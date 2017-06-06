@@ -21,6 +21,9 @@
                 <li class="${current == 'DASHBOARD' ? 'active' : ''}">
                     <a href="dashboard.htm"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
                 </li>
+                <li class="${current == 'FAVORDERS' ? 'active' : ''}">
+                    <a href="orders.htm"><i class="fa fa-file-text-o"></i> <span class="nav-label">Saved Orders</span></a>
+                </li>
                 <li class="${current == 'MSGS' ? 'active' : ''}">
                     <a href="messages.htm"><i class="fa fa-envelope"></i> <span class="nav-label">Messages</span></a>
                 </li>

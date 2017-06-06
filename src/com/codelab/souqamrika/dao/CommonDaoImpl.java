@@ -96,14 +96,26 @@ public class CommonDaoImpl implements CommonDao {
 		Session session = null;
 		Transaction tx = null;
 		int count = 0;
+
 		try {
 			session = this.getSessionFactory().openSession();
 			tx = session.beginTransaction();
-			StringBuilder hql = new StringBuilder(
-					"select count(c.customer_id) as records from CustomerMst as c, ProductUrlMst as u , OrderMst o Where c.customer_id = u.customer_id and o.product_url_id = u.product_url_id"
-							+ " and c.status != "+ SouqAmrikaConstants.DELETE_STATUS);
-			count = ((Long) session.createQuery(hql.toString()).uniqueResult())
-					.intValue();
+			if(paginationBo.getPageClass().equalsIgnoreCase("FAVORDERS")){
+				StringBuilder hql = new StringBuilder(
+						"SELECT COUNT(c.customer_id) as records from CustomerMst as c, ProductUrlMst as u , OrderMst o WHERE c.customer_id = u.customer_id and o.product_url_id = u.product_url_id"
+								+ " AND c.status != "+ SouqAmrikaConstants.DELETE_STATUS
+								+ " AND o.status NOT IN (1,9) ");
+				count = ((Long) session.createQuery(hql.toString()).uniqueResult())
+						.intValue();
+			}else{
+				StringBuilder hql = new StringBuilder(
+						"SELECT COUNT(c.customer_id) as records from CustomerMst as c, ProductUrlMst as u , OrderMst o WHERE c.customer_id = u.customer_id and o.product_url_id = u.product_url_id"
+								+ " AND c.status != "+ SouqAmrikaConstants.DELETE_STATUS
+								+ " AND o.status NOT IN (3,9) ");
+				count = ((Long) session.createQuery(hql.toString()).uniqueResult())
+						.intValue();
+			}
+			
 			paginationBo.setRecords(count);
 			tx.commit();
 		} catch (Exception e) {
@@ -124,19 +136,32 @@ public class CommonDaoImpl implements CommonDao {
 		List<T> list = new ArrayList<T>();
 		Session session = null;
 		Transaction tx = null;
+		
 		try {
 			session = this.getSessionFactory().openSession();
 			tx = session.beginTransaction();
-			String c_name = paginationBo.getPageClass();
-			StringBuilder hql = new StringBuilder(
-					"select o.payment_status as payment_status, c.customer_id as customer_id , c.customer_fname as customer_fname, c.customer_lname as customer_lname, u.product_url as product_url "
-					+ "from CustomerMst as c, ProductUrlMst as u, OrderMst o Where c.customer_id=u.customer_id and o.product_url_id = u.product_url_id"
+			StringBuilder hql = null;
+			if(paginationBo.getPageClass().equalsIgnoreCase("FAVORDERS")){
+				hql = new StringBuilder(
+					"SELECT o.order_id as order_id, o.payment_status as payment_status, c.customer_id as customer_id , c.customer_fname as customer_fname, c.customer_lname as customer_lname, u.product_url as product_url "
+					+ "FROM CustomerMst as c, ProductUrlMst as u, OrderMst o Where c.customer_id=u.customer_id and o.product_url_id = u.product_url_id"
 							+ " and c.status != "+ SouqAmrikaConstants.DELETE_STATUS
-							+ " ORDER BY "
+							+ " and o.status NOT IN (1,9) ORDER BY"
 							+ "	"
 							+ paginationBo.getSidx()
 							+ "  "
 							+ paginationBo.getSord() + " ");
+			}else{
+				hql = new StringBuilder(
+						"SELECT o.order_id as order_id, o.payment_status as payment_status, c.customer_id as customer_id , c.customer_fname as customer_fname, c.customer_lname as customer_lname, u.product_url as product_url "
+						+ "FROM CustomerMst as c, ProductUrlMst as u, OrderMst o Where c.customer_id=u.customer_id and o.product_url_id = u.product_url_id"
+								+ " and c.status != "+ SouqAmrikaConstants.DELETE_STATUS
+								+ " and o.status NOT IN (3,9) ORDER BY"
+								+ "	"
+								+ paginationBo.getSidx()
+								+ "  "
+								+ paginationBo.getSord() + " ");
+			}	
 			Query query = session.createQuery(hql.toString());
 			query.setFirstResult(paginationBo.getStart());
 			query.setMaxResults(paginationBo.getLimit());

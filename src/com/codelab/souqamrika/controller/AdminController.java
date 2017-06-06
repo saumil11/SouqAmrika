@@ -119,11 +119,11 @@ public class AdminController {
 		
 	}
 	
-	/*----Start : Customer Management----*/
+	/*----Start : All Orders ----*/
 	
 	@RequestMapping(value="/getAllOrders")
 	public @ResponseBody String getAllOrders(HttpServletRequest request) throws Exception{
-		PaginationBO pagebo = this.setOrderPagination(request, "", "customer_fname", "status");
+		PaginationBO pagebo = this.setOrderPagination(request, "", "o.created_date", "status");
 		
 		List<OrderMst> lst =this.getCommonService().getOrderListWithPagination(pagebo);
 		String grid = this.getAllOrderGrid(pagebo, lst);
@@ -140,6 +140,9 @@ public class AdminController {
 		}
 		if (!lst.isEmpty()) {
 			for (OrderMst order : lst) {
+				StringBuilder actionStr = new StringBuilder("<a title='Save order' style='font-size: 15px; padding-right: 10px;' onclick='saveOrder("+order.getOrder_id()+");'><span class='fa fa-check-square-o'></span></a>");
+				actionStr.append("<a title='Delete order' style='font-size: 15px;' onclick='deleteOrder("+order.getOrder_id()+");'><span class='fa fa-trash'></span></a>");
+				
 				JSONArray listdata = new JSONArray();
 				JSONObject row = new JSONObject();
 				
@@ -147,6 +150,7 @@ public class AdminController {
 //				listdata.put("<a href='"+order.getProduct_url()+"'>"+order.getProduct_url()+"</a>");
 				listdata.put("<a href='"+order.getProduct_url()+"' target='_blank' class='btn btn-white btn-sm'><i class='fa fa-external-link'></i> Product URL</a>");
 				listdata.put(order.getPayment_status());
+				listdata.put(actionStr.toString());
 				/*if(customer.getStatus() == SouqAmrikaConstants.ACTIVE_STATUS){
 					listdata.put(SouqAmrikaConstants.ACTIVE_STATUS_STR);
 				}
@@ -176,7 +180,64 @@ public class AdminController {
 		
 	}
 	
-	/*----End : Customer Management----*/
+	/*----End : All Orders ----*/
+	
+	/*----Start : Saved Orders ----*/
+	
+	@RequestMapping(value="/orders")
+	public ModelAndView loadOrders() throws Exception{
+		
+		return new ModelAndView("favOrders");
+		
+	}
+	@RequestMapping(value="/getAllFavOrders")
+	public @ResponseBody String getAllFavOrders(HttpServletRequest request) throws Exception{
+		PaginationBO pagebo = this.setOrderPagination(request, "FAVORDERS", "o.created_date", "status");
+		
+		List<OrderMst> lst =this.getCommonService().getOrderListWithPagination(pagebo);
+		String grid = this.getAllFavOrderGrid(pagebo, lst);
+		return grid;
+	}
+	
+	public String getAllFavOrderGrid(PaginationBO pagebo, List<OrderMst> lst) throws Exception{
+		JSONObject jsondata = new JSONObject();
+		JSONArray rows = new JSONArray();
+		if(null!=pagebo){
+			jsondata.put("page", pagebo.getPage());
+			jsondata.put("total", pagebo.getTotal_pages());
+			jsondata.put("records", pagebo.getRecords());
+		}
+		if (!lst.isEmpty()) {
+			for (OrderMst order : lst) {
+				/*StringBuilder actionStr = new StringBuilder("<a title='Save order' style='font-size: 15px; padding-right: 10px;' onclick='saveOrder("+order.getOrder_id()+");'><span class='fa fa-check-square-o'></span></a>");
+				actionStr.append("<a title='Delete order' style='font-size: 15px;' onclick='deleteOrder("+order.getOrder_id()+");'><span class='fa fa-trash'></span></a>");
+				*/
+				JSONArray listdata = new JSONArray();
+				JSONObject row = new JSONObject();
+				
+				listdata.put("<a onclick='orderDetails("+order.getCustomer_id()+");'>"+order.getCustomer_fname()+" "+order.getCustomer_lname()+"</a>");
+//				listdata.put("<a href='"+order.getProduct_url()+"'>"+order.getProduct_url()+"</a>");
+				listdata.put("<a href='"+order.getProduct_url()+"' target='_blank' class='btn btn-white btn-sm'><i class='fa fa-external-link'></i> Product URL</a>");
+				listdata.put(order.getPayment_status());
+				//listdata.put(actionStr.toString());
+				/*if(customer.getStatus() == SouqAmrikaConstants.ACTIVE_STATUS){
+					listdata.put(SouqAmrikaConstants.ACTIVE_STATUS_STR);
+				}
+				else{
+					listdata.put(SouqAmrikaConstants.INACTIVE_STATUS_STR);
+				}*/
+				//listdata.put(actionStr.toString());
+				
+				row.put("id",order.getCustomer_id());
+				row.put("cell", listdata);
+				rows.put(row);
+				jsondata.put("rows", rows);
+			}
+		}
+		return jsondata.toString();
+	}
+	
+	/*----End : Saved Orders ----*/
 	
 	@RequestMapping(value="/messages")
 	public ModelAndView loadMessages() throws Exception{
@@ -230,6 +291,40 @@ public class AdminController {
 		}
 		return new ModelAndView("viewMessage");
 		
+	}
+	
+	@RequestMapping(value = "/deleteOrder")
+	public void deleteOrder(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		long orderId =0;
+		if (null != request.getParameter("order_id")) {
+			orderId = Long.parseLong(request.getParameter("order_id").toString());
+			String buffer;
+			boolean flag = this.getAdminService().updateOrder(orderId,SouqAmrikaConstants.DELETE_STATUS);
+			if (flag) {
+				buffer = "Correct";
+			} else {
+				buffer = "Incorrect";
+			}
+			response.getWriter().println(buffer);
+		}
+	}
+	
+	@RequestMapping(value = "/saveOrder")
+	public void saveOrder(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		long orderId =0;
+		if (null != request.getParameter("order_id")) {
+			orderId = Long.parseLong(request.getParameter("order_id").toString());
+			String buffer;
+			boolean flag = this.getAdminService().updateOrder(orderId,SouqAmrikaConstants.FAVOURIT_STATUS);
+			if (flag) {
+				buffer = "Correct";
+			} else {
+				buffer = "Incorrect";
+			}
+			response.getWriter().println(buffer);
+		}
 	}
 	
 }

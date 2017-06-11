@@ -2,7 +2,6 @@ package com.codelab.souqamrika.service;
 
 import com.codelab.souqamrika.dto.PortalCustomDTO;
 import com.codelab.souqamrika.entity.ContactDtl;
-import com.codelab.souqamrika.entity.CustomerMst;
 
 
 public interface PortalService {

@@ -11,7 +11,7 @@ public interface AdminDao {
 
 	<T> T get(Class<T> c, long id) throws Exception;
 
-	AdminCustomDTO getOrderDtls(Long customerId) throws Exception;
+	AdminCustomDTO getOrderDtls(Long orderId) throws Exception;
 
 	boolean updateOrder(long orderId, int orderStatus) throws Exception;
 

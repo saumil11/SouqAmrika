@@ -13,8 +13,10 @@ import org.springframework.stereotype.Repository;
 
 import com.codelab.souqamrika.constants.SouqAmrikaConstants;
 import com.codelab.souqamrika.dto.PaginationBO;
+import com.codelab.souqamrika.dto.PortalCustomDTO;
 import com.codelab.souqamrika.entity.CustomerMst;
 import com.codelab.souqamrika.entity.OrderMst;
+import com.codelab.souqamrika.entity.ProductUrlMst;
 
 @Repository("CommonDao")
 public class CommonDaoImpl implements CommonDao {
@@ -59,6 +61,7 @@ public class CommonDaoImpl implements CommonDao {
 		return paginationBo;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> List<T> getListWithPagination(PaginationBO paginationBo)
 			throws Exception {
@@ -129,6 +132,7 @@ public class CommonDaoImpl implements CommonDao {
 		return paginationBo;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> List<T> getOrderListWithPagination(PaginationBO paginationBo)
 			throws Exception {
@@ -175,6 +179,60 @@ public class CommonDaoImpl implements CommonDao {
 			session.close();
 		}
 		return list;
+	}
+	
+	@Override
+	public PortalCustomDTO getOrderDtls(Long orderId) throws Exception {
+		Session session = null;
+		Transaction tx = null;
+		PortalCustomDTO portalCustomDTO = new PortalCustomDTO();
+		CustomerMst customerMst = null;
+		ProductUrlMst productUrlMst = null;
+		OrderMst orderMst = null;
+		
+		try {
+			session = this.getSessionFactory().openSession();
+			tx = session.beginTransaction();
+			
+			Query query = session.createQuery("from OrderMst where status!=:userStatus and order_id = :orderId");
+			query.setParameter("userStatus", SouqAmrikaConstants.DELETE_STATUS);
+			query.setParameter("orderId", orderId);
+			orderMst = (OrderMst) query.uniqueResult();
+			
+			if(null!=orderMst && null!=orderMst.getCustomer_id()){
+				Query query1 = session.createQuery("from CustomerMst where status!=:userStatus and customer_id = :customerId");
+				query1.setParameter("userStatus", SouqAmrikaConstants.DELETE_STATUS);
+				query1.setParameter("customerId", orderMst.getCustomer_id());
+				customerMst = (CustomerMst) query1.uniqueResult();
+			}
+			
+			if(null!=orderMst && null!=orderMst.getProduct_url_id()){
+				Query query2 = session.createQuery("from ProductUrlMst where status!=:userStatus and customer_id = :customerId");
+				query2.setParameter("userStatus", SouqAmrikaConstants.DELETE_STATUS);
+				query2.setParameter("customerId", orderMst.getProduct_url_id());
+				productUrlMst = (ProductUrlMst) query2.uniqueResult();
+			}
+			
+			if(orderMst!=null){
+				portalCustomDTO.setOrderMstBO(orderMst);
+			}
+			if(customerMst!=null){
+				portalCustomDTO.setCustomerMstBO(customerMst);
+			}
+			if(productUrlMst!=null){
+				portalCustomDTO.setProductUrlMstBO(productUrlMst);
+			}
+			
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+			
+			e.printStackTrace();
+		} finally {
+			
+			session.close();
+		}
+		return portalCustomDTO;
 	}
 
 }

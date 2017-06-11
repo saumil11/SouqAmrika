@@ -10,4 +10,6 @@ public interface SouqAmrikaConstants {
 	String PAYMENT_STATUS_Y = "Y";
 	String PAYMENT_STATUS_N = "N";
 	
+	String ORDER_STATUS_1 = "1";
+	
 }

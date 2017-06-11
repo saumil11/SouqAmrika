@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.codelab.souqamrika.dao.CommonDao;
 import com.codelab.souqamrika.dto.PaginationBO;
+import com.codelab.souqamrika.dto.PortalCustomDTO;
 
 @Service("CommonService")
 @Transactional
@@ -110,6 +111,10 @@ public class CommonServiceImpl implements CommonService{
 			throws Exception {
 		return this.getCommonDao().getOrderListWithPagination(paginationBo);
 	}
-	
+
+	@Override
+	public PortalCustomDTO getOrderDtls(Long orderId) throws Exception {
+		return this.getCommonDao().getOrderDtls(orderId);
+	}
 
 }

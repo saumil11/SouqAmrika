@@ -9,7 +9,6 @@ import com.codelab.souqamrika.dao.GenricDao;
 import com.codelab.souqamrika.dao.PortalDao;
 import com.codelab.souqamrika.dto.PortalCustomDTO;
 import com.codelab.souqamrika.entity.ContactDtl;
-import com.codelab.souqamrika.entity.CustomerMst;
 import com.codelab.souqamrika.entity.OrderMst;
 
 @Service("PortalService")
@@ -65,6 +64,7 @@ public class PortalServiceImpl implements PortalService{
 		OrderMst orderMst = this.getGenricDao().get(OrderMst.class, orderId);
 		if(null!=orderMst){
 			orderMst.setPayment_status(SouqAmrikaConstants.PAYMENT_STATUS_Y);
+			orderMst.setOrder_status(SouqAmrikaConstants.ORDER_STATUS_1);
 			this.getGenricDao().update(orderMst);
 		}
 	}

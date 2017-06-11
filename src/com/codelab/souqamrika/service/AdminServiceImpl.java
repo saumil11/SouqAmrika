@@ -47,8 +47,8 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public AdminCustomDTO getOrderDtls(Long customerId) throws Exception {
-		return this.getAdminDao().getOrderDtls(customerId);
+	public AdminCustomDTO getOrderDtls(Long orderId) throws Exception {
+		return this.getAdminDao().getOrderDtls(orderId);
 	}
 
 	@Override
@@ -60,5 +60,17 @@ public class AdminServiceImpl implements AdminService{
 	public boolean updateOrder(long orderId, int orderStatus) throws Exception {
 		return this.getAdminDao().updateOrder(orderId, orderStatus);
 	}
+
+	@Override
+	public <T> T get(Class<T> c, long id) {
+		return this.getGenricDao().get(c, id);
+	}
+
+	@Override
+	public <T> Boolean update(T t) {
+		return this.getGenricDao().update(t);
+	}
+	
+	
 
 }

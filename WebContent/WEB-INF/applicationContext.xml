@@ -85,4 +85,7 @@
 		</bean>
 	</mvc:interceptors>
 	
+	<bean id="encryptionUtil" class="com.codelab.souqamrika.utility.EncryptionUtil"/>
+	<bean id="mailUtil" class="com.codelab.souqamrika.utility.MailUtil"/>
+	
 </beans>

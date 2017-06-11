@@ -1,6 +1,7 @@
 package com.codelab.souqamrika.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -21,10 +22,10 @@ import com.codelab.souqamrika.constants.SouqAmrikaConstants;
 import com.codelab.souqamrika.dto.AdminCustomDTO;
 import com.codelab.souqamrika.dto.PaginationBO;
 import com.codelab.souqamrika.entity.ContactDtl;
-import com.codelab.souqamrika.entity.CustomerMst;
 import com.codelab.souqamrika.entity.OrderMst;
 import com.codelab.souqamrika.service.AdminService;
 import com.codelab.souqamrika.service.CommonService;
+import com.codelab.souqamrika.utility.EncryptionUtil;
 
 @Controller
 @RequestMapping(value = "admin")
@@ -146,7 +147,7 @@ public class AdminController {
 				JSONArray listdata = new JSONArray();
 				JSONObject row = new JSONObject();
 				
-				listdata.put("<a onclick='orderDetails("+order.getCustomer_id()+");'>"+order.getCustomer_fname()+" "+order.getCustomer_lname()+"</a>");
+				listdata.put("<a onclick='orderDetails("+order.getOrder_id()+");'>"+order.getCustomer_fname()+" "+order.getCustomer_lname()+"</a>");
 //				listdata.put("<a href='"+order.getProduct_url()+"'>"+order.getProduct_url()+"</a>");
 				listdata.put("<a href='"+order.getProduct_url()+"' target='_blank' class='btn btn-white btn-sm'><i class='fa fa-external-link'></i> Product URL</a>");
 				listdata.put(order.getPayment_status());
@@ -170,10 +171,10 @@ public class AdminController {
 	
 	@RequestMapping(value = "/viewOrder")
 	public ModelAndView loadViewOrder(@ModelAttribute("admin") AdminCustomDTO admin, Map<String, Object> model,HttpServletRequest request) throws Exception{
-		Long customerId =0L;
-		if (null!=request.getParameter ("customerId")) {
-			customerId= Long.parseLong(request.getParameter("customerId").toString());
-			admin = this.getAdminService().getOrderDtls(customerId);
+		Long orderId =0L;
+		if (null!=request.getParameter ("orderId")) {
+			orderId= Long.parseLong(request.getParameter("orderId").toString());
+			admin = this.getAdminService().getOrderDtls(orderId);
 			model.put("admin", admin);
 		}
 		return new ModelAndView("viewOrder");
@@ -215,7 +216,7 @@ public class AdminController {
 				JSONArray listdata = new JSONArray();
 				JSONObject row = new JSONObject();
 				
-				listdata.put("<a onclick='orderDetails("+order.getCustomer_id()+");'>"+order.getCustomer_fname()+" "+order.getCustomer_lname()+"</a>");
+				listdata.put("<a onclick='orderDetails("+order.getOrder_id()+");'>"+order.getCustomer_fname()+" "+order.getCustomer_lname()+"</a>");
 //				listdata.put("<a href='"+order.getProduct_url()+"'>"+order.getProduct_url()+"</a>");
 				listdata.put("<a href='"+order.getProduct_url()+"' target='_blank' class='btn btn-white btn-sm'><i class='fa fa-external-link'></i> Product URL</a>");
 				listdata.put(order.getPayment_status());
@@ -326,5 +327,47 @@ public class AdminController {
 			response.getWriter().println(buffer);
 		}
 	}
+	
+	@RequestMapping(value = "/updateOrderStatus")
+	public void updateOrderStatus(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		Long orderId = 0L;
+		String orderStatus = null;
+		boolean flag = false;
+		
+		if (null != request.getParameter("order_id") && null != request.getParameter("order_status")) {
+			orderId = Long.parseLong(request.getParameter("order_id").toString());
+			orderStatus = request.getParameter("order_status").toString();
+			String buffer;
+			OrderMst orderMst = this.getAdminService().get(OrderMst.class,orderId);
+			
+			if(null!=orderMst){
+				orderMst.setOrder_status(orderStatus);
+				orderMst.setUpdated_by(1L);
+				orderMst.setUpdated_date(formatWithSlashWithTime.format(new Date()));
+				flag = this.getAdminService().update(orderMst);
+			}
+			
+			if (flag) {
+				buffer = "Correct";
+			} else {
+				buffer = "Incorrect";
+			}
+			response.getWriter().println(buffer);
+		}
+	}
+	
+	/*@SuppressWarnings("static-access")
+	@RequestMapping(value = "/enc")
+	public void checkEnc(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		//Long orderId = 10L;
+		String id = request.getParameter("id");
+		EncryptionUtil encryptionUtil = new EncryptionUtil();
+		System.out.println(encryptionUtil.encode(id));
+		String encdOrder = encryptionUtil.encode(id);
+		System.out.println(encryptionUtil.decode(encdOrder));
+		
+	}*/
 	
 }

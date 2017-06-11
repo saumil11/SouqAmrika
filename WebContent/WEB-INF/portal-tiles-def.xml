@@ -57,6 +57,11 @@
 		<put-attribute name="content" value="/WEB-INF/jsp/portal/PaymentCancel.jsp" />
 	</definition>
 	
+	<definition name="viewOrderDtls" extends=".portalHomeTemplate"> 
+		<put-attribute name="title" value="Order Details" type="string" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/OrderDtls.jsp" />
+	</definition>
+	
 	<definition name="portalRedirect" template="/WEB-INF/jsp/portal/potalRedirect.jsp"></definition>
     
     	

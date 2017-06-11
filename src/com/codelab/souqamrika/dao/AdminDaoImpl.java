@@ -1,9 +1,7 @@
 package com.codelab.souqamrika.dao;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -35,6 +33,7 @@ public class AdminDaoImpl implements AdminDao{
 	
 	SimpleDateFormat formatWithSlashWithTime = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T get(Class<T> c, long id) throws Exception{
 		
@@ -108,30 +107,47 @@ public class AdminDaoImpl implements AdminDao{
 	}
 
 	@Override
-	public AdminCustomDTO getOrderDtls(Long customerId) throws Exception {
+	public AdminCustomDTO getOrderDtls(Long orderId) throws Exception {
 		Session session = null;
 		Transaction tx = null;
 		AdminCustomDTO adminCustomDTO = new AdminCustomDTO();
 		CustomerMst customerMst = null;
 		ProductUrlMst productUrlMst = null;
+		OrderMst orderMst = null;
 		
 		try {
 			session = this.getSessionFactory().openSession();
 			tx = session.beginTransaction();
-			Query query = session.createQuery("from CustomerMst where status!=:userStatus and customer_id = :customerId");
+			
+			Query query = session.createQuery("from OrderMst where status!=:userStatus and order_id = :orderId");
 			query.setParameter("userStatus", SouqAmrikaConstants.DELETE_STATUS);
-			query.setParameter("customerId", customerId);
-			customerMst = (CustomerMst) query.uniqueResult();
+			query.setParameter("orderId", orderId);
+			orderMst = (OrderMst) query.uniqueResult();
 			
-			Query query1 = session.createQuery("from ProductUrlMst where status!=:userStatus and customer_id = :customerId");
-			query1.setParameter("userStatus", SouqAmrikaConstants.DELETE_STATUS);
-			query1.setParameter("customerId", customerId);
-			productUrlMst = (ProductUrlMst) query1.uniqueResult();
+			if(null!=orderMst && null!=orderMst.getCustomer_id()){
+				Query query1 = session.createQuery("from CustomerMst where status!=:userStatus and customer_id = :customerId");
+				query1.setParameter("userStatus", SouqAmrikaConstants.DELETE_STATUS);
+				query1.setParameter("customerId", orderMst.getCustomer_id());
+				customerMst = (CustomerMst) query1.uniqueResult();
+			}
 			
-			if(customerMst!=null && productUrlMst!=null){
+			if(null!=orderMst && null!=orderMst.getProduct_url_id()){
+				Query query2 = session.createQuery("from ProductUrlMst where status!=:userStatus and customer_id = :customerId");
+				query2.setParameter("userStatus", SouqAmrikaConstants.DELETE_STATUS);
+				query2.setParameter("customerId", orderMst.getProduct_url_id());
+				productUrlMst = (ProductUrlMst) query2.uniqueResult();
+			}
+			
+			if(orderMst!=null){
+				adminCustomDTO.setOrderMstBO(orderMst);
+			}
+			if(customerMst!=null){
 				adminCustomDTO.setCustomerMstBO(customerMst);
+			}
+			if(productUrlMst!=null){
 				adminCustomDTO.setProductUrlMstBO(productUrlMst);
 			}
+			
 			tx.commit();
 		} catch (Exception e) {
 			tx.rollback();

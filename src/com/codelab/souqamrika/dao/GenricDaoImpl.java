@@ -158,6 +158,7 @@ public class GenricDaoImpl implements GenricDao{
 		}
 		return flag;
 	}
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T get(Class<T> c, long id) {
 		
@@ -176,6 +177,7 @@ public class GenricDaoImpl implements GenricDao{
 		}
 		return t_obj;
 	}
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T load(Class<T> c, long id) {
 		
@@ -218,6 +220,7 @@ public class GenricDaoImpl implements GenricDao{
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> boolean delete(Class<T> c, long id) {
 		
@@ -242,6 +245,7 @@ public class GenricDaoImpl implements GenricDao{
 		return flag;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> List<T> getSingleList(Class<T> c, String statuCol) {
 		
@@ -264,6 +268,7 @@ public class GenricDaoImpl implements GenricDao{
 		return list;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> Map<Integer, Object> getMultipleList(Map<Integer, T> t, Map<Integer, String> t1) {
 		
@@ -298,6 +303,7 @@ public class GenricDaoImpl implements GenricDao{
 	 * get multiple object list by putting particular class type as key and pass another map as value
 	 * anotehr map contain bo column and value as key value pair
 	 * */
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> Map<T, Object> getMultipleListMulArgs(
 			Map<T, Map<String, String>> t) {
@@ -372,6 +378,7 @@ public class GenricDaoImpl implements GenricDao{
 		return map;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> boolean validateSingleCol(Map<String, Object> map) {
 		

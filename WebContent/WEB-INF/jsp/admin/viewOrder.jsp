@@ -7,6 +7,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<style>
+	dt, dl {
+		line-height:2;
+	}
+</style>
 </head>
 <body>
 	<c:set var="mainTitle" value="Order Details" scope="request"/>
@@ -45,11 +50,72 @@
                                     </dl>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                	<h2 align="center">Order Info</h2>
+                                    <dl class="dl-horizontal">
+                                        <dt>Product URL : </dt> 
+                                        	<dd>
+                                        		<a title='Save order' style='font-size: 15px; padding-right: 10px;' target='_blank' 
+                                        			href='${admin.productUrlMstBO.product_url}'> click here </a>
+                                        	</dd>
+                                        <dt>Payment Status : </dt> <dd>${admin.orderMstBO.payment_status}</dd>
+                                        <dt>Order Status : </dt> 
+                                        <dd>
+	                                        <select class="form-control m-b" name="orderStatus" id="orderStatus" onchange="updateOrderStatus(${admin.orderMstBO.order_id});">
+	                                        	<option value="0">-- Select --</option>
+		                                        <option value="1">Order placed</option>
+		                                        <option value="2">Order verified</option>
+		                                        <option value="3">Payment done</option>
+		                                        <option value="4">Shipped</option>
+	                                    	</select>
+	                                    </dd>
+                                        
+
+                                    
+                                    </dl>
+                                </div>
+                               
+                            </div>
 					</div>
 				</div>
 			</div>
 		</div>
+		
 	</div>
+	
+	<Script type="text/javascript">
+		$(document).ready(function(){
+			if(''!='${admin.orderMstBO.order_status}'){
+				$("#orderStatus").val('${admin.orderMstBO.order_status}');	
+			}
+			
+		});
+		function updateOrderStatus(id){
+			var orderStatus = $("#orderStatus").val();
+			var fromData = {"order_id":id,"order_status":orderStatus};
+			$.ajax({
+				url : "updateOrderStatus.htm",
+				data : fromData,
+				type : "POST",
+				success : function(resdata, status, xhr) {
+					/* var res = resdata.trim();
+					if (res == 'Correct') {
+						alert("done");
+					} */
+				},
+				error : function(xhr, status, errorThrown) {
+					alert("Sorry, there was a problem!");
+					console.log("Error: " + errorThrown);
+					console.log("Status: " + status);
+					console.dir(xhr);
+				},
+				complete : function(xhr, status) {
+					//$(grid_selector).trigger( 'reloadGrid' );
+				}
+			});
+		}
+	</script>
 
 
 </body>

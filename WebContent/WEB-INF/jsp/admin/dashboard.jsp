@@ -38,7 +38,7 @@
 	</div>
 	
 	<form:form name="viewOrderForm" id="viewOrderForm" method="post">
-		<input type="hidden" value="" id=customerId name="customerId"/>
+		<input type="hidden" value="" id=orderId name="orderId"/>
 	</form:form>
 	
 	<c:set var="delMsg" value="Are you sure you want to delete this Order?" scope="request"/>
@@ -90,7 +90,7 @@
                 rownumbers: true,
                 autowidth: true,
                 shrinkToFit: true,
-                sortname: 'o.created_date',
+                sortname: 'o.order_id',
                 sortorder: 'desc',
                 rowNum: 10,
                 rowList: [10, 20, 30],
@@ -134,7 +134,7 @@
 	});
     
     function orderDetails(id){
-    	$('#customerId').val(id);
+    	$('#orderId').val(id);
     	$("#viewOrderForm").attr("action","viewOrder.htm");
    	 	$('#viewOrderForm').submit();
     	

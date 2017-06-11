@@ -3,6 +3,7 @@ package com.codelab.souqamrika.dao;
 import java.util.List;
 
 import com.codelab.souqamrika.dto.PaginationBO;
+import com.codelab.souqamrika.dto.PortalCustomDTO;
 
 public interface CommonDao {
 	
@@ -13,6 +14,8 @@ public interface CommonDao {
 	<T> List<T> getOrderListWithPagination(PaginationBO paginationBo) throws Exception;
 
 	PaginationBO setOrderPagination(PaginationBO paginationBo)  throws Exception;
+
+	PortalCustomDTO getOrderDtls(Long orderId) throws Exception;
 	
 
 }

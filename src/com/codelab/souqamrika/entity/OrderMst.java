@@ -26,6 +26,7 @@ public class OrderMst implements Serializable{
 	private int order_quantity;
 	private String order_dtl;
 	private String payment_status;
+	private String order_status;
 	private Long created_by;
 	private String created_date;
 	private Long updated_by;
@@ -131,6 +132,12 @@ public class OrderMst implements Serializable{
 	}
 	public void setPayment_status(String payment_status) {
 		this.payment_status = payment_status;
+	}
+	public String getOrder_status() {
+		return order_status;
+	}
+	public void setOrder_status(String order_status) {
+		this.order_status = order_status;
 	}
 	
 	

@@ -34,7 +34,9 @@ import com.codelab.souqamrika.entity.CustomerMst;
 import com.codelab.souqamrika.entity.OrderMst;
 import com.codelab.souqamrika.entity.ProductUrlMst;
 import com.codelab.souqamrika.service.AmazonService;
+import com.codelab.souqamrika.service.CommonService;
 import com.codelab.souqamrika.service.PortalService;
+import com.codelab.souqamrika.utility.EncryptionUtil;
 import com.codelab.souqamrika.utility.MailUtil;
 
 @Controller
@@ -56,6 +58,17 @@ public class MainController {
 	}
 	
 	@Autowired
+	private CommonService commonService;
+	
+	public CommonService getCommonService() {
+		return commonService;
+	}
+
+	public void setCommonService(CommonService commonService) {
+		this.commonService = commonService;
+	}
+
+	@Autowired
 	private AmazonService amazonService;
 	
 	public AmazonService getAmazonService() {
@@ -64,6 +77,17 @@ public class MainController {
 
 	public void setAmazonService(AmazonService amazonService) {
 		this.amazonService = amazonService;
+	}
+	
+	@Autowired
+	private EncryptionUtil encryptionUtil;
+	
+	public EncryptionUtil getEncryptionUtil() {
+		return encryptionUtil;
+	}
+
+	public void setEncryptionUtil(EncryptionUtil encryptionUtil) {
+		this.encryptionUtil = encryptionUtil;
 	}
 
 	@RequestMapping(value="/Home")
@@ -158,12 +182,12 @@ public class MainController {
 			portal.setOrderMstBO(orderMstDTO);
 			
 			boolean flag = this.getPortalService().saveCustomerReg(portal);
-			if(flag){
+			/*if(flag){
 				MailUtil mailUtil = new MailUtil();
 				String msg = mailbundle.getString("mail.orderBody");
 				msg = msg.replace("{0}", customerMstDTO.getCustomer_fname());
 				mailUtil.sendMail(customerMstDTO.getCustomer_email(), mailbundle.getString("subject.orderSuccess"), msg);
-			}
+			}*/
 			model.put("portal", portal);
 			//request.setAttribute("success", "Home.htm");
 		}
@@ -298,6 +322,24 @@ public class MainController {
 			}
 			response.getWriter().println(res);
 		}
+	}
+	
+	@SuppressWarnings("static-access")
+	@RequestMapping(value="/viewOrderStatus")
+	public ModelAndView loadOrderStatus(@ModelAttribute("portal") PortalForm portal,Map<String, Object> model,HttpServletRequest request) throws Exception{
+		
+		if(null!=request.getParameter("order") && !("").equalsIgnoreCase(request.getParameter("order"))){
+			String encOrderId = request.getParameter("order");
+			String orderId = encryptionUtil.decode(encOrderId);
+			if(null!=orderId && !("").equals(orderId)){
+				System.out.println(orderId);
+				PortalCustomDTO portalCustomDTO = this.getCommonService().getOrderDtls(Long.valueOf(orderId));
+				if(null!=portalCustomDTO){
+					model.put("portal", portalCustomDTO);
+				}
+			}
+		}
+		return new ModelAndView("viewOrderDtls");
 	}
 	
 }
